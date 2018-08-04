@@ -1,28 +1,30 @@
 {
-  "name": "project-two",
+  "name": "node-handlebars-boilerplate",
   "version": "1.0.0",
-  "description": "tbd",
-  "main": "index.js",
+  "description": "Project 2 Starter",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "lint": "eslint **/*.js --quiet",
+    "fix": "eslint --fix .",
+    "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/leo-daniel/project-two.git"
-  },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/leo-daniel/project-two/issues"
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.38.0"
   },
-  "homepage": "https://github.com/leo-daniel/project-two#readme",
   "devDependencies": {
-    "eslint": "^5.3.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-standard": "^3.1.0"
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.7"
   }
 }
