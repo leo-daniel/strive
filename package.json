@@ -1,64 +1,20 @@
 {
   "name": "project-two",
   "version": "1.0.0",
-  "description": "tbd",
+  "description": "Project Two -- TBD",
   "main": ".eslintrc.js",
   "directories": {
     "doc": "docs",
     "test": "test"
   },
-  "dependencies": {
-    "extend": "^3.0.1",
-    "fast-deep-equal": "^1.1.0",
-    "fast-diff": "^1.1.2",
-    "form-data": "^2.3.2",
-    "formidable": "^1.2.1",
-    "forwarded": "^0.1.2",
-    "fresh": "^0.5.2",
-    "generate-function": "^2.0.0",
-    "generic-pool": "^3.4.2",
-    "get-func-name": "^2.0.0",
-    "get-stdin": "^5.0.1",
-    "glob": "^6.0.4",
-    "growl": "^1.10.5",
-    "he": "^1.1.1",
-    "ignore": "^3.3.10",
-    "inflection": "^1.12.0",
-    "ip-regex": "^2.1.0",
-    "ipaddr.js": "^1.6.0",
-    "is-bluebird": "^1.0.2",
-    "is-buffer": "^1.1.6",
-    "is-ip": "^2.0.0",
-    "jest-docblock": "^21.2.0",
-    "json-schema-traverse": "^0.3.1",
-    "kind-of": "^3.2.2",
-    "lazy-cache": "^1.0.4",
-    "long": "^4.0.0",
-    "longest": "^1.0.1",
-    "media-typer": "^0.3.0",
-    "merge-descriptors": "^1.0.1",
-    "methods": "^1.1.2",
-    "mime": "^1.4.1",
-    "mime-db": "^1.33.0",
-    "mime-types": "^2.1.19",
-    "minimist": "^0.0.10"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "mocha",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leo-daniel/project-two.git"
   },
-  "keywords": [
-    "project",
-    "two",
-    "SQL",
-    "Heroku",
-    "javascript"
-  ],
   "author": "Greg Bremble, Leo Daniel, Chris Mueller, Karishma Patel",
   "license": "ISC",
   "bugs": {
