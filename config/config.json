@@ -1,11 +1,10 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "",
     "database": "calendar_db",
     "host": "localhost",
-    "dialect": "mysql",
-    "port": 3307
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
