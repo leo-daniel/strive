@@ -1,12 +1,21 @@
 {
   "name": "project-two",
   "version": "1.0.0",
-  "description": "Project Two -- TBD",
+  "description": "## Table of Contents",
   "main": ".eslintrc.js",
   "directories": {
     "doc": "docs",
     "test": "test"
   },
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.38.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -15,18 +24,10 @@
     "type": "git",
     "url": "git+https://github.com/leo-daniel/project-two.git"
   },
-  "author": "Greg Bremble, Leo Daniel, Chris Mueller, Karishma Patel",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/leo-daniel/project-two/issues"
   },
-  "homepage": "https://github.com/leo-daniel/project-two#readme",
-  "dependencies": {
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "mysql": "^2.16.0",
-    "mysql2": "^1.6.1",
-    "sequelize": "^4.38.0"
-  }
+  "homepage": "https://github.com/leo-daniel/project-two#readme"
 }

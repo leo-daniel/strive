@@ -1,3 +1,22 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+.navbar-toggler {
+  right: 0px;
+  position: relative;
+  margin-left: auto;
+}
+
+.nav-link {
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.button {
+  position: relative;
+  top: 1em;
+}
