@@ -97,3 +97,15 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+// Quote API ** NEED TO ATTRIBUTE somewhere on page.
+var queryURL = "http://quotes.rest/qod.json";
+
+$.ajax({
+  url: queryURL,
+  method: "GET",
+}).then(function(response) {
+  var quote = response.contents.quotes[0].quote;
+  console.log(quote);
+  $("#quote").append(quote);
+});
