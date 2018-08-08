@@ -2,18 +2,26 @@
   line-height: 2.5;
 }
 
-.navbar-toggler{
+
+.navbar-toggler {
+
   right: 0px;
   position: relative;
   margin-left: auto;
 }
 
-.nav-link{
+
+.nav-link {
   color: white;
 }
 
-ul{
-  list-style-type:none;
+ul {
+  list-style-type: none;
+}
+
+.button {
+  position: relative;
+  top: 1em;
 }
 
 #inputHeader{
