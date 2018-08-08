@@ -1,5 +1,5 @@
 # Project Tasks
 
-- [ ] setup MVP Project OR Issues
+- [ ] set up MVP Project OR Issues
 - [ ] write Travis CI tests
 - [ ] 
