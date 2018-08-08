@@ -58,7 +58,66 @@
                 <button type="submitTask" class="btn btn-primary">Add Task</button>
             </form>
 
-            Goal Input Form
+            <!--Goal Input Form-->
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="goalInputForm">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+
+                        <button type="button" class="btn btn-primary" id="submitGoal">Add Goal</button>
+                    </form>
+                </div>
+            </div>
+            
+            
         </div>
     </div>
 </div>
+
+<script>
+    // hide forms until user clicks icon to select new task or goal
+    $("#taskInputForm").hide();
+    $("#goalInputForm").hide();
+
+    function setTask() {
+        $("#newTask").on("click", function(){
+            $("#taskInputForm").show();
+
+            $("#submitGoal").on("click", function () {
+                // 1) hide/clear task input form.
+                $("#taskInputForm").hide();
+
+                // 2) insert task into the calendar.
+
+                // 3) display "success" modal.
+
+            });
+        });
+    };
+
+    function setGoal() {
+        $("#newGoal").on("click", function(){
+            $("#goalInputForm").show();
+
+            var goal = $("#description").val().trim();
+
+            $("#submitGoal").on("click", function () {
+                // 1) hide/clear goal input form.
+                $("#goalInputForm").hide();
+
+                // 2) insert goal into the calendar.
+
+                // 3) display "success" modal.
+
+            });
+        });
+    };
+    
+    setTask();
+    setGoal();
+
+    
+</script>
