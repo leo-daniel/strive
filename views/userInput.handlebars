@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <!--Header Title-->
+        <div id="inputHeader" class="col-md-12">
+            <h1>Plan Out Your Journey To Success!</h1>
+        </div>
+    </div>
+    <div class="row">
+        <!--Buttons for either adding a new task or a new goal-->
+        <div id="buttonNewTask" class="col-md-6">
+            <button id="newTask" type="button" class="btn btn-info">New Task</button>
+        </div>
+        <div id="buttonNewGoal" class="col-md-6">
+            <button id="newGoal" type="button" class="btn btn-info">New Goal</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <!--Form input for Tasks-->
+            <form id="taskInputForm">
+                <div class="form-row">
+                    <!--title of task-->
+                    <div class="form-group col-md-12">
+                        <label for="inputTitle">Task Title</label>
+                        <input type="text" class="form-control" id="inputTitle" placeholder="Name of your task">
+                    </div>
+                </div>
+                <!--Address-->
+                <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                </div>
+                <!--Category and Date-->
+                <div class="form-row">
+                    <!--Category-->
+                    <div class="form-group col-md-5">
+                        <label for="inputCategory">Category</label>
+                        <select id="inputCategory" class="form-control">
+                            <option selected>Choose...</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="school">School</option>
+                        </select>
+                    </div>
+                    <!--Date Selection-->
+                    <div class="form-group col-md-5">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2"></div>
+                </div>
+
+                <button type="submitTask" class="btn btn-primary">Add Task</button>
+            </form>
+
+            Goal Input Form
+        </div>
+    </div>
+</div>
