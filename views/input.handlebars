@@ -1,0 +1,37 @@
+<div id="goal-input">
+    <h2>Create a new goal</h2>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="3"></textarea>
+    </div>
+
+    <button type="button" id="goal-btn">
+        Submit
+    </button>
+</div>
+
+<div id="success">
+    <div>
+    
+    </div>
+    <button>See it in the calendar</button>
+    <button>Add another goal</button>
+</div>
+
+<script>
+    $("#success").hide();
+
+    $("#goal-btn").on("click", function(){
+        var goal = $("#description").val().trim();
+
+        // 1) hide goal input form.
+        $("#goal-input").hide();
+
+        // 2) display "success" screen.
+.
+        $("#success").show();
+
+        // 3) insert goal into the calendar.
+
+    });
+</script>

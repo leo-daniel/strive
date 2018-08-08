@@ -5,30 +5,41 @@ var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
+// var API = {
+//   saveExample: function(example) {
+//     return $.ajax({
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       type: "POST",
+//       url: "api/examples",
+//       data: JSON.stringify(example)
+//     });
+//   },
+//   getExamples: function() {
+//     return $.ajax({
+//       url: "api/examples",
+//       type: "GET"
+//     });
+//   },
+//   deleteExample: function(id) {
+//     return $.ajax({
+//       url: "api/examples/" + id,
+//       type: "DELETE"
+//     });
+//   }
+// };
+
+// Quote API ** NEED TO ATTRIBUTE somewhere on page.
+var queryURL = "http://quotes.rest/qod.json";
+
+$.ajax({
+  url: queryURL,
+  method: "GET",
+}).then(function(response) {
+  console.log(response.contents.quotes[0].quote);
+
+});
 
 // refreshExamples gets new examples from the db and repopulates the list
 var refreshExamples = function() {
