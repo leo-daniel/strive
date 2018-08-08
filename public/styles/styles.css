@@ -15,3 +15,15 @@
 ul{
   list-style-type:none;
 }
+
+#inputHeader{
+  text-align: center;
+}
+
+#buttonNewTask{
+  text-align: center;
+}
+
+#buttonNewGoal{
+  text-align: center;
+}
