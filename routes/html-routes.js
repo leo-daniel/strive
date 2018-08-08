@@ -17,6 +17,7 @@ module.exports = function (app) {
             .then(db.Step.findAll({}))
             .then(db.Goal.findAll({}))
             .then(function (dbProjects, dbTasks, dbSteps, dbGoals) {
+                console.log(res);
                 res.render('index', {
                     projects: dbProjects,
                     tasks: dbTasks,
