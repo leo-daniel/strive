@@ -12,7 +12,7 @@ module.exports = function (app) {
         // Find one goal with the id in req.params.id and return them to the user with res.json
         db.Goal.findOne({
             where: {
-                goal_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbGoal) {
             res.json(dbGoal);
@@ -31,7 +31,7 @@ module.exports = function (app) {
         db.Goal.update(
             req.body, {
                 where: {
-                    goal_id: req.body.id
+                    id: req.body.id
                 }
             }).then(function (dbGoal) {
             res.json(dbGoal);
@@ -42,7 +42,7 @@ module.exports = function (app) {
         // DELETE the goal with the id available to us in req.params.id
         db.Goal.destroy({
             where: {
-                goal_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbGoal) {
             res.json(dbGoal);

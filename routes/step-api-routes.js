@@ -12,7 +12,7 @@ module.exports = function (app) {
         // Find one step with the id in req.params.id and return them to the user with res.json
         db.Step.findOne({
             where: {
-                step_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbStep) {
             res.json(dbStep);
@@ -31,7 +31,7 @@ module.exports = function (app) {
         db.Step.update(
             req.body, {
                 where: {
-                    step_id: req.body.id
+                    id: req.body.id
                 }
             }).then(function (dbStep) {
             res.json(dbStep);
@@ -42,7 +42,7 @@ module.exports = function (app) {
         // DELETE the step with the id available to us in req.params.id
         db.Step.destroy({
             where: {
-                step_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbStep) {
             res.json(dbStep);

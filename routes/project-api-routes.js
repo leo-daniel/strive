@@ -12,7 +12,7 @@ module.exports = function (app) {
         // Find one project with the id in req.params.id and return them to the user with res.json
         db.Project.findOne({
             where: {
-                project_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbProject) {
             res.json(dbProject);
@@ -31,7 +31,7 @@ module.exports = function (app) {
         db.Project.update(
             req.body, {
                 where: {
-                    project_id: req.body.id
+                    id: req.body.id
                 }
             }).then(function (dbProject) {
             res.json(dbProject);
@@ -43,7 +43,7 @@ module.exports = function (app) {
         // DELETE the project with the id available to us in req.params.id
         db.Project.destroy({
             where: {
-                project_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbProject) {
             res.json(dbProject);

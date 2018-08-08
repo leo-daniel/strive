@@ -12,7 +12,7 @@ module.exports = function (app) {
         // Find one task with the id in req.params.id and return them to the user with res.json
         db.Task.findOne({
             where: {
-                task_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbTask) {
             res.json(dbTask);
@@ -31,7 +31,7 @@ module.exports = function (app) {
         db.Task.update(
             req.body, {
                 where: {
-                    task_id: req.body.id
+                    id: req.body.id
                 }
             }).then(function (dbTask) {
             res.json(dbTask);
@@ -42,7 +42,7 @@ module.exports = function (app) {
         // DELETE the task with the id available to us in req.params.id
         db.Task.destroy({
             where: {
-                task_id: req.params.id
+                id: req.params.id
             }
         }).then(function (dbTask) {
             res.json(dbTask);

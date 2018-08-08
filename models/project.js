@@ -1,12 +1,37 @@
 module.exports = function (sequelize, DataTypes) {
-    var Project = sequelize.define('Project', {
-        project_name: DataTypes.STRING,
-        category: DataTypes.STRING,
-        address: DataTypes.STRING,
-        description: DataTypes.TEXT,
-        progress: DataTypes.INTEGER,
-        priority: DataTypes.INTEGER,
-        date_due: DataTypes.DATE
+    var Project = sequelize.define("project", {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        project_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        category: {
+            type: DataTypes.STRING
+        },
+        address: {
+            type: DataTypes.TEXT
+        },
+        description: {
+            type: DataTypes.TEXT
+        },
+        progress: {
+            type: DataTypes.DECIMAL
+        },
+        priority: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        date_due: {
+            type: DataTypes.DATE,
+            allowNull: false
+        }
+    }, {
+        timestamps: false
     });
     return Project;
 };
