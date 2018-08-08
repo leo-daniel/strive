@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "erlic",
-=======
     "password": "",
->>>>>>> 2d38ddfcdc3818c431488334afa83af7012e7827
     "database": "calendar_db",
     "host": "localhost",
     "dialect": "mysql"
