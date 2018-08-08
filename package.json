@@ -15,10 +15,14 @@
     "type": "git",
     "url": "git+https://github.com/leo-daniel/project-two.git"
   },
-  "author": "Greg Bremble, Leo Daniel, Chris Mueller, Karishma Patel",
+  "author": "Greg Bremble, Leo Daniel, Jordan Miller, Chris Mueller, Karishma Patel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/leo-daniel/project-two/issues"
   },
-  "homepage": "https://github.com/leo-daniel/project-two#readme"
+  "homepage": "https://github.com/leo-daniel/project-two#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "^2.0.5"
+  }
 }
