@@ -8,10 +8,10 @@
     "test": "test"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "mysql": "^2.16.0",
     "mysql2": "^1.6.1",
     "sequelize": "^4.38.0"
   },
@@ -29,13 +29,5 @@
   "bugs": {
     "url": "https://github.com/leo-daniel/project-two/issues"
   },
-  "homepage": "https://github.com/leo-daniel/project-two#readme",
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "mysql2": "^1.6.1",
-    "sequelize": "^4.38.0"
-  }
+  "homepage": "https://github.com/leo-daniel/project-two#readme"
 }
