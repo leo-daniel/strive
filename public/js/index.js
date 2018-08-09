@@ -98,14 +98,44 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-// Quote API ** NEED TO ATTRIBUTE somewhere on page.
-var queryURL = "http://quotes.rest/qod.json";
+// Quote API ** NEED TO ATTRIBUTE somewhere on page. 
+// Commented out due to limit 10 API calls/hr
 
-$.ajax({
-  url: queryURL,
-  method: "GET",
-}).then(function(response) {
-  var quote = response.contents.quotes[0].quote;
-  console.log(quote);
-  $("#quote").append(quote);
+// var queryURL = "http://quotes.rest/qod.json";
+
+// $.ajax({
+//   url: queryURL,
+//   method: "GET",
+// }).then(function(response) {
+//   var quote = response.contents.quotes[0].quote;
+//   console.log(quote);
+//   $("#quote").append(quote);
+// });
+
+// Progress Chart
+var ctx = document.getElementById('testChart').getContext('2d');
+
+var testChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+      labels: ['section name', 'name', 'name'],
+      datasets: [
+          {
+              label: 'Points',
+              backgroundColor: ['#1d8348', '#28b463','#58d68d'],
+              data: [20, 35, 45]
+          }
+      ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutoutPercentage: 80,
+    rotation: Math.PI * -0.5,
+    animation: {
+        animateScale: true
+    }
+  }
 });
+
+$(".chart-container").append(testChart);
