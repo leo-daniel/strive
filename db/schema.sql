@@ -23,7 +23,7 @@ CREATE TABLE tasks(
     `description` TEXT,
     `priority` INT,
     date_due DATETIME,
-    PRIMARY KEY (d),
+    PRIMARY KEY (id),
     FOREIGN KEY (project_id_fk) REFERENCES projects(id)
 );
 
