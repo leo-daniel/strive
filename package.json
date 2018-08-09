@@ -1,7 +1,10 @@
 {
   "name": "project-two",
   "version": "1.0.0",
-  "description": "## Table of Contents",
+  "description": "Project 2 -- TBD",
+  "engines" : {
+    "node": "5.7.6"
+  },
   "main": ".eslintrc.js",
   "directories": {
     "doc": "docs",
@@ -24,7 +27,7 @@
     "type": "git",
     "url": "git+https://github.com/leo-daniel/project-two.git"
   },
-  "author": "",
+  "author": "Greg Bremble, Leo Daniel, Jordan Miller, Chris Mueller, Karishma Patel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/leo-daniel/project-two/issues"
