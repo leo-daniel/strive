@@ -1,3 +1,5 @@
+DROP DATABASE calendar_db;
+
 CREATE DATABASE calendar_db;
 
 USE calendar_db;
