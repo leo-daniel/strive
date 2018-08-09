@@ -1,12 +1,37 @@
 module.exports = function (sequelize, DataTypes) {
-    var Task = sequelize.define('Task', {
-        task_name: DataTypes.STRING,
-        project_id_fk: DataTypes.INTEGER,
-        category: DataTypes.STRING,
-        address: DataTypes.STRING,
-        description: DataTypes.TEXT,
-        priority: DataTypes.INTEGER,
-        date_due: DataTypes.DATE
+    var Task = sequelize.define('task', {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        task_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        project_id_fk: {
+            type: DataTypes.INTEGER
+        },
+        category: {
+            type: DataTypes.STRING
+        },
+        address: {
+            type: DataTypes.TEXT
+        },
+        description: {
+            type: DataTypes.TEXT
+        },
+        priority: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        date_due: {
+            type: DataTypes.DATE,
+            allowNull: false
+        }
+    }, {
+        timestamps: false
     });
     return Task;
 };

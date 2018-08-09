@@ -1,4 +1,4 @@
-smodule.exports = function (sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Goal = sequelize.define('goal', {
         id: {
             type: DataTypes.INTEGER,

@@ -12,12 +12,11 @@ module.exports = function (app) {
 
     // Load all tabled from the database, then render the home (index) page
     app.get('/', function (req, res) {
-        db.Project.findAll({})
-            .then(db.Task.findAll({}))
-            .then(db.Step.findAll({}))
-            .then(db.Goal.findAll({}))
+        db.project.findAll({})
+            .then(db.task.findAll({}))
+            .then(db.step.findAll({}))
+            .then(db.goal.findAll({}))
             .then(function (dbProjects, dbTasks, dbSteps, dbGoals) {
-                console.log(res);
                 res.render('index', {
                     projects: dbProjects,
                     tasks: dbTasks,
@@ -29,10 +28,10 @@ module.exports = function (app) {
 
     // load all tables from the database, then render the calendar page
     app.get('/calendar', function (req, res) {
-        db.Project.findAll({})
-            .then(db.Task.findAll({}))
-            .then(db.Step.findAll({}))
-            .then(db.Goal.findAll({}))
+        db.project.findAll({})
+            .then(db.task.findAll({}))
+            .then(db.step.findAll({}))
+            .then(db.goal.findAll({}))
             .then(function (dbProjects, dbTasks, dbSteps, dbGoals) {
                 res.render('calendar', {
                     projects: dbProjects,

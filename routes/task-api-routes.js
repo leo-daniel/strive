@@ -3,14 +3,14 @@ var db = require('../models');
 module.exports = function (app) {
     // Find all tasks and return them to the user with res.json
     app.get('/api/tasks', function (req, res) {
-        db.Task.findAll({}).then(function (dbTask) {
+        db.task.findAll({}).then(function (dbTask) {
             res.json(dbTask);
         });
     });
 
     app.get('/api/tasks/:id', function (req, res) {
         // Find one task with the id in req.params.id and return them to the user with res.json
-        db.Task.findOne({
+        db.task.findOne({
             where: {
                 id: req.params.id
             }
@@ -21,14 +21,14 @@ module.exports = function (app) {
 
     app.post('/api/tasks', function (req, res) {
         // Create a task with the data available to us in req.body
-        db.Task.create(req.body).then(function (dbTask) {
+        db.task.create(req.body).then(function (dbTask) {
             res.json(dbTask);
         });
     });
 
     // PUT route for updating tasks
     app.put('/api/tasks', function (req, res) {
-        db.Task.update(
+        db.task.update(
             req.body, {
                 where: {
                     id: req.body.id
@@ -40,7 +40,7 @@ module.exports = function (app) {
 
     app.delete('/api/tasks/:id', function (req, res) {
         // DELETE the task with the id available to us in req.params.id
-        db.Task.destroy({
+        db.task.destroy({
             where: {
                 id: req.params.id
             }

@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Project = sequelize.define("project", {
+    var Project = sequelize.define('project', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -31,6 +31,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     }, {
+        // don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false
     });
     return Project;

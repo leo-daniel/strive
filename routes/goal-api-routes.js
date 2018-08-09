@@ -3,14 +3,14 @@ var db = require('../models');
 module.exports = function (app) {
     // Find all goals and return them to the user with res.json
     app.get('/api/goals', function (req, res) {
-        db.Goal.findAll({}).then(function (dbGoal) {
+        db.goal.findAll({}).then(function (dbGoal) {
             res.json(dbGoal);
         });
     });
 
     app.get('/api/goals/:id', function (req, res) {
         // Find one goal with the id in req.params.id and return them to the user with res.json
-        db.Goal.findOne({
+        db.goal.findOne({
             where: {
                 id: req.params.id
             }
@@ -21,14 +21,14 @@ module.exports = function (app) {
 
     app.post('/api/goals', function (req, res) {
         // Create a goal with the data available to us in req.body
-        db.Goal.create(req.body).then(function (dbGoal) {
+        db.goal.create(req.body).then(function (dbGoal) {
             res.json(dbGoal);
         });
     });
 
     // PUT route for updating goals
     app.put('/api/goals', function (req, res) {
-        db.Goal.update(
+        db.goal.update(
             req.body, {
                 where: {
                     id: req.body.id
@@ -40,7 +40,7 @@ module.exports = function (app) {
 
     app.delete('/api/goals/:id', function (req, res) {
         // DELETE the goal with the id available to us in req.params.id
-        db.Goal.destroy({
+        db.goal.destroy({
             where: {
                 id: req.params.id
             }
