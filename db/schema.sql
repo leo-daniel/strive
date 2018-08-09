@@ -1,3 +1,5 @@
+DROP DATABASE calendar_db;
+
 CREATE DATABASE calendar_db;
 
 USE calendar_db;
@@ -23,7 +25,7 @@ CREATE TABLE tasks(
     `description` TEXT,
     `priority` INT,
     date_due DATETIME,
-    PRIMARY KEY (d),
+    PRIMARY KEY (id),
     FOREIGN KEY (project_id_fk) REFERENCES projects(id)
 );
 
