@@ -24,7 +24,7 @@ CREATE TABLE tasks(
     `priority` INT,
     date_due DATETIME,
     PRIMARY KEY (d),
-    FOREIGN KEY (project_id_fk) REFERENCES projects(project_id)
+    FOREIGN KEY (project_id_fk) REFERENCES projects(id)
 );
 
 CREATE TABLE steps(
@@ -36,7 +36,7 @@ CREATE TABLE steps(
     `priority` INT,
     date_due DATETIME,
     PRIMARY KEY (id),
-    FOREIGN KEY (task_id_fk) REFERENCES tasks(task_id)
+    FOREIGN KEY (task_id_fk) REFERENCES tasks(id)
 );
 
 CREATE TABLE goals(
