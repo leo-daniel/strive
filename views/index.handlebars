@@ -5,10 +5,20 @@
         <h1 class="text-center">Taska</h1>
         <h2 class="text-center">Hi {{name}}</h2>
         <div id="quote" class="text-center">
-          quotes go here
+          <!-- Placeholder quote-->
+          "It is not the mountain we conquer, but ourselves."
         </div>
         <div id="progress-report" class="text-center">
-          chart.js doughnut chart here
+          <!-- chart.js doughnut chart here -->
+          <div class="chart-container">
+            <canvas id="testChart">3 days remaining</canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="testChart">5 days remaining</canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="testChart">1 day remaining</canvas>
+          </div>
         </div>
         <div id="goal-progress" class="text-center">
           goal progress here
@@ -43,4 +53,6 @@
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="/js/index.js"></script>
+

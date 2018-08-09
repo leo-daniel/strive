@@ -35,3 +35,10 @@ ul {
 #buttonNewGoal{
   text-align: center;
 }
+
+.chart-container{
+  position: relative;
+  height: 300;
+  width: 300;
+  float: left;
+}
