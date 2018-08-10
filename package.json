@@ -2,7 +2,7 @@
   "name": "project-two",
   "version": "1.0.0",
   "description": "Project 2 -- TBD",
-  "engines" : {
+  "engines": {
     "node": "5.7.6"
   },
   "main": ".eslintrc.js",
