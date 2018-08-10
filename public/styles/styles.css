@@ -36,11 +36,10 @@ ul {
   text-align: center;
 }
 
-.chart-container{
+#chart-container1, container2, container3{
   position: relative;
   height: 300;
   width: 300;
-  float: left;
 }
 
 #cancelTask{

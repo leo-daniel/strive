@@ -8,22 +8,26 @@
           <!-- Placeholder quote-->
           "It is not the mountain we conquer, but ourselves."
         </div>
-        <div id="progress-report" class="text-center">
-          <!-- chart.js doughnut chart here -->
-          <div class="chart-container">
-            <canvas id="testChart">3 days remaining</canvas>
-          </div>
-          <div class="chart-container">
-            <canvas id="testChart">5 days remaining</canvas>
-          </div>
-          <div class="chart-container">
-            <canvas id="testChart">1 day remaining</canvas>
-          </div>
+        <!-- Progress chart here -->
+        <div id="progress-report" class="row text-center">
+            <div class="col-md-4" id="chart-container1">
+              <canvas id="testChart1">3 days remaining</canvas>
+            </div>
+            <div class="col-md-4" id="chart-container2">
+              <canvas id="testChart2">5 days remaining</canvas>
+            </div>
+            <div class="col-md-4" id="chart-container3">
+              <canvas id="testChart3">1 day remaining</canvas>
+            </div>
         </div>
-        <div id="goal-progress" class="text-center">
+        <div class="row">
+          <div id="goal-progress" class="col-12 text-center">
           goal progress here
+          </div>
         </div>
-      </div>
+        
+
+      </div> <!--first row closing div -->
     </div>
     <div class="row">
       <div class="col-6">
