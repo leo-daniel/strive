@@ -4,7 +4,8 @@
 
  function setTask() {
      $("#newTask").on("click", function () {
-         $("#taskInputForm").show();
+        $("#goalInputForm").hide();
+        $("#taskInputForm").show();
 
          $("#submitGoal").on("click", function () {
              // 1) hide/clear task input form.
@@ -20,7 +21,8 @@
 
  function setGoal() {
      $("#newGoal").on("click", function () {
-         $("#goalInputForm").show();
+        $("#taskInputForm").hide(); 
+        $("#goalInputForm").show();
 
          var goal = $("#description").val().trim();
 
