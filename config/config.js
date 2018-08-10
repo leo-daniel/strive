@@ -2,14 +2,14 @@ module.exports = function (env) {
   var config = {
     "development": {
       "username": "root",
-      "password": "",
+      "password": "process.env.DB_PASS",
       "database": "calendar_db",
       "host": "localhost",
       "dialect": "mysql"
     },
     "test": {
       "username": "root",
-      "password": "",
+      "password": "process.env.DB_PASS",
       "database": "calendar_db",
       "host": "localhost",
       "dialect": "mysql",
