@@ -41,3 +41,9 @@ ul {
   height: 300;
   width: 300;
 }
+
+#cancelTask{
+  right: 0px;
+  position: absolute;
+  margin-left: auto;
+}
