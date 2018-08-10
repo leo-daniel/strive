@@ -113,29 +113,44 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 // });
 
 // Progress Chart
-var ctx = document.getElementById('testChart').getContext('2d');
+var ctx1 = document.getElementById('testChart1').getContext('2d');
+var ctx2 = document.getElementById('testChart2').getContext('2d');
+var ctx3 = document.getElementById('testChart3').getContext('2d');
 
-var testChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-      labels: ['section name', 'name', 'name'],
-      datasets: [
-          {
-              label: 'Points',
-              backgroundColor: ['#1d8348', '#28b463','#58d68d'],
-              data: [20, 35, 45]
-          }
-      ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    cutoutPercentage: 80,
-    rotation: Math.PI * -0.5,
-    animation: {
-        animateScale: true
+
+var testChart1 = makeChart(ctx1, [], []);
+var testChart2 = makeChart(ctx2, [], []);
+var testChart3 = makeChart(ctx3, [], []);
+
+
+
+function makeChart(ctx, labelNames, data) {
+  return new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['section name', 'name', 'name'],
+        datasets: [
+            {
+                label: 'Points',
+                backgroundColor: ['#1d8348', '#28b463','#58d68d'],
+                data: [20, 35, 45]
+                // 2 values, res.progress & 100 - res.progress.
+            }
+        ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutoutPercentage: 80,
+      rotation: Math.PI * -0.5,
+      animation: {
+          animateScale: true
+      }
     }
-  }
-});
+  });
+}
+ 
 
-$(".chart-container").append(testChart);
+$("#chart-container1").append(testChart1);
+$("#chart-container2").append(testChart2);
+$("#chart-container3").append(testChart3);
