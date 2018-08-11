@@ -3,44 +3,32 @@
   color: #000;
 }
 
+#app-name {
+  font-weight: 500;
+}
+
 #home {
-  /* TODO: ensure that the image covers the full viewport */
   background-image: url("../images/jace-grandinetti-110734-unsplash.jpg");
   background-attachment: fixed;
   background-size: cover;
-  margin-bottom: 0%
-  /* background-size: contain; */
+  margin-bottom: 0%;
 }
 
 #jumbotron {
-  /* background-color: rgba(253, 253, 253, 0.3); */
   background-color: transparent;
-  font-family: 'Fira Sans';
-  /* background-size: cover;
-  min-height: 50rem; */
+}
+
+#page-heading {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 600;
 }
 
 .list-group-item {
   line-height: 2.5rem;
 }
 
-.navbar-toggler {
-  right: 0px;
-  position: relative;
-  margin-left: auto;
-}
-
-.nav-link {
-  color: #fff;
-}
-
 ul {
   list-style-type: none;
-}
-
-.button {
-  position: relative;
-  top: 1em;
 }
 
 #inputHeader {
