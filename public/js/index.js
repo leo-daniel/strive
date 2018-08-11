@@ -116,20 +116,21 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 var ctx1 = document.getElementById("testChart1").getContext("2d");
 var ctx2 = document.getElementById("testChart2").getContext("2d");
 var ctx3 = document.getElementById("testChart3").getContext("2d");
+var ctx4 = document.getElementById("goalTestChart").getContext("2d");
 
-var testChart1 = makeChart(ctx1, [], []);
-var testChart2 = makeChart(ctx2, [], []);
-var testChart3 = makeChart(ctx3, [], []);
+var testChart1 = makeDonutChart(ctx1, [], []);
+var testChart2 = makeDonutChart(ctx2, [], []);
+var testChart3 = makeDonutChart(ctx3, [], []);
+var goalTestChart = makeGoalChart(ctx4, [], []);
 
 // DB: NEED TO PUT THIS INSIDE WHERE WE CONNECT TO DB.
 // var progress = res.progress;
 // var remaining = 100 - res.progress;
 
-function makeChart(ctx, labelNames, data) {
+function makeDonutChart(ctx, labelNames, data) {
   return new Chart(ctx, {
     type: "doughnut",
     data: {
-      // labels: ['section name', 'name', 'name'],
       datasets: [
         {
           label: "Points",
@@ -151,6 +152,28 @@ function makeChart(ctx, labelNames, data) {
   });
 }
 
+function makeGoalChart(ctx, labelNames, data) {
+  return new Chart(ctx, {
+    type: "polarArea",
+    data: {
+      labels: ["Get 8 hrs sleep daily", "Exercise", "Meditate", "Meal-prep"],
+      datasets: [
+        {
+          label: "Points",
+          backgroundColor: ["#ecf0f1", "#bdc3c7", "#909497", "#626567"],
+          data: [50, 80, 20, 50]
+        }
+      ]
+    },
+    options: {
+      animation: {
+        animateScale: true
+      }
+    }
+  });
+}
+
 $("#chart-container1").append(testChart1);
 $("#chart-container2").append(testChart2);
 $("#chart-container3").append(testChart3);
+$("#goal-progress").append(goalTestChart);
