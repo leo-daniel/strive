@@ -27,7 +27,7 @@ function setTask() {
 
         // 2) insert task into the db.
         console.log('submitted');
-        postAjax(taskData)
+        postAjax(taskData, 'tasks')
 
         // 3) display "success" modal.
 
@@ -48,26 +48,28 @@ function setGoal() {
         } else {
             $("#goalInputForm").show();
         }
-
-        var goal = $("#description").val().trim();
-
-
     });
     $("#submitGoal").on("click", function () {
-        // 1) hide/clear goal input form.
+        // 1) hide/clear task input form.
         $("#goalInputForm").hide();
+        var goalData = {
+            goal_name: $("#inputGoalName").val().trim(),
+            description: $("#inputGoalDescription").val().trim()
+        };
 
-        // 2) insert goal into the calendar.
+        // 2) insert task into the db.
+        console.log('submitted');
+        postAjax(goalData, 'goals');
 
         // 3) display "success" modal.
 
     });
-};
+}
 
-function postAjax(data) {
+function postAjax(data, URL) {
     $.ajax({
         method: "POST",
-        url: "/api/tasks",
+        url: "/api/" + URL,
         data: data
     }).then(function (result) {
         console.log(result);
