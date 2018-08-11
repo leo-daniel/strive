@@ -23,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DECIMAL
         },
         priority: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         date_due: {

@@ -10,10 +10,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        task_id_fk: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
         address: {
             type: DataTypes.TEXT
         },
@@ -21,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.TEXT
         },
         priority: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         date_due: {
@@ -29,7 +25,16 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     }, {
-        timestamps: false
-    });
+            timestamps: false
+        });
+
+    // Step.association = function (models) {
+    //     Step.belongsTo(models.Task, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // }
+
     return Step;
 };

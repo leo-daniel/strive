@@ -10,9 +10,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        project_id_fk: {
-            type: DataTypes.INTEGER
-        },
         category: {
             type: DataTypes.STRING
         },
@@ -23,15 +20,25 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.TEXT
         },
         priority: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: false,
+            // validate: {
+            //     contains: [['High', 'Medium', 'Low']]
+            // }
         },
         date_due: {
             type: DataTypes.DATE,
-            allowNull: false
+            allowNull: false,
+        },
+        hours_complete: {
+            type: DataTypes.DECIMAL(4, 1),
+            allowNull: false,
+            // validate = {
+            //     isFloat: true
+            // }
         }
     }, {
-        timestamps: false
-    });
+            timestamps: false
+        });
     return Task;
 };
