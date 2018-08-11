@@ -45,17 +45,42 @@
                     </div>
                     <!--Date Selection-->
                     <div class="form-group col-md-5">
-                        <div class='input-group date' id='datetimepicker1'>
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="form-group">
+                            <label for="inputTaskDate">Select Task Date</label>
+                            <input type="date" id="inputTaskDate" max="3000-12-31" min="1000-01-01" class="form-control">
                         </div>
                     </div>
                     <div class="form-group col-md-2"></div>
                 </div>
+                <!--Piority Level-->
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputPriority">Priority</label>
+                        <select id="inputPriority" class="form-control">
+                            <option selected>Choose...</option>
+                            <option value="1">High</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Low</option>
+                        </select>
+                    </div>
+                    <!--Set Hours to Complete Task-->
+                    <div class="form-group col-md-3">
+                        <label for="inputTaskLength">Hours to Complete</label>
+                        <input type="number" id="inputTaskLength" class="form-control" placeholder=".5 Hours" step="0.1">
+                    </div>
+                    <div class="form-group col-md-5"></div>
+                </div>
+                <!--Task Notes-->
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputNotes">Notes</label>
+                        <textarea class="form-control" id="inputNotes" rows="3"></textarea>
+                    </div>
+                </div>
 
-                <button type="submitTask" class="btn btn-primary" data-toggle ="modal" data-target="#successModal">Add Task</button>
+                <button id="submitTask" type="submitTask" class="btn btn-primary" data-toggle="modal" data-target="#successModal">Add Task</button>
+                <a class="float-right" id="cancelTask" href="#">Cancel</a>
+
             </form>
 
             <!--Goal Input Form-->
@@ -63,81 +88,40 @@
                 <div class="col-md-12">
                     <form id="goalInputForm">
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
+                            <label for="description">Goal name</label>
+                            <textarea class="form-control input-sm" id="inputGoalName" rows="1"></textarea>
                         </div>
-
-                        <button type="button" class="btn btn-primary" data-toggle ="modal" data-target="#successModal" id="submitGoal">Add Goal</button>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="inputGoalDescription" rows="3"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="submitGoal">Add Goal</button>
+                        <a id="cancelGoal" class="float-right" href="#">Cancel</a>
                     </form>
                 </div>
             </div>
 
             <!-- "Add Success" Modal -->
             <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModal">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="successModal">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-                </div>
-            </div>
             </div>
 
         </div>
     </div>
 </div>
-
-<script>
-    // hide forms until user clicks icon to select new task or goal
-    $("#taskInputForm").hide();
-    $("#goalInputForm").hide();
-
-    function setTask() {
-        $("#newTask").on("click", function(){
-            $("#taskInputForm").show();
-
-            $("#submitGoal").on("click", function () {
-                // 1) hide/clear task input form.
-                $("#taskInputForm").hide();
-
-                // 2) insert task into the calendar.
-
-                // 3) display "success" modal.
-
-            });
-        });
-    };
-
-    function setGoal() {
-        $("#newGoal").on("click", function(){
-            $("#goalInputForm").show();
-
-            var goal = $("#description").val().trim();
-
-            $("#submitGoal").on("click", function () {
-                // 1) hide/clear goal input form.
-                $("#goalInputForm").hide();
-
-                // 2) insert goal into the calendar.
-
-                // 3) display "success" modal.
-
-            });
-        });
-    };
-    
-    setTask();
-    setGoal();
-
-    
-</script>
