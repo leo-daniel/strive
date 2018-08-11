@@ -1,6 +1,9 @@
 // hide forms until user clicks icon to select new task or goal
 $("#taskInputForm").hide();
 $("#goalInputForm").hide();
+$("#projectShowHide").hide();
+$("#projectDropdown").hide();
+$("#projectInputForm").hide();
 
 function setTask() {
     $("#newTask").on("click", function () {
@@ -27,17 +30,12 @@ function setTask() {
 
         // 2) insert task into the db.
         console.log('submitted');
-        postAjax(taskData)
+        postAjax(taskData, 'tasks')
 
         // 3) display "success" modal.
 
     });
-};
-
-
-
-
-
+}
 
 function setGoal() {
     $("#newGoal").on("click", function () {
@@ -48,33 +46,75 @@ function setGoal() {
         } else {
             $("#goalInputForm").show();
         }
-
-        var goal = $("#description").val().trim();
-
-
     });
     $("#submitGoal").on("click", function () {
-        // 1) hide/clear goal input form.
+        // 1) hide/clear task input form.
         $("#goalInputForm").hide();
+        var goalData = {
+            goal_name: $("#inputGoalName").val().trim(),
+            description: $("#inputGoalDescription").val().trim()
+        };
 
-        // 2) insert goal into the calendar.
+        // 2) insert task into the db.
+        console.log('submitted');
+        postAjax(goalData, 'goals');
 
         // 3) display "success" modal.
 
     });
-};
+}
 
-function postAjax(data) {
+// postAJAX function to put data in calendar_db
+function postAjax(data, URL) {
     $.ajax({
         method: "POST",
-        url: "/api/tasks",
+        url: "/api/" + URL,
         data: data
     }).then(function (result) {
         console.log(result);
-    })
+    });
 }
 
+// Project click functions
+$('#projectCheckbox').click(function () {
+    if (this.checked) {
+        $("#projectShowHide").show();
+    } else {
+        $("#projectShowHide").hide();
+    }
+});
+
+$('#createNewProject').click(function () {
+    if ($('#createNewProject').is(':checked')) {
+        $("#projectInputForm").show();
+    }
+});
+
+$('#useExistingProject').click(function () {
+    if ($("#useExistingProject").is(':checked')) {
+        $("#projectDropdown").show();
+    } else {
+        $("#projectDropdown").hide();
+
+    }
+});
+
+$('#useExistingProject').click(function () {
+    if ($("#useExistingProject").is(':checked')) {
+        $("#projectDropdown").show();
+    } else {
+        $("#projectDropdown").hide();
+
+    }
+});
+
+
+
+
+
 //this function clears the input form and then hides the form
+
+
 function clearTask() {
     $("#cancelTask").on("click", function () {
         $("#taskInputForm").hide();

@@ -31,8 +31,10 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     }, {
-            // don't add the timestamp attributes (updatedAt, createdAt)
-            timestamps: false
-        });
+        // don't add the timestamp attributes (updatedAt, createdAt)
+        timestamps: false
+    });
+
+
     return Project;
 };

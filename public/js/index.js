@@ -98,7 +98,7 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-// Quote API ** NEED TO ATTRIBUTE somewhere on page. 
+// Quote API ** NEED TO ATTRIBUTE somewhere on page.
 // Commented out due to limit 10 API calls/hr
 
 // var queryURL = "http://quotes.rest/qod.json";
@@ -113,30 +113,32 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 // });
 
 // Progress Chart
-var ctx1 = document.getElementById('testChart1').getContext('2d');
-var ctx2 = document.getElementById('testChart2').getContext('2d');
-var ctx3 = document.getElementById('testChart3').getContext('2d');
+var ctx1 = document.getElementById("testChart1").getContext("2d");
+var ctx2 = document.getElementById("testChart2").getContext("2d");
+var ctx3 = document.getElementById("testChart3").getContext("2d");
+var ctx4 = document.getElementById("goalTestChart").getContext("2d");
 
+var testChart1 = makeDonutChart(ctx1, [], []);
+var testChart2 = makeDonutChart(ctx2, [], []);
+var testChart3 = makeDonutChart(ctx3, [], []);
+var goalTestChart = makeGoalChart(ctx4, [], []);
 
-var testChart1 = makeChart(ctx1, [], []);
-var testChart2 = makeChart(ctx2, [], []);
-var testChart3 = makeChart(ctx3, [], []);
+// DB: NEED TO PUT THIS INSIDE WHERE WE CONNECT TO DB.
+// var progress = res.progress;
+// var remaining = 100 - res.progress;
 
-
-
-function makeChart(ctx, labelNames, data) {
+function makeDonutChart(ctx, labelNames, data) {
   return new Chart(ctx, {
-    type: 'doughnut',
+    type: "doughnut",
     data: {
-        labels: ['section name', 'name', 'name'],
-        datasets: [
-            {
-                label: 'Points',
-                backgroundColor: ['#1d8348', '#28b463','#58d68d'],
-                data: [20, 35, 45]
-                // 2 values, res.progress & 100 - res.progress.
-            }
-        ]
+      datasets: [
+        {
+          label: "Points",
+          backgroundColor: ["#1d8348", "#28b463", "#58d68d00"],
+          data: [20, 60, 20]
+          // data: [progress, remaining]
+        }
+      ]
     },
     options: {
       responsive: true,
@@ -144,13 +146,34 @@ function makeChart(ctx, labelNames, data) {
       cutoutPercentage: 80,
       rotation: Math.PI * -0.5,
       animation: {
-          animateScale: true
+        animateScale: true
       }
     }
   });
 }
- 
+
+function makeGoalChart(ctx, labelNames, data) {
+  return new Chart(ctx, {
+    type: "polarArea",
+    data: {
+      labels: ["Get 8 hrs sleep daily", "Exercise", "Meditate", "Meal-prep"],
+      datasets: [
+        {
+          label: "Points",
+          backgroundColor: ["#ecf0f1", "#bdc3c7", "#909497", "#626567"],
+          data: [50, 80, 20, 50]
+        }
+      ]
+    },
+    options: {
+      animation: {
+        animateScale: true
+      }
+    }
+  });
+}
 
 $("#chart-container1").append(testChart1);
 $("#chart-container2").append(testChart2);
 $("#chart-container3").append(testChart3);
+$("#goal-progress").append(goalTestChart);
