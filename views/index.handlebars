@@ -17,25 +17,30 @@
 
     <!-- begin goals and progress section -->
     <div class="row">
-      <div class="col">
-
-        <!-- begin chart.js progress graphs -->
+      <div class="col-12">
+        <h1 class="text-center">Taska</h1>
+        <h2 class="text-center">Hi {{name}}</h2>
+        <div id="quote" class="text-center">
+          <!-- Placeholder quote-->
+          "It is not the mountain we conquer, but ourselves."
+        </div>
+        <!-- Progress chart here -->
+        <h4>Your Projects</h4>
         <div id="progress-report" class="row text-center">
-          <div class="col-sm-4" id="chart-container1">
-            <canvas id="testChart1">3 days remaining</canvas>
+          <div class="col-md-4 col-sm-12" id="chart-container1">
+            <canvas id="testChart1"></canvas>
           </div>
-          <div class="col-sm-4" id="chart-container2">
-            <canvas id="testChart2">5 days remaining</canvas>
+          <div class="col-md-4 col-sm-12" id="chart-container2">
+            <canvas id="testChart2"></canvas>
           </div>
-          <div class="col-sm-4" id="chart-container3">
-            <canvas id="testChart3">1 day remaining</canvas>
+          <div class="col-md-4 col-sm-12" id="chart-container3">
+            <canvas id="testChart3"></canvas>
           </div>
         </div>
-        <!-- end chart.js progress graphs -->
-
+        <h4>Goals Tracker</h4>
         <div class="row">
-          <div id="goal-progress" class="col text-center">
-            goal progress here
+          <div id="goal-progress" class="col-md-4 col-sm-12 text-center">
+            <canvas id="goalTestChart"></canvas>
           </div>
         </div>
       </div>
