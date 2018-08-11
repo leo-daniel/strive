@@ -25,16 +25,9 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     }, {
-            timestamps: false
-        });
-
-    // Step.association = function (models) {
-    //     Step.belongsTo(models.Task, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // }
+        timestamps: false
+    });
+    // Step.belongsTo(Task);
 
     return Step;
 };
