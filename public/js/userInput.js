@@ -1,6 +1,9 @@
 // hide forms until user clicks icon to select new task or goal
 $("#taskInputForm").hide();
 $("#goalInputForm").hide();
+$("#projectShowHide").hide();
+$("#projectDropdown").hide();
+$("#projectInputForm").hide();
 
 function setTask() {
     $("#newTask").on("click", function () {
@@ -32,12 +35,7 @@ function setTask() {
         // 3) display "success" modal.
 
     });
-};
-
-
-
-
-
+}
 
 function setGoal() {
     $("#newGoal").on("click", function () {
@@ -66,6 +64,7 @@ function setGoal() {
     });
 }
 
+// postAJAX function to put data in calendar_db
 function postAjax(data, URL) {
     $.ajax({
         method: "POST",
@@ -73,10 +72,49 @@ function postAjax(data, URL) {
         data: data
     }).then(function (result) {
         console.log(result);
-    })
+    });
 }
 
+// Project click functions
+$('#projectCheckbox').click(function () {
+    if (this.checked) {
+        $("#projectShowHide").show();
+    } else {
+        $("#projectShowHide").hide();
+    }
+});
+
+$('#createNewProject').click(function () {
+    if ($('#createNewProject').is(':checked')) {
+        $("#projectInputForm").show();
+    }
+});
+
+$('#useExistingProject').click(function () {
+    if ($("#useExistingProject").is(':checked')) {
+        $("#projectDropdown").show();
+    } else {
+        $("#projectDropdown").hide();
+
+    }
+});
+
+$('#useExistingProject').click(function () {
+    if ($("#useExistingProject").is(':checked')) {
+        $("#projectDropdown").show();
+    } else {
+        $("#projectDropdown").hide();
+
+    }
+});
+
+
+
+
+
 //this function clears the input form and then hides the form
+
+
 function clearTask() {
     $("#cancelTask").on("click", function () {
         $("#taskInputForm").hide();
