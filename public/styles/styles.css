@@ -1,3 +1,8 @@
+* {
+  font-family: 'Fira Sans', sans-serif;
+  color: #000;
+}
+
 #home {
   /* TODO: ensure that the image covers the full viewport */
   background-image: url("../images/jace-grandinetti-110734-unsplash.jpg");
@@ -10,14 +15,9 @@
 #jumbotron {
   /* background-color: rgba(253, 253, 253, 0.3); */
   background-color: transparent;
+  font-family: 'Fira Sans';
   /* background-size: cover;
   min-height: 50rem; */
-}
-
-#quote {
-  text-align: center;
-  font-family: 'Fira Sans';
-  color: #000;
 }
 
 .list-group-item {
