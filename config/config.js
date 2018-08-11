@@ -3,6 +3,7 @@ module.exports = function (env) {
     "development": {
       "username": "root",
       "password": process.env.DB_PASS,
+      "port": process.env.PORT_NUM,
       "database": "calendar_db",
       "host": "localhost",
       "dialect": "mysql"
