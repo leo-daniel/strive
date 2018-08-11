@@ -1,18 +1,37 @@
-.list-group-item {
-  line-height: 2.5;
+#home {
+  /* TODO: ensure that the image covers the full viewport */
+  background-image: url("../images/jace-grandinetti-110734-unsplash.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  margin-bottom: 0%
+  /* background-size: contain; */
 }
 
+#jumbotron {
+  /* background-color: rgba(253, 253, 253, 0.3); */
+  background-color: transparent;
+  /* background-size: cover;
+  min-height: 50rem; */
+}
+
+#quote {
+  text-align: center;
+  font-family: 'Fira Sans';
+  color: #000;
+}
+
+.list-group-item {
+  line-height: 2.5rem;
+}
 
 .navbar-toggler {
-
   right: 0px;
   position: relative;
   margin-left: auto;
 }
 
-
 .nav-link {
-  color: white;
+  color: #fff;
 }
 
 ul {
@@ -24,19 +43,21 @@ ul {
   top: 1em;
 }
 
-#inputHeader{
+#inputHeader {
   text-align: center;
 }
 
-#buttonNewTask{
+#buttonNewTask {
   text-align: center;
 }
 
-#buttonNewGoal{
+#buttonNewGoal {
   text-align: center;
 }
 
-#chart-container1, container2, container3{
+#chart-container1,
+container2,
+container3 {
   position: relative;
   height: 300;
   width: 300;
