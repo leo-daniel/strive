@@ -1,28 +1,34 @@
+* {
+  font-family: 'Fira Sans', sans-serif;
+  color: #000;
+}
+
+#app-name {
+  font-weight: 500;
+}
+
+#home {
+  background-image: url("../images/jace-grandinetti-110734-unsplash.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  margin-bottom: 0%;
+}
+
+#jumbotron {
+  background-color: transparent;
+}
+
+#page-heading {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 600;
+}
+
 .list-group-item {
-  line-height: 2.5;
-}
-
-.navbar-toggler {
-  right: 0px;
-  position: relative;
-  margin-left: auto;
-}
-
-.nav-link {
-  color: white;
+  line-height: 2.5rem;
 }
 
 ul {
   list-style-type: none;
-}
-
-.button {
-  position: relative;
-  top: 1em;
-}
-
-.row {
-  margin: 10px;
 }
 
 #inputHeader {
