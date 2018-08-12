@@ -1,6 +1,10 @@
 * {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
   color: #000;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #28a745;
 }
 
 #app-name {
@@ -19,7 +23,7 @@
 }
 
 #page-heading {
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-weight: 600;
 }
 
