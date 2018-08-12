@@ -1,3 +1,5 @@
+import bulmaCalendar from '/node_modules/bulma-extensions/bulma-calendar/dist/bulma-calendar.min.js';
+
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
@@ -177,3 +179,44 @@ $("#chart-container1").append(testChart1);
 $("#chart-container2").append(testChart2);
 $("#chart-container3").append(testChart3);
 $("#goal-progress").append(goalTestChart);
+
+// options for Bulma Calendar Extension
+document.addEventListener('DOMContentLoaded', function () {
+  var datePickers = bulmaCalendar.attach('[type="date"]', {
+    overlay: true,
+    minDate: '2018-01-01',
+    maxDate: '2018-12-31'
+  });
+  // datePickers now contains an Array of all datePicker instances
+});
+
+var defaultOptions = {
+  startDate: new Date(),
+  weekStart: null,
+  minDate: null,
+  maxDate: null,
+  disabledDates: null,
+  dateFormat: 'yyyy-mm-dd', // the default data format 'field' value
+  lang: 'en', // internationalization
+  overlay: false,
+  closeOnOverlayClick: true,
+  closeOnSelect: true,
+  toggleOnInputClick: true,
+  icons: {
+    month: {
+      previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
+        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
+      </svg>',
+      next: '<svg viewBox="0 0 50 80" xml:space="preserve">
+        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
+      </svg>'
+    },
+    year: {
+      previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
+        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
+      </svg>',
+      next: '<svg viewBox="0 0 50 80" xml:space="preserve">
+        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
+      </svg>'
+    }
+  };
