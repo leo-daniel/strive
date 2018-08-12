@@ -1,4 +1,4 @@
-/* * {
+* {
   font-family: 'Fira Sans', sans-serif;
   color: #000;
 }
@@ -61,6 +61,8 @@ goalTestChart {
 #goal-progress {
   margin: auto;
 } */
+
+/* ============================================= */
 
 /* Bulma CSS */
 /*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
@@ -279,7 +281,7 @@ goalTestChart {
 .pagination-ellipsis[disabled] {
   cursor: not-allowed;
 }
-
+/* ====================================== */
 /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
 html,
 body,
