@@ -66,4 +66,4 @@ INSERT INTO goals
     (`goal_name`, `description
 `, `progress`)
 VALUES
-('Write some goals', 'I want to feel accomplished, so I should make an easy goal', 100)
+('Write some goals', 'I want to feel accomplished, so I should make an easy goal', 0)
