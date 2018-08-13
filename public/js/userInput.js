@@ -7,6 +7,7 @@ $("#projectInputForm").hide();
 
 function setTask() {
     $("#newTask").on("click", function () {
+        getExistingProjects();
         if ($("#goalInputForm").is(":visible")) {
             $("#goalInputForm").hide();
             $("#taskInputForm").show();
@@ -16,25 +17,38 @@ function setTask() {
     });
 
     $("#submitTask").on("click", function () {
-        // 1) hide/clear task input form.
-        $("#taskInputForm").hide();
-        var taskData = {
-            task_name: $("#inputTitle").val().trim(),
-            address: $("#inputAddress").val().trim(),
-            category: $("#inputCategory").val().trim(),
-            date_due: $("#inputTaskDate").val().trim(),
-            priority: $("#inputPriority").val().trim(),
-            hours_complete: $("#inputTaskLength").val().trim(),
-            description: $("#inputNotes").val().trim()
+        // if priority's value is 'Choose...' don't post AJAX
+        if ($("#inputPriority").val().trim() === 'Choose...') {
+            // don't post 
+        } else {
+            // post AJAX
         }
+        submitTask();
 
-        // 2) insert task into the db.
-        console.log('submitted');
-        postAjax(taskData, 'tasks')
+        // hide/clear task input form.
+        $("#taskInputForm").hide();
 
-        // 3) display "success" modal.
+        // display "success" modal.
 
     });
+}
+
+function setProject() {
+    $("#inputProjectTask").on("click", function () {
+        submitTask();
+        var projectData = {
+            project_name: $("#inputProjectTitle").val().trim(),
+            address: $("#inputProjectAddress").val().trim(),
+            category: $("#inputProjectCategory").val().trim(),
+            date_due: $("#inputProjectDate").val().trim(),
+            priority: $("#inputProjectPriority").val().trim(),
+            hours_complete: $("#inputProjectLength").val().trim(),
+            description: $("#inputProjectNotes").val().trim()
+        }
+        console.log('project submitted');
+        postAjax(projectData, 'projects');
+
+    })
 }
 
 function setGoal() {
@@ -47,6 +61,7 @@ function setGoal() {
             $("#goalInputForm").show();
         }
     });
+
     $("#submitGoal").on("click", function () {
         // 1) hide/clear task input form.
         $("#goalInputForm").hide();
@@ -64,6 +79,48 @@ function setGoal() {
     });
 }
 
+// Submitting task function
+function submitTask() {
+    var taskData = {
+        task_name: $("#inputTitle").val().trim(),
+        address: $("#inputAddress").val().trim(),
+        category: $("#inputCategory").val().trim(),
+        date_due: $("#inputTaskDate").val().trim(),
+        priority: $("#inputPriority").val().trim(),
+        hours_complete: $("#inputTaskLength").val().trim(),
+        description: $("#inputNotes").val().trim()
+    }
+
+    // insert task into the db.
+    console.log('submitted');
+    postAjax(taskData, 'tasks')
+}
+
+
+function getExistingProjects() {
+    $.get("/api/projects", function (data) {
+        console.log(data);
+        $("#inputExistingProject").empty()
+        $.each(data, function (i, item) {
+            $("#inputExistingProject").append($("<option>", {
+                value: item.id,
+                text: item.project_name
+            }));
+        })
+    })
+}
+
+// function getAuthors() {
+//     $.get("/api/authors", function (data) {
+//         console.log
+//         for (var i = 0; i < data.length; i++) {
+//             rowsToAdd.push(createAuthorRow(data[i]));
+//         }
+//         renderAuthorList(rowsToAdd);
+//         nameInput.val("");
+//     });
+// }
+
 // postAJAX function to put data in calendar_db
 function postAjax(data, URL) {
     $.ajax({
@@ -79,44 +136,39 @@ function postAjax(data, URL) {
 $('#projectCheckbox').click(function () {
     if (this.checked) {
         $("#projectShowHide").show();
+        $("#submitTask").hide();
+        $("#show-this").hide();
     } else {
         $("#projectShowHide").hide();
+        $("#submitTask").show();
+        $("#show-this").show();
     }
 });
 
 $('#createNewProject').click(function () {
     if ($('#createNewProject').is(':checked')) {
         $("#projectInputForm").show();
+        $("#projectDropdown").hide();
     }
 });
 
 $('#useExistingProject').click(function () {
     if ($("#useExistingProject").is(':checked')) {
         $("#projectDropdown").show();
-    } else {
-        $("#projectDropdown").hide();
-
+        $("#projectInputForm").hide();
     }
 });
 
 $('#useExistingProject').click(function () {
     if ($("#useExistingProject").is(':checked')) {
         $("#projectDropdown").show();
-    } else {
-        $("#projectDropdown").hide();
-
     }
 });
-
-
-
-
 
 //this function clears the input form and then hides the form
 
-
 function clearTask() {
-    $("#cancelTask").on("click", function () {
+    $(".cancelTask").on("click", function () {
         $("#taskInputForm").hide();
     })
 }
@@ -129,6 +181,8 @@ function clearGoal() {
 
 
 setTask();
+getExistingProjects();
 setGoal();
+setProject();
 clearTask();
 clearGoal();

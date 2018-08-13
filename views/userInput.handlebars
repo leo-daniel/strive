@@ -77,6 +77,8 @@
                         <textarea class="form-control" id="inputNotes" rows="3"></textarea>
                     </div>
                 </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="submitTask">Add Task</button>
+                <button id="show-this" class="float-right btn btn-danger cancelTask">Cancel</button>
 
                 <div class="form-check">
                     <input id="projectCheckbox" type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -97,85 +99,86 @@
                             Use existing project
                         </label>
                     </div>
-                </div>
-                {{!-- Project Dropdown --}}
-                <div id="projectInputForm">
-                    <div class="form-row">
-                        <!--title of Project-->
-                        <div class="form-group col-md-12">
-                            <label for="inputProjectTitle">Project Title</label>
-                            <input type="text" class="form-control" id="inputTitle" placeholder="Name of your Project">
-                        </div>
-                    </div>
-                    <!--Address-->
-                    <div class="form-group">
-                        <label for="inputProjectAddress">Address</label>
-                        <input type="text" class="form-control" id="inputProjectAddress" placeholder="1234 Main St">
-                    </div>
-                    <!--Category and Date-->
-                    <div class="form-row">
-                        <!--Category-->
-                        <div class="form-group col-md-5">
-                            <label for="inputCategory">Category</label>
-                            <select id="inputProjectCategory" class="form-control">
-                                <option selected>Choose...</option>
-                                <option value="work">Work</option>
-                                <option value="personal">Personal</option>
-                                <option value="school">School</option>
-                            </select>
-                        </div>
-                        <!--Date Selection-->
-                        <div class="form-group col-md-5">
-                            <div class="form-group">
-                                <label for="inputProjectDate">Select Task Date</label>
-                                <input type="date" id="inputTaskDate" max="3000-12-31" min="1000-01-01" class="form-control">
+
+                    {{!-- Project Dropdown --}}
+                    <div id="projectInputForm">
+                        <div class="form-row">
+                            <!--title of Project-->
+                            <div class="form-group col-md-12">
+                                <label for="inputProjectTitle">Project Title</label>
+                                <input type="text" class="form-control" id="inputProjectTitle" placeholder="Name of your Project">
                             </div>
                         </div>
-                        <div class="form-group col-md-2"></div>
+                        <!--Address-->
+                        <div class="form-group">
+                            <label for="inputProjectAddress">Address</label>
+                            <input type="text" class="form-control" id="inputProjectAddress" placeholder="1234 Main St">
+                        </div>
+                        <!--Category and Date-->
+                        <div class="form-row">
+                            <!--Category-->
+                            <div class="form-group col-md-5">
+                                <label for="inputProjectCategory">Category</label>
+                                <select id="inputProjectCategory" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option value="work">Work</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="school">School</option>
+                                </select>
+                            </div>
+                            <!--Date Selection-->
+                            <div class="form-group col-md-5">
+                                <div class="form-group">
+                                    <label for="inputProjectDate">Select Project Date</label>
+                                    <input type="date" id="inputProjectDate" max="3000-12-31" min="1000-01-01" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2"></div>
+                        </div>
+                        <!--Piority Level-->
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputProjectPriority">Priority</label>
+                                <select id="inputProjectPriority" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option value="1">High</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">Low</option>
+                                </select>
+                            </div>
+                            <!--Set Hours to Complete Task-->
+                            <div class="form-group col-md-3">
+                                <label for="inputProjectLength">Hours to Complete</label>
+                                <input type="number" id="inputProjectLength" class="form-control" placeholder=".5 Hours" step="0.1">
+                            </div>
+                            <div class="form-group col-md-5"></div>
+                        </div>
+                        <!--Project Notes-->
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputProjectNotes">Notes</label>
+                                <textarea class="form-control" id="inputProjectNotes" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="inputProjectTask">Add Project and Task</button>
+                        <button class="float-right btn btn-danger cancelTask" href="#">Cancel</button>
                     </div>
-                    <!--Piority Level-->
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputPriority">Priority</label>
-                            <select id="inputProjectPriority" class="form-control">
-                                <option selected>Choose...</option>
-                                <option value="1">High</option>
-                                <option value="2">Medium</option>
-                                <option value="3">Low</option>
+
+                    <div id="projectDropdown">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Projects</label>
+                            </div>
+                            <select class="custom-select" id="inputExistingProject">
+                                <option selected>Choose a project</option>
                             </select>
                         </div>
-                        <!--Set Hours to Complete Task-->
-                        <div class="form-group col-md-3">
-                            <label for="inputProjectLength">Hours to Complete</label>
-                            <input type="number" id="inputTaskLength" class="form-control" placeholder=".5 Hours" step="0.1">
-                        </div>
-                        <div class="form-group col-md-5"></div>
-                    </div>
-                    <!--Task Notes-->
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="inputProjectNotes">Notes</label>
-                            <textarea class="form-control" id="inputNotes" rows="3"></textarea>
-                        </div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="inputProjectTask">Add Task to Project</button>
+                        <button class="float-right btn btn-danger cancelTask" href="#">Cancel</button>
                     </div>
 
-                </div>
-
-                <div id="projectDropdown">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Projects</label>
-                        </div>
-                        <select class="custom-select" id="inputGroupSelect01">
-                            <option selected>Choose a project</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
             </form>
-
+            </div>
             <!--Goal Input Form-->
             <div class="row">
                 <div class="col-md-12">
