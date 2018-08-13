@@ -250,7 +250,7 @@
 }
 .calendar.is-calendar-large .calendar-event.is-warning {
   background-color: #ffdd57;
-  color: rgba(0, 0, 0, 0.7);
+  color: #000000;
 }
 .calendar.is-calendar-large .calendar-event.is-danger {
   background-color: #ff3860;
