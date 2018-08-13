@@ -78,7 +78,7 @@
                     </div>
                 </div>
 
-                <button type="submitTask" class="btn btn-primary" data-toggle="modal" data-target="#successModal">Add Task</button>
+                <button id="submitMyTask" type="submitTask" class="btn btn-primary" data-toggle="modal" data-target="#successModal">Add Task</button>
                 <a class="float-right" id="cancelTask" href="#">Cancel</a>
 
             </form>
@@ -103,17 +103,23 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="successModal">Modal title</h5>
+                            <h5 class="modal-title" id="successModal"></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <div id="modalTitle"></div>
+                            <div id="modalAddress"></div>
+                            <div id="modalCategory"></div>
+                            <div id="modalDate"></div>
+                            <div id="modalPriority"></div>
+                            <div id="modalHours"></div>
+                            <div id="modalNotes"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary">I Confirm</button>
                         </div>
                     </div>
                 </div>
