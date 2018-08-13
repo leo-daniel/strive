@@ -1,4 +1,4 @@
-import bulmaCalendar from '/node_modules/bulma-extensions/bulma-calendar/dist/bulma-calendar.min.js';
+import bulmaCalendar from "/node_modules/bulma-extensions/bulma-calendar/dist/bulma-calendar.min.js";
 
 // Get references to page elements
 var $exampleText = $("#example-text");
@@ -125,9 +125,25 @@ var testChart2 = makeDonutChart(ctx2, [], []);
 var testChart3 = makeDonutChart(ctx3, [], []);
 var goalTestChart = makeGoalChart(ctx4, [], []);
 
-// DB: NEED TO PUT THIS INSIDE WHERE WE CONNECT TO DB.
-// var progress = res.progress;
-// var remaining = 100 - res.progress;
+function getGoalProgress() {
+  app.get("/", function(req, res) {
+    db.Goal.findAll({}).then(function(result) {
+      console.log(result);
+      res.json(result);
+    });
+  });
+}
+
+function getProjectProgress() {
+  app.get("/", function(req, res) {
+    db.Project.findAll({}).then(function(result) {
+      var progress = result.progress;
+      var remaining = 100 - result.progress;
+      console.log(result);
+      res.json(result);
+    });
+  });
+}
 
 function makeDonutChart(ctx, labelNames, data) {
   return new Chart(ctx, {
@@ -139,6 +155,8 @@ function makeDonutChart(ctx, labelNames, data) {
           backgroundColor: ["#1d8348", "#28b463", "#58d68d00"],
           data: [20, 60, 20]
           // data: [progress, remaining]
+          // progress calculation: completed tasks / total tasks = progress.
+          //
         }
       ]
     },
@@ -158,12 +176,12 @@ function makeGoalChart(ctx, labelNames, data) {
   return new Chart(ctx, {
     type: "polarArea",
     data: {
-      labels: ["Get 8 hrs sleep daily", "Exercise", "Meditate", "Meal-prep"],
+      labels: [Goal.goal_name],
       datasets: [
         {
           label: "Points",
           backgroundColor: ["#ecf0f1", "#bdc3c7", "#909497", "#626567"],
-          data: [50, 80, 20, 50]
+          data: [Goal.progress]
         }
       ]
     },
@@ -181,11 +199,11 @@ $("#chart-container3").append(testChart3);
 $("#goal-progress").append(goalTestChart);
 
 // options for Bulma Calendar Extension
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function() {
   var datePickers = bulmaCalendar.attach('[type="date"]', {
     overlay: true,
-    minDate: '2018-01-01',
-    maxDate: '2018-12-31'
+    minDate: "2018-01-01",
+    maxDate: "2018-12-31"
   });
   // datePickers now contains an Array of all datePicker instances
 });
