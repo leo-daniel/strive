@@ -27,6 +27,7 @@ CREATE TABLE tasks(
     `description` TEXT,
     `priority` INT,
     date_due DATETIME,
+    is_complete BOOLEAN,
    	hours_complete DECIMAL(5,2),
     PRIMARY KEY (id)
 );
