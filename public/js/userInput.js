@@ -7,6 +7,7 @@ $("#projectInputForm").hide();
 
 function setTask() {
     $("#newTask").on("click", function () {
+        getExistingProjects();
         if ($("#goalInputForm").is(":visible")) {
             $("#goalInputForm").hide();
             $("#taskInputForm").show();
@@ -35,7 +36,6 @@ function setTask() {
 function setProject() {
     $("#inputProjectTask").on("click", function () {
         submitTask();
-
         var projectData = {
             project_name: $("#inputProjectTitle").val().trim(),
             address: $("#inputProjectAddress").val().trim(),
@@ -50,7 +50,6 @@ function setProject() {
 
     })
 }
-
 
 function setGoal() {
     $("#newGoal").on("click", function () {
@@ -97,8 +96,32 @@ function submitTask() {
     postAjax(taskData, 'tasks')
 }
 
-// postAJAX function to put data in calendar_db
 
+function getExistingProjects() {
+    $.get("/api/projects", function (data) {
+        console.log(data);
+        $("#inputExistingProject").empty()
+        $.each(data, function (i, item) {
+            $("#inputExistingProject").append($("<option>", {
+                value: item.id,
+                text: item.project_name
+            }));
+        })
+    })
+}
+
+// function getAuthors() {
+//     $.get("/api/authors", function (data) {
+//         console.log
+//         for (var i = 0; i < data.length; i++) {
+//             rowsToAdd.push(createAuthorRow(data[i]));
+//         }
+//         renderAuthorList(rowsToAdd);
+//         nameInput.val("");
+//     });
+// }
+
+// postAJAX function to put data in calendar_db
 function postAjax(data, URL) {
     $.ajax({
         method: "POST",
@@ -114,9 +137,11 @@ $('#projectCheckbox').click(function () {
     if (this.checked) {
         $("#projectShowHide").show();
         $("#submitTask").hide();
+        $("#show-this").hide();
     } else {
         $("#projectShowHide").hide();
         $("#submitTask").show();
+        $("#show-this").show();
     }
 });
 
@@ -143,7 +168,7 @@ $('#useExistingProject').click(function () {
 //this function clears the input form and then hides the form
 
 function clearTask() {
-    $("#cancelTask").on("click", function () {
+    $(".cancelTask").on("click", function () {
         $("#taskInputForm").hide();
     })
 }
@@ -156,6 +181,7 @@ function clearGoal() {
 
 
 setTask();
+getExistingProjects();
 setGoal();
 setProject();
 clearTask();

@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="submitTask">Add Task</button>
-                <a id="cancelTask" class="float-right" href="#">Cancel</a>
+                <button id="show-this" class="float-right btn btn-danger cancelTask">Cancel</button>
 
                 <div class="form-check">
                     <input id="projectCheckbox" type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="inputProjectTask">Add Project and Task</button>
-                        <a id="cancelTask" class="float-right" href="#">Cancel</a>
+                        <button class="float-right btn btn-danger cancelTask" href="#">Cancel</button>
                     </div>
 
                     <div id="projectDropdown">
@@ -171,12 +171,12 @@
                             </div>
                             <select class="custom-select" id="inputExistingProject">
                                 <option selected>Choose a project</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
                             </select>
                         </div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="inputProjectTask">Add Task to Project</button>
+                        <button class="float-right btn btn-danger cancelTask" href="#">Cancel</button>
                     </div>
+
             </form>
             </div>
             <!--Goal Input Form-->
