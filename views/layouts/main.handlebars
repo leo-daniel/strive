@@ -19,37 +19,7 @@
 </head>
 
 <body>
-
-  <!--Navigation Header-->
-  {{!--
-  <div class="pos-f-t">
-    <div class="collapse" id="navbarMain">
-      <div class="bg-dark p-4">
-        <ul>
-          <!--Home Link-->
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
-          </li>
-          <!--Calendar Link-->
-          <li class="nav-item">
-            <a class="nav-link active" href="/calendar">Calendar</a>
-          </li>
-          <!--Task Input link-->
-          <li class="nav-item">
-            <a class="nav-link active" href="/form">Project Tasks</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <nav class="navbar navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain"
-        aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </nav>
-  </div> --}}
-  <!-- end navbar -->
-
+  <!-- begin navbar: lives behind hamburger button at small sizes -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
       aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,21 +30,23 @@
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li>
+          <!-- navigate to index -->
           <a class="nav-link" href="/">Today</a>
         </li>
         <li class="nav-item">
+          <!-- navigate to calendar -->
           <a class="nav-link" href="/calendar">Calendar</a>
         </li>
         <li class="nav-item">
+          <!-- navigate to data submission form -->
           <a class="nav-link" href="/form">Add New</a>
         </li>
       </ul>
     </div>
   </nav>
-
+  <!-- end navbar -->
 
   {{{body}}}
-
 
 </body>
 
