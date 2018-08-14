@@ -45,7 +45,3 @@ module.exports = function (sequelize, DataTypes) {
         });
     return Task;
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> d16256403af648f8309eb87f37ff2178b3c350e7
