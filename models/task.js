@@ -37,9 +37,6 @@ module.exports = function (sequelize, DataTypes) {
             //     isFloat: true
             // }
         },
-        project:{
-            type: DataTypes.STRING
-        }
     }, {
             timestamps: false
         });
