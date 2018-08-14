@@ -29,6 +29,7 @@ CREATE TABLE tasks(
     date_due DATETIME,
     is_complete BOOLEAN,
    	hours_complete DECIMAL(5,2),
+    project VARCHAR(50),
     PRIMARY KEY (id)
 );
 
