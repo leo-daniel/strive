@@ -1,11 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
     var Task = sequelize.define('task', {
-        // id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     primaryKey: true,
-        //     autoIncrement: true
-        // },
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
         task_name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -37,8 +37,9 @@ module.exports = function (sequelize, DataTypes) {
             //     isFloat: true
             // }
         },
-        project:{
-            type: DataTypes.STRING
+        complete: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
             timestamps: false
