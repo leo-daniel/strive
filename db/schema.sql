@@ -16,6 +16,7 @@ CREATE TABLE projects(
     `priority` INT,
     date_due DATETIME,
    	hours_complete DECIMAL(5,2),
+    project VARCHAR(50),
     PRIMARY KEY (id)
 );
 

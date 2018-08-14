@@ -4,59 +4,70 @@ $("#goalInputForm").hide();
 $("#taskInputForm").hide();
 
 var myNewTask;
+var checkedProject;
 
 //Create a New Task
 $("#newTask").on("click", function(event) {
   event.preventDefault();
   $("#taskInputForm").show();
+  $("#showProjects").hide();
   $("#goalInputForm").hide();
 
+  myCheckBox();
 
   $("#submitMyTask").on("click", function(event) {
     event.preventDefault();
     // 1) Collect values from form input
     //JSON variables to store locally until submitted
     var myNewTask = {
-      taskTitle: (taskTitle = $("#inputTitle")
+      task_name: (taskTitle = $("#inputTitle")
         .val()
         .trim()),
-      taskAddress: (taskAddress = $("#inputAddress")
+      address: (taskAddress = $("#inputAddress")
         .val()
         .trim()),
-      taskCategory: (taskCategory = $("#inputCategory")
+      category: (taskCategory = $("#inputCategory")
         .val()
         .trim()),
-      taskDate: (taskDate = $("#inputTaskDate")
+      date_due: (taskDate = $("#inputTaskDate")
         .val()
         .trim()),
-      taskPriority: (taskPriority = $("#inputPriority").val()),
-      taskHours: (taskHours = $("#inputTaskLength").val()),
-      taskNotes: (taskNotes = $("#inputNotes").val())
+      priority: (taskPriority = $("#inputPriority").val()),
+      hours_complete: (taskHours = $("#inputTaskLength").val()),
+      description: (taskNotes = $("#inputNotes").val()),
+      project: (taskProject = $("#inputProjects").val().trim())
     };
 
     // 2) display modal with information to confirm submission of task
     $(".modal-title").text("Confrim New Task");
-    $("#modalTitle").html("Title: " + myNewTask.taskTitle);
-    $("#modalAddress").html("Address: " + myNewTask.taskAddress);
-    $("#modalCategory").html("Category: " + myNewTask.taskCategory);
-    $("#modalDate").html("Date: " + myNewTask.taskDate);
-    $("#modalPriority").html("Priority: " + myNewTask.taskPriority);
-    $("#modalHours").html("Hours: " + myNewTask.taskHours);
-    $("#modalNotes").html("Notes: " + myNewTask.taskNotes);
+    $("#modalTitle").html("Title: " + myNewTask.task_name);
+    $("#modalAddress").html("Address: " + myNewTask.address);
+    $("#modalCategory").html("Category: " + myNewTask.category);
+    $("#modalDate").html("Date: " + myNewTask.date_due);
+    $("#modalPriority").html("Priority: " + myNewTask.priority);
+    $("#modalHours").html("Hours: " + myNewTask.hours_complete);
+    $("#modalNotes").html("Notes: " + myNewTask.description);
+    $("#modalProject").html("Project: "+myNewTask.project);
+
+    $("#confirm").on("click", function() {
+      // 3) send data back to MySQL DB
+      postAjax(myNewTask, "tasks");
+
+      // 4) reset form and hide
+      $("#taskInputForm")[0].reset();
+      $("#taskInputForm").hide();
+    });
   });
-
-
-
-  // 4) reset form and hide
-//   $("#taskInputForm")[0].reset();
-//   $("#taskInputForm").hide();
 });
 
-$("#confirm").on("click",function(){
-    // 3) send data back to MySQL DB
-    console.log('submitted');
-    postAjax(myNewTask, 'tasks');
-})
+function myCheckBox() {
+  $("#inputProject").on("click", function() {
+    if ($(this).is(":checked")) {
+      checkedProject = $("#inputProject[type=checkbox]").prop("checked");
+      $("#showProjects").show();
+    }
+  });
+}
 
 //Create a New Goal
 $("#newGoal").on("click", function() {
