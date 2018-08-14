@@ -1,11 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
     var Task = sequelize.define('task', {
-        // id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     primaryKey: true,
-        //     autoIncrement: true
-        // },
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
+        },
         task_name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -37,11 +37,23 @@ module.exports = function (sequelize, DataTypes) {
             //     isFloat: true
             // }
         },
-        project:{
+        project: {
             type: DataTypes.STRING
-        }
+        },
+
     }, {
-            timestamps: false
-        });
+        timestamps: false
+    });
+
+    // Task.associate = function (models) {
+    //     // We're saying that a Post should belong to an Author
+    //     // A Post can't be created without an Author due to the foreign key constraint
+    //     Task.belongsTo(models.Project, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
+
     return Task;
 };

@@ -27,7 +27,6 @@ module.exports = function (sequelize, DataTypes) {
     }, {
         timestamps: false
     });
-    // Step.belongsTo(Task);
 
     return Step;
 };

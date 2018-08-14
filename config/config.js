@@ -4,14 +4,14 @@ module.exports = function (env) {
       'username': 'root',
       'password': process.env.DB_PASS,
       'port': process.env.PORT_NUM,
-      'database': 'calendar_db',
+      'database': 'calendar_db12',
       'host': 'localhost',
       'dialect': 'mysql'
     },
     'test': {
       'username': 'root',
       'password': process.env.DB_PASS,
-      'database': 'calendar_db',
+      'database': 'calendar_db12',
       'host': 'localhost',
       'dialect': 'mysql',
       'logging': false
