@@ -96,7 +96,6 @@ function submitTask() {
     postAjax(taskData, 'tasks')
 }
 
-
 function getExistingProjects() {
     $.get("/api/projects", function (data) {
         console.log(data);
@@ -109,17 +108,6 @@ function getExistingProjects() {
         })
     })
 }
-
-// function getAuthors() {
-//     $.get("/api/authors", function (data) {
-//         console.log
-//         for (var i = 0; i < data.length; i++) {
-//             rowsToAdd.push(createAuthorRow(data[i]));
-//         }
-//         renderAuthorList(rowsToAdd);
-//         nameInput.val("");
-//     });
-// }
 
 // postAJAX function to put data in calendar_db
 function postAjax(data, URL) {
