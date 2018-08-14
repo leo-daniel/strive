@@ -1,8 +1,8 @@
 {
-  "name": "project-two",
+  "name": "strive-goals-app",
   "version": "1.0.0",
-  "description": "Project 2 -- TBD",
-  "main": ".eslintrc.js",
+  "description": "Strive Goals App",
+  "main": "server.js",
   "directories": {
     "doc": "docs",
     "test": "test"
