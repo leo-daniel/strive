@@ -1,49 +1,67 @@
-.list-group-item {
-  line-height: 2.5;
+* {
+  font-family: "Fira Sans", sans-serif;
+  color: #000;
 }
 
-
-.navbar-toggler {
-
-  right: 0px;
-  position: relative;
-  margin-left: auto;
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #28a745;
 }
 
-
-.nav-link {
-  color: white;
+#app-name {
+  font-weight: 500;
 }
+
+#home {
+  background-image: url("../images/jace-grandinetti-110734-unsplash.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  margin-bottom: 0%;
+}
+
+#jumbotron {
+  background-color: transparent;
+}
+
+#page-heading {
+  font-family: "Fira Sans Condensed", sans-serif;
+  font-weight: 600;
+}
+
+/* .list-group-item {
+  line-height: 2.5rem;
+} */
 
 ul {
   list-style-type: none;
 }
 
-.button {
-  position: relative;
-  top: 1em;
-}
-
-#inputHeader{
+#inputHeader {
   text-align: center;
 }
 
-#buttonNewTask{
+#buttonNewTask {
   text-align: center;
 }
 
-#buttonNewGoal{
+#buttonNewGoal {
   text-align: center;
 }
 
-#chart-container1, container2, container3{
+#chart-container1,
+container2,
+container3,
+goalTestChart {
   position: relative;
   height: 300;
   width: 300;
 }
 
-#cancelTask{
+#cancelTask {
   right: 0px;
   position: absolute;
   margin-left: auto;
+}
+
+#goal-progress {
+  margin: auto;
 }

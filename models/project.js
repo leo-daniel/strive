@@ -23,7 +23,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DECIMAL
         },
         priority: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         date_due: {
@@ -31,8 +31,10 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     }, {
-            // don't add the timestamp attributes (updatedAt, createdAt)
-            timestamps: false
-        });
+        // don't add the timestamp attributes (updatedAt, createdAt)
+        timestamps: false
+    });
+
+
     return Project;
 };
