@@ -15,9 +15,13 @@ module.exports = function (sequelize, DataTypes) {
         },
         progress: {
             type: DataTypes.DECIMAL
+        },
+        complete: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
-        timestamps: false
-    });
+            timestamps: false
+        });
     return Goal;
 };

@@ -35,6 +35,7 @@ $("#newTask").on("click", function (event) {
       date_due: (taskDate = $("#inputTaskDate")
         .val()
         .trim()),
+      complete: 'false',
       priority: (taskPriority = $("#inputPriority").val()),
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
@@ -44,7 +45,7 @@ $("#newTask").on("click", function (event) {
     };
 
     // 2) display modal with information to confirm submission of task
-    $(".modal-title").text("Confrim New Task");
+    $(".modal-title").text("Confirm New Task");
     $("#modalTitle").html("Title: " + myNewTask.task_name);
     $("#modalAddress").html("Address: " + myNewTask.address);
     $("#modalCategory").html("Category: " + myNewTask.category);
@@ -88,7 +89,8 @@ $("#newGoal").on("click", function () {
     // 2) insert goal into the calendar.
     var goalData = {
       goal_name: $("#goalName").val().trim(),
-      description: $("#goalDescription").val().trim()
+      description: $("#goalDescription").val().trim(),
+      complete: 'false'
     }
 
     postAjax(goalData, 'goals');
@@ -117,7 +119,8 @@ $("#addProject").on("click", function () {
       .trim(),
     description: $("#inputProjectDescription")
       .val()
-      .trim()
+      .trim(),
+    complete: 'false'
   };
 
   // 2) send data back to MySQL DB

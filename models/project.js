@@ -14,6 +14,10 @@ module.exports = function (sequelize, DataTypes) {
       },
       description: {
         type: DataTypes.TEXT
+      },
+      complete: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       }
     },
     {

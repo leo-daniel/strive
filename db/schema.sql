@@ -16,7 +16,9 @@ CREATE TABLE projects(
     `priority` INT,
     date_due DATETIME,
    	hours_complete DECIMAL(5,2),
+    complete BIT,
     PRIMARY KEY (id)
+
 );
 
 CREATE TABLE tasks(
@@ -30,7 +32,9 @@ CREATE TABLE tasks(
     is_complete BOOLEAN,
    	hours_complete DECIMAL(5,2),
     project VARCHAR(50),
+    complete BIT,
     PRIMARY KEY (id)
+
 );
 
 CREATE TABLE steps(
@@ -41,6 +45,7 @@ CREATE TABLE steps(
     `priority` INT,
     date_due DATETIME,
    	hours_complete DECIMAL(5,2),
+    complete BIT,
     PRIMARY KEY (id)
 );
 
