@@ -3,9 +3,13 @@ module.exports = function (sequelize, DataTypes) {
         'task', {
             id: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                // allowNull: false,
                 primaryKey: true,
                 autoIncrement: true
+            },
+            project_id: {
+                type: DataTypes.INTEGER
+                // allowNull: false
             },
             task_name: {
                 type: DataTypes.STRING,
@@ -37,19 +41,21 @@ module.exports = function (sequelize, DataTypes) {
                 // validate = {
                 //     isFloat: true
                 // }
+            },
+            is_complete: {
+                type: DataTypes.BOOLEAN,
+                defaultvalue: false
             }
-
         }, {
             timestamps: false
         });
-
-    task.associate = function (models) {
-        models.task.belongsTo(models.project, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+    // task.associate = function (models) {
+    //     models.task.belongsTo(models.project, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
     return task;
 };
