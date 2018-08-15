@@ -94,8 +94,14 @@ $("#newGoal").on("click", function() {
       complete: "false"
     };
 
+
+    // 3) send goals to DB
     postAjax(goalData, "goals");
-    // 3) display "success" modal.
+
+    // 4) reset the goal form
+    $("#goalInputForm")[0].reset();
+    $("#goalInputForm").hide();
+
   });
 });
 
@@ -125,11 +131,11 @@ $("#addProject").on("click", function() {
   };
 
   // 2) send data back to MySQL DB
-  postAjax(myNewProject, "projects");
+  postAjax2(myNewProject, "projects");
 
   // 3) reset form
   $("#projectForm")[0].reset();
-  getExistingProjects();
+
 });
 
 // postAJAX function to put data in calendar_db
@@ -141,8 +147,14 @@ function postAjax(data, URL) {
   }).then(function(result) {});
 }
 
-function getExistingProjects() {
-  $.get("/api/projects", function(data) {
+
+function postAjax2(data, URL) {
+  $.ajax({
+    method: "POST",
+    url: "/api/" + URL,
+    data: data
+  }).then(function(data) {
+
     $("#inputProjects").empty();
     $.each(data, function(i, item) {
       $("#inputProjects").append(
@@ -154,4 +166,4 @@ function getExistingProjects() {
     });
   });
 }
-getExistingProjects();
+
