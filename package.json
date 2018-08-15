@@ -1,8 +1,8 @@
 {
-  "name": "project-two",
+  "name": "strive-app",
   "version": "1.0.0",
-  "description": "Project 2 -- TBD",
-  "main": ".eslintrc.js",
+  "description": "Strive app is a goal & task -based dashboard app",
+  "main": "server.js",
   "directories": {
     "doc": "docs",
     "test": "test"
@@ -11,9 +11,14 @@
     "body-parser": "^1.18.3",
     "bulma-calendar": "^4.0.1",
     "bulma-start": "0.0.2",
+    "chai": "^4.1.2",
+    "chai-datetime": "^1.5.0",
+    "chai-http": "^4.0.0",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "mocha": "^5.2.0",
+    "moment": "^2.22.2",
     "mysql2": "^1.6.1",
     "npm": "^6.3.0",
     "sequelize": "^4.38.0"
@@ -32,7 +37,7 @@
     "standard": "^11.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js"
   },
   "repository": {

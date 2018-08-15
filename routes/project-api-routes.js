@@ -1,12 +1,12 @@
 var db = require('../models');
 
 module.exports = function (app) {
-    // Find all projects and return them to the user with res.json
-    app.get('/api/projects', function (req, res) {
-        db.project.findAll({}).then(function (dbProject) {
-            res.json(dbProject);
-        });
-    });
+    // // Find all projects and return them to the user with res.json
+    // app.get('/api/projects', function (req, res) {
+    //     db.project.findAll({}).then(function (dbProject) {
+    //         res.json(dbProject);
+    //     });
+    // });
 
     app.get('/api/projects/:id', function (req, res) {
         // Find one project with the id in req.params.id and return them to the user with res.json
@@ -21,8 +21,10 @@ module.exports = function (app) {
 
     app.post('/api/projects', function (req, res) {
         // Create a project with the data available to us in req.body
-        db.project.create(req.body).then(function (dbProject) {
-            res.json(dbProject);
+        db.project.create(req.body).then(function () {
+            db.project.findAll({}).then(function (dbProject) {
+                res.json(dbProject);
+            });
         });
     });
 

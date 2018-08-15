@@ -33,7 +33,7 @@ $("#newTask").on("click", function (event) {
       date_due: (taskDate = $("#inputTaskDate")
         .val()
         .trim()),
-      complete: 'false',
+      complete: "false",
       priority: (taskPriority = $("#inputPriority").val()),
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
@@ -79,20 +79,29 @@ $("#newGoal").on("click", function () {
   $("#taskInputForm").hide();
   $("#goalInputForm").show();
 
-
   $("#submitGoal").on("click", function () {
     // 1) hide/clear goal input form.
     $("#goalInputForm").hide();
 
     // 2) insert goal into the calendar.
     var goalData = {
-      goal_name: $("#goalName").val().trim(),
-      description: $("#goalDescription").val().trim(),
-      complete: 'false'
-    }
+      goal_name: $("#goalName")
+        .val()
+        .trim(),
+      description: $("#goalDescription")
+        .val()
+        .trim(),
+      complete: "false"
+    };
 
-    postAjax(goalData, 'goals');
-    // 3) display "success" modal.
+
+    // 3) send goals to DB
+    postAjax(goalData, "goals");
+
+    // 4) reset the goal form
+    $("#goalInputForm")[0].reset();
+    $("#goalInputForm").hide();
+
   });
 });
 
@@ -118,15 +127,15 @@ $("#addProject").on("click", function () {
     description: $("#inputProjectDescription")
       .val()
       .trim(),
-    complete: 'false'
+    complete: "false"
   };
 
   // 2) send data back to MySQL DB
-  postAjax(myNewProject, "projects");
+  postAjax2(myNewProject, "projects");
 
   // 3) reset form
   $("#projectForm")[0].reset();
-  getExistingProjects();
+
 });
 
 // postAJAX function to put data in calendar_db
@@ -135,21 +144,25 @@ function postAjax(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function (result) {
-    console.log(result);
-  });
+  }).then(function (result) {});
 }
 
-function getExistingProjects() {
-  $.get("/api/projects", function (data) {
-    console.log(data);
+
+function postAjax2(data, URL) {
+  $.ajax({
+    method: "POST",
+    url: "/api/" + URL,
+    data: data
+  }).then(function (data) {
+
     $("#inputProjects").empty();
     $.each(data, function (i, item) {
-      $("#inputProjects").append($("<option>", {
-        value: item.id,
-        text: item.project_name
-      }));
+      $("#inputProjects").append(
+        $("<option>", {
+          value: item.id,
+          text: item.project_name
+        })
+      );
     });
-  })
+  });
 }
-getExistingProjects();
