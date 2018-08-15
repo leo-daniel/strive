@@ -94,13 +94,14 @@ $("#newGoal").on("click", function() {
       complete: "false"
     };
 
+
     // 3) send goals to DB
     postAjax(goalData, "goals");
 
     // 4) reset the goal form
     $("#goalInputForm")[0].reset();
     $("#goalInputForm").hide();
-    
+
   });
 });
 
@@ -146,12 +147,14 @@ function postAjax(data, URL) {
   }).then(function(result) {});
 }
 
+
 function postAjax2(data, URL) {
   $.ajax({
     method: "POST",
     url: "/api/" + URL,
     data: data
   }).then(function(data) {
+
     $("#inputProjects").empty();
     $.each(data, function(i, item) {
       $("#inputProjects").append(
@@ -163,6 +166,4 @@ function postAjax2(data, URL) {
     });
   });
 }
-
-
 
