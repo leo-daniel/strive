@@ -27,11 +27,14 @@ module.exports = function (sequelize, DataTypes) {
 			complete_tasks: {
 				type: DataTypes.INTEGER
 			}
+
+		}, {
+			timestamps: false
 		});
-	project.associate = function (models) {
-		models.project.hasMany(models.task, {
-			onDelete: "CASCADE"
-		});
-	};
+	// project.associate = function (models) {
+	// 	models.project.hasMany(models.task, {
+	// 		onDelete: "CASCADE"
+	// 	});
+	// };
 	return project;
 };

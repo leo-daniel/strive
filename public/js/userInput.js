@@ -1,5 +1,5 @@
 // hide forms until user clicks icon to select new task or goal
-
+var total = 0;
 $("#goalInputForm").hide();
 $("#taskInputForm").hide();
 
@@ -39,7 +39,8 @@ $("#newTask").on("click", function (event) {
       description: (taskNotes = $("#inputNotes").val()),
       project: (taskProject = $("#inputProjects")
         .val()
-        .trim())
+        .trim()),
+      project_id: $('#inputProjects option:selected').val()
     };
 
     // 2) display modal with information to confirm submission of task
@@ -56,6 +57,12 @@ $("#newTask").on("click", function (event) {
     $("#confirm").on("click", function () {
       // 3) send data back to MySQL DB
       postAjax(myNewTask, "tasks");
+
+      // let projectUpdate = {
+      //   total_tasks: 1
+      // }
+
+      // putAjax(projectUpdate, 'project', $('#inputProjects option:selected').val())
 
       // 4) reset form and hide
       $("#taskInputForm")[0].reset();
@@ -144,9 +151,16 @@ function postAjax(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function (result) {});
+  }).then(function (result) { });
 }
 
+function putAjax(data, URL, id) {
+  $.ajax({
+    method: "PUT",
+    url: "/api/" + URL + id,
+    data: data
+  }).then(function (result) { });
+}
 
 function postAjax2(data, URL) {
   $.ajax({

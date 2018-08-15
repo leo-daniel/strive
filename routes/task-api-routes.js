@@ -34,8 +34,8 @@ module.exports = function (app) {
                     id: req.body.id
                 }
             }).then(function (dbTask) {
-            res.json(dbTask);
-        });
+                res.json(dbTask);
+            });
     });
 
     app.delete('/api/tasks/:id', function (req, res) {
