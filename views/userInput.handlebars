@@ -92,9 +92,6 @@
                         <label for="inputProjects">Project</label>
                         <select id="inputProjects" class="form-control">
                             <option selected>Choose...</option>
-                            <option value="1">Project 1</option>
-                            <option value="2">Project 2</option>
-                            <option value="3">Project 3</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3" style="margin-top:auto">
@@ -118,8 +115,12 @@
                 <div class="col-md-12">
                     <form id="goalInputForm">
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
+                            <label for="goalName">Name</label>
+                            <textarea class="form-control" id="goalName" rows="1"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="goalDescription">Description</label>
+                            <textarea class="form-control" id="goalDescription" rows="3"></textarea>
                         </div>
 
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModal" id="submitGoal">Add Goal</button>

@@ -33,6 +33,7 @@ $("#newTask").on("click", function (event) {
       date_due: (taskDate = $("#inputTaskDate")
         .val()
         .trim()),
+      complete: 'false',
       priority: (taskPriority = $("#inputPriority").val()),
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
@@ -42,7 +43,7 @@ $("#newTask").on("click", function (event) {
     };
 
     // 2) display modal with information to confirm submission of task
-    $(".modal-title").text("Confrim New Task");
+    $(".modal-title").text("Confirm New Task");
     $("#modalTitle").html("Title: " + myNewTask.task_name);
     $("#modalAddress").html("Address: " + myNewTask.address);
     $("#modalCategory").html("Category: " + myNewTask.category);
@@ -78,16 +79,19 @@ $("#newGoal").on("click", function () {
   $("#taskInputForm").hide();
   $("#goalInputForm").show();
 
-  var goal = $("#description")
-    .val()
-    .trim();
 
   $("#submitGoal").on("click", function () {
     // 1) hide/clear goal input form.
     $("#goalInputForm").hide();
 
     // 2) insert goal into the calendar.
+    var goalData = {
+      goal_name: $("#goalName").val().trim(),
+      description: $("#goalDescription").val().trim(),
+      complete: 'false'
+    }
 
+    postAjax(goalData, 'goals');
     // 3) display "success" modal.
   });
 });
@@ -113,7 +117,8 @@ $("#addProject").on("click", function () {
       .trim(),
     description: $("#inputProjectDescription")
       .val()
-      .trim()
+      .trim(),
+    complete: 'false'
   };
 
   // 2) send data back to MySQL DB
@@ -121,6 +126,7 @@ $("#addProject").on("click", function () {
 
   // 3) reset form
   $("#projectForm")[0].reset();
+  getExistingProjects();
 });
 
 // postAJAX function to put data in calendar_db
@@ -133,3 +139,17 @@ function postAjax(data, URL) {
     console.log(result);
   });
 }
+
+function getExistingProjects() {
+  $.get("/api/projects", function (data) {
+    console.log(data);
+    $("#inputProjects").empty();
+    $.each(data, function (i, item) {
+      $("#inputProjects").append($("<option>", {
+        value: item.id,
+        text: item.project_name
+      }));
+    });
+  })
+}
+getExistingProjects();

@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Goal = sequelize.define('goal', {
+    var goal = sequelize.define('goal', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -15,9 +15,13 @@ module.exports = function (sequelize, DataTypes) {
         },
         progress: {
             type: DataTypes.DECIMAL
+        },
+        complete: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
         timestamps: false
     });
-    return Goal;
+    return goal;
 };
