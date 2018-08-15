@@ -94,8 +94,13 @@ $("#newGoal").on("click", function() {
       complete: "false"
     };
 
+    // 3) send goals to DB
     postAjax(goalData, "goals");
-    // 3) display "success" modal.
+
+    // 4) reset the goal form
+    $("#goalInputForm")[0].reset();
+    $("#goalInputForm").hide();
+    
   });
 });
 
