@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Step = sequelize.define('step', {
+    var Step = sequelize.define('Step', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -27,7 +27,6 @@ module.exports = function (sequelize, DataTypes) {
     }, {
         timestamps: false
     });
-    // Step.belongsTo(Task);
 
     return Step;
 };

@@ -8,7 +8,7 @@ var checkedProject;
 var myNewProject;
 
 //Create a New Task
-$("#newTask").on("click", function(event) {
+$("#newTask").on("click", function (event) {
   event.preventDefault();
   $("#taskInputForm").show();
   $("#showProjects").hide();
@@ -16,7 +16,7 @@ $("#newTask").on("click", function(event) {
 
   myCheckBox();
 
-  $("#submitMyTask").on("click", function(event) {
+  $("#submitMyTask").on("click", function (event) {
     event.preventDefault();
     // 1) Collect values from form input
     //JSON variables to store locally until submitted
@@ -53,7 +53,7 @@ $("#newTask").on("click", function(event) {
     $("#modalNotes").html("Notes: " + myNewTask.description);
     $("#modalProject").html("Project: " + myNewTask.project);
 
-    $("#confirm").on("click", function() {
+    $("#confirm").on("click", function () {
       // 3) send data back to MySQL DB
       postAjax(myNewTask, "tasks");
 
@@ -65,7 +65,7 @@ $("#newTask").on("click", function(event) {
 });
 
 function myCheckBox() {
-  $("#inputProject").on("click", function() {
+  $("#inputProject").on("click", function () {
     if ($(this).is(":checked")) {
       checkedProject = $("#inputProject[type=checkbox]").prop("checked");
       $("#showProjects").show();
@@ -74,12 +74,12 @@ function myCheckBox() {
 }
 
 //Create a New Goal
-$("#newGoal").on("click", function() {
+$("#newGoal").on("click", function () {
   // if the task form is visible, close it and show the goal form.
   $("#taskInputForm").hide();
   $("#goalInputForm").show();
 
-  $("#submitGoal").on("click", function() {
+  $("#submitGoal").on("click", function () {
     // 1) hide/clear goal input form.
     $("#goalInputForm").hide();
 
@@ -106,19 +106,19 @@ $("#newGoal").on("click", function() {
 });
 
 //this function clears the input form and then hides the form
-$("#cancelTask").on("click", function() {
+$("#cancelTask").on("click", function () {
   //resets the form
   $("#taskInputForm")[0].reset();
   $("#taskInputForm").hide();
 });
 
 //clears the goal form and then hides the form
-$("#cancelGoal").on("click", function() {
+$("#cancelGoal").on("click", function () {
   $("#goalInputForm").hide();
 });
 
 //add a new project to the projects table
-$("#addProject").on("click", function() {
+$("#addProject").on("click", function () {
   // 1) collect project information
   myNewProject = {
     project_name: $("#inputProjectName")
@@ -144,7 +144,7 @@ function postAjax(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function(result) {});
+  }).then(function (result) {});
 }
 
 
@@ -153,10 +153,10 @@ function postAjax2(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function(data) {
+  }).then(function (data) {
 
     $("#inputProjects").empty();
-    $.each(data, function(i, item) {
+    $.each(data, function (i, item) {
       $("#inputProjects").append(
         $("<option>", {
           value: item.id,
@@ -166,4 +166,3 @@ function postAjax2(data, URL) {
     });
   });
 }
-
