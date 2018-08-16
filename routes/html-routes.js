@@ -39,7 +39,6 @@ module.exports = function (app) {
     app.get('/calendar', function (req, res) {
         db.project.findAll({})
             .then(db.task.findAll({}))
-            .then(db.step.findAll({}))
             .then(db.goal.findAll({}))
             .then(function (dbProjects, dbTasks, dbSteps, dbGoals) {
                 res.render('calendar', {
