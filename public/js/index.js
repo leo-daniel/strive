@@ -115,37 +115,61 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 // });
 
 // Progress Chart
-var ctx1 = document.getElementById("testChart1").getContext("2d");
-var ctx2 = document.getElementById("testChart2").getContext("2d");
-var ctx3 = document.getElementById("testChart3").getContext("2d");
-var ctx4 = document.getElementById("goalTestChart").getContext("2d");
 
-var testChart1 = makeDonutChart(ctx1, [], []);
-var testChart2 = makeDonutChart(ctx2, [], []);
-var testChart3 = makeDonutChart(ctx3, [], []);
-var goalTestChart = makeGoalChart(ctx4, [], []);
+// to put in Goal ajax call if the project call works.
+// var ctx4 = document.getElementById("goalTestChart").getContext("2d");
+// var goalTestChart = makeGoalChart(ctx4, [], []);
 
-function getGoalProgress() {
-  app.get("/", function(req, res) {
-    db.Goal.findAll({}).then(function(result) {
-      console.log(result);
-      res.json(result);
+var API = {
+  updateProgress: function(data) {
+    return $.ajax({
+      type: "POST",
+      url: "api/projects",
+      data: JSON.stringify(data)
     });
-  });
+  }
+};
+
+$.get("/api/projects", handleData);
+
+function handleData(data) {
+  var projectName1 = data[0].project_name;
+  var projectName2 = data[1].project_name;
+  var projectName3 = data[2].project_name;
+
+  var projectProgress1 = data[0].completed_tasks / data[0].total_tasks;
+  var projectProgress2 = data[1].completed_tasks / data[1].total_tasks;
+  var projectProgress3 = data[2].completed_tasks / data[2].total_tasks;
+
+  var projectRemaining1 = 1 - projectProgress1;
+
+  // res.json(projectName1);
+  // res.json(projectName2);
+  // res.json(projectName3);
+
+  // res.json(projectProgress1);
+  // res.json(projectProgress2);
+  // res.json(projectProgress3);
+
+  var ctx1 = document.getElementById("testChart1").getContext("2d");
+  var ctx2 = document.getElementById("testChart2").getContext("2d");
+  var ctx3 = document.getElementById("testChart3").getContext("2d");
+
+  var testChart1 = makeDonutChart(
+    ctx1,
+    [projectName1],
+    [projectProgress1, projectRemaining1]
+  );
+  var testChart2 = makeProjectChart(ctx2, [projectName2], [projectProgress2]);
+  var testChart3 = makeProjectChart(ctx3, [projectName3], [projectProgress3]);
+
+  $("#chart-container1").append(testChart1);
+  $("#chart-container2").append(testChart2);
+  $("#chart-container3").append(testChart3);
 }
 
-function getProjectProgress() {
-  app.get("/", function(req, res) {
-    db.Project.findAll({}).then(function(result) {
-      var progress = result.progress;
-      var remaining = 100 - result.progress;
-      console.log(result);
-      res.json(result);
-    });
-  });
-}
 
-function makeDonutChart(ctx, labelNames, data) {
+function makeProjectChart(ctx, labelNames, data) {
   return new Chart(ctx, {
     type: "doughnut",
     data: {
@@ -193,10 +217,7 @@ function makeGoalChart(ctx, labelNames, data) {
   });
 }
 
-$("#chart-container1").append(testChart1);
-$("#chart-container2").append(testChart2);
-$("#chart-container3").append(testChart3);
-$("#goal-progress").append(goalTestChart);
+// $("#goal-progress").append(goalTestChart);
 
 // options for Bulma Calendar Extension
 document.addEventListener("DOMContentLoaded", function() {

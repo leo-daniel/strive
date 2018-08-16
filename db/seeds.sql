@@ -1,13 +1,13 @@
 USE calendar_db;
 
 -- ### SAMPLE PROJECT DATA ###
-INSERT INTO projects (`project_name`, `description`, `due_date`, `total_tasks`, `complete_tasks`)
+INSERT INTO projects (`project_name`, `description`, `date_due`, `total_tasks`, `complete_tasks`)
 VALUES ('Science Project', NULL, NULL, NULL, NULL);
 
-INSERT INTO projects (`project_name`, `description`, `due_date`, `total_tasks`, `complete_tasks`)
+INSERT INTO projects (`project_name`, `description`, `date_due`, `total_tasks`, `complete_tasks`)
 VALUES ('Space station construction', NULL, NULL, NULL, NULL);
 
-INSERT INTO projects (`project_name`, `description`, `due_date`, `total_tasks`, `complete_tasks`)
+INSERT INTO projects (`project_name`, `description`, `date_due`, `total_tasks`, `complete_tasks`)
 VALUES ('DIY Nuclear Reactor', NULL, NULL, NULL, NULL);
 
 -- ### SAMPLE TASKS DATA ###
