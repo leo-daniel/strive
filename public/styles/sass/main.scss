@@ -1,2 +1,392 @@
-@import 'bulma';
-@import '~bulma-calendar';
+// @import 'bulma';
+// @import '~bulma-calendar';
+
+@function powerNumber($number, $exp)
+  $value: 1
+  @if $exp > 0
+    @for $i from 1 through $exp
+      $value: $value * $number
+  @else if $exp < 0
+    @for $i from 1 through -$exp
+      $value: $value / $number
+  @return $value
+
+@function colorLuminance($color)
+  $color-rgb: ('red': red($color),'green': green($color),'blue': blue($color))
+  @each $name, $value in $color-rgb
+    $adjusted: 0
+    $value: $value / 255
+    @if $value < 0.03928
+      $value: $value / 12.92
+    @else
+      $value: ($value + .055) / 1.055
+      $value: powerNumber($value, 2)
+    $color-rgb: map-merge($color-rgb, ($name: $value))
+  @return (map-get($color-rgb, 'red') * .2126) + (map-get($color-rgb, 'green') * .7152) + (map-get($color-rgb, 'blue') * .0722)
+
+@function findColorInvert($color)
+  @if (colorLuminance($color) > 0.55)
+    @return rgba(#000, 0.7)
+  @else
+    @return #fff
+
+    
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// 1. Initial variables
+
+// Colors
+$black:        hsl(0, 0%, 4%) !default
+$black-bis:    hsl(0, 0%, 7%) !default
+$black-ter:    hsl(0, 0%, 14%) !default
+
+$grey-darker:  hsl(0, 0%, 21%) !default
+$grey-dark:    hsl(0, 0%, 29%) !default
+$grey:         hsl(0, 0%, 48%) !default
+$grey-light:   hsl(0, 0%, 71%) !default
+$grey-lighter: hsl(0, 0%, 86%) !default
+
+$white-ter:    hsl(0, 0%, 96%) !default
+$white-bis:    hsl(0, 0%, 98%) !default
+$white:        hsl(0, 0%, 100%) !default
+
+$orange:       hsl(14,  100%, 53%) !default
+$yellow:       hsl(48,  100%, 67%) !default
+$green:        hsl(141, 71%,  48%) !default
+$turquoise:    hsl(171, 100%, 41%) !default
+$blue:         hsl(217, 71%,  53%) !default
+$purple:       hsl(271, 100%, 71%) !default
+$red:          hsl(348, 100%, 61%) !default
+
+// Typography
+$family-sans-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default
+$family-monospace: monospace !default
+$render-mode: optimizeLegibility !default
+
+$size-1: 3rem !default
+$size-2: 2.5rem !default
+$size-3: 2rem !default
+$size-4: 1.5rem !default
+$size-5: 1.25rem !default
+$size-6: 1rem !default
+$size-7: 0.75rem !default
+
+$weight-light: 300 !default
+$weight-normal: 400 !default
+$weight-semibold: 500 !default
+$weight-bold: 700 !default
+
+// Body
+$body-background: #fff !default
+$body-size: 16px !default
+
+// Responsiveness
+// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$tablet: 769px !default
+// 960px container + 40px
+$desktop: 1000px !default
+// 1152px container + 40
+$widescreen: 1192px !default
+// 1344px container + 40
+$fullhd: 1384px !default
+
+// Miscellaneous
+$easing: ease-out !default
+$radius-small: 2px !default
+$radius: 3px !default
+$radius-large: 5px !default
+$speed: 86ms !default
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// 2. Primary colors
+
+$primary: $turquoise !default
+
+$info: $blue !default
+$success: $green !default
+$warning: $yellow !default
+$danger: $red !default
+
+$light: $white-ter !default
+$dark: $grey-darker !default
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// 3. Applied variables
+
+// Invert colors
+$orange-invert: findColorInvert($orange) !default
+$yellow-invert: findColorInvert($yellow) !default
+$green-invert: findColorInvert($green) !default
+$turquoise-invert: findColorInvert($turquoise) !default
+$blue-invert: findColorInvert($blue) !default
+$purple-invert: findColorInvert($purple) !default
+$red-invert: findColorInvert($red) !default
+
+$primary-invert: $turquoise-invert !default
+$info-invert: $blue-invert !default
+$success-invert: $green-invert !default
+$warning-invert: $yellow-invert !default
+$danger-invert: $red-invert !default
+$light-invert: $dark !default
+$dark-invert: $light !default
+
+// General colors
+$background: $white-ter !default
+
+$border: $grey-lighter !default
+$border-hover: $grey-light !default
+
+// Text colors
+$text: $grey-dark !default
+$text-invert: findColorInvert($text) !default
+$text-light: $grey !default
+$text-strong: $grey-darker !default
+
+// Code colors
+$code: $red !default
+$code-background: $background !default
+
+$pre: $text !default
+$pre-background: $background !default
+
+// Link colors
+$link: $primary !default
+$link-invert: $primary-invert !default
+$link-visited: $purple !default
+
+$link-hover: $grey-darker !default
+$link-hover-border: $grey-light !default
+
+$link-focus: $grey-darker !default
+$link-focus-border: $primary !default
+
+$link-active: $grey-darker !default
+$link-active-border: $grey-dark !default
+
+// Typography
+$family-primary: $family-sans-serif !default
+$family-code: $family-monospace !default
+
+$size-small: $size-7 !default
+$size-normal: $size-6 !default
+$size-medium: $size-5 !default
+$size-large: $size-4 !default
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// 4. Lists and maps
+
+$colors: ("white": ($white, $black), "black": ($black, $white), "light": ($light, $light-invert), "dark": ($dark, $dark-invert), "primary": ($primary, $primary-invert), "info": ($info, $info-invert), "success": ($success, $success-invert), "warning": ($warning, $warning-invert), "danger": ($danger, $danger-invert)) !default
+
+$sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 !default
+
+
+
+
+
+
+
+$calendar-border: .1rem solid $grey-lighter !default
+$calendar-border-radius: $radius-small !default
+
+.calendar
+  border: $calendar-border
+  border-radius: $calendar-border-radius
+  display: block
+  min-width: 28rem
+  text-align: center
+  .calendar-nav
+    -webkit-align-items: center
+    align-items: center
+    background: $primary
+    color: $white
+    border-top-left-radius: $radius-small
+    border-top-right-radius: $radius-small
+    display: flex
+    display: -ms-flexbox
+    display: -webkit-flex
+    -ms-flex-align: center
+    -webkit-box-align: center
+    -ms-flex-align: center
+    align-items: center
+    -webkit-box-pack: justify
+    -ms-flex-pack: justify
+    justify-content: space-between
+    font-size: $size-4
+    padding: .5rem
+    .calendar-nav-left, .calendar-nav-right
+      -ms-flex-preferred-size: auto
+      flex-basis: auto
+      -webkit-box-flex: 0
+      -ms-flex-positive: 0
+      flex-grow: 0
+      -ms-flex-negative: 0
+      flex-shrink: 0
+      .button
+        text-decoration: none
+        color: $white
+        &:hover
+          background: transparent
+          color: $grey-lighter
+    .calendar-nav-left
+      -webkit-box-align: center
+      -ms-flex-align: center
+      align-items: center
+      -webkit-box-pack: start
+      -ms-flex-pack: start
+      justify-content: flex-start
+    .calendar-nav-right
+      -webkit-box-align: center
+      -ms-flex-align: center
+      align-items: center
+      -webkit-box-pack: end
+      -ms-flex-pack: end
+      justify-content: flex-end
+  .calendar-header, .calendar-body
+    display: flex
+    display: -ms-flexbox
+    display: -webkit-flex
+    -ms-flex-pack: center
+    -webkit-flex-wrap: wrap
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
+    -webkit-justify-content: center
+    justify-content: center
+    padding: .2rem 0
+  .calendar-header .calendar-date, .calendar-body .calendar-date
+    -webkit-flex: 0 0 14.28%
+    -ms-flex: 0 0 14.28%
+    flex: 0 0 14.28%
+    max-width: 14.28%
+  .calendar-header
+    background: darken($primary, 5%)
+    color: $white
+    font-size: $size-6
+  .calendar-body
+    color: $grey
+  .calendar-date
+    border: 0
+    padding: .4rem
+    .date-item
+      -webkit-appearance: none
+      -moz-appearance: none
+      appearance: none
+      background: transparent
+      border: .1rem solid transparent
+      border-radius: 100%
+      color: $text
+      cursor: pointer
+      height: 2.8rem
+      line-height: 2rem
+      outline: none
+      padding: .3rem
+      position: relative
+      text-align: center
+      text-decoration: none
+      transition: all .2s ease
+      vertical-align: middle
+      white-space: nowrap
+      width: 2.8rem
+      &.is-today
+        border-color: $primary
+        color: $primary
+      &:focus
+        background: $grey-lighter
+        border-color: $grey-lighter
+        color: $white
+        text-decoration: none
+      &:hover
+        background: $grey-lighter
+        border-color: $grey-lighter
+        color: $grey
+        text-decoration: none
+      &.is-active
+        background: $primary
+        border-color: $primary
+        color: #fff
+    &.is-disabled
+      .date-item, .calendar-event
+        cursor: default
+        opacity: .25
+        pointer-events: none
+  .calendar-range
+    position: relative
+    &::before
+      background: lighten($primary, 50%)
+      content: ""
+      height: 2.8rem
+      left: 0
+      position: absolute
+      right: 0
+      top: 50%
+      -webkit-transform: translateY(-50%)
+      -ms-transform: translateY(-50%)
+      transform: translateY(-50%)
+    &.range-start::before
+      left: 50%
+    &.range-end::before
+      right: 50%
+    .date-item
+      color: $primary
+
+  &.is-calendar-large
+    .calendar-body
+      padding: 0
+      .calendar-date
+        border-bottom: $calendar-border
+        border-right: $calendar-border
+        display: flex
+        display: -ms-flexbox
+        display: -webkit-flex
+        -webkit-flex-direction: column
+        -ms-flex-direction: column
+        flex-direction: column
+        height: 11rem
+        padding: 0
+        &:nth-child(7n)
+          border-right: 0
+        &:nth-last-child(-n+7)
+          border-bottom: 0
+    .date-item
+      -webkit-align-self: flex-end
+      align-self: flex-end
+      -ms-flex-item-align: end
+      height: 2.8rem
+      margin-right: .5rem
+      margin-top: .5rem
+    .calendar-range
+      &::before
+        top: 1.9rem
+      &.range-start::before
+        left: auto
+        width: 1.9rem
+      &.range-end::before
+        right: 1.9rem
+    .calendar-events
+      -webkit-flex-grow: 1
+      flex-grow: 1
+      -ms-flex-positive: 1
+      line-height: 1
+      overflow-y: auto
+      padding: .5rem
+    .calendar-event
+      background-color: $info
+      border-radius: $radius-small
+      color: $white
+      display: block
+      font-size: 1rem
+      margin: .2rem auto
+      overflow: hidden
+      padding: .3rem .4rem
+      text-align: left
+      text-overflow: ellipsis
+      vertical-align: baseline
+      white-space: nowrap
+      @each $name, $pair in $colors
+        $color: nth($pair, 1)
+        $color-invert: nth($pair, 2)
+        &.is-#{$name}
+          background-color: $color
+          color: $color-invert

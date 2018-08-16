@@ -100,7 +100,7 @@ var handleDeleteBtnClick = function () {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-// Quote API ** NEED TO ATTRIBUTE somewhere on page.
+// Quote API ** NEED TO ATTRIBUTE somewhere on page. -------------
 // Commented out due to limit 10 API calls/hr
 
 // var queryURL = "http://quotes.rest/qod.json";
@@ -114,6 +114,7 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 //   $("#quote").append(quote);
 // });
 
+<<<<<<< HEAD
 // Progress Chart
 var ctx1 = document.getElementById("testChart1").getContext("2d");
 var ctx2 = document.getElementById("testChart2").getContext("2d");
@@ -144,14 +145,68 @@ function getProjectProgress() {
       var remaining = 100 - result.progress;
       console.log(result);
       res.json(result);
-    });
-  });
-}
+=======
+// var API = {
+//   updateProgress: function(data) {
+//     return $.ajax({
+//       type: "GET",
+//       url: "/api/projects",
+//       data: JSON.stringify(data)
+//     });
+//   }
+// };
 
-function makeDonutChart(ctx, labelNames, data) {
+// GOAL PROGRESS --------------------------------------------------
+$.get("/api/goals", function(data) {
+  console.log("Goals", data);
+  var goal1 = data[0].goal_name;
+  var goalProgress1 = data[0].progress;
+  var goal2 = data[1].goal_name;
+  var goalProgress2 = data[1].progress;
+  var goal3 = data[2].goal_name;
+  var goalProgress3 = data[2].progress;
+  var goalLabels = [goal1, goal2, goal3];
+  var goalProgress = [goalProgress1, goalProgress2, goalProgress3];
+
+  console.log("Goal Labels", goalLabels);
+  console.log("Goal Data", goalProgress);
+
+  var ctx = document.getElementById("goalTestChart").getContext("2d");
+
+  var goalTestChart = makeGoalChart(ctx, goalLabels, goalProgress);
+
+  $("#goal-progress").append(goalTestChart);
+
+  function makeGoalChart(ctx, goalLabels, goalProgress) {
+    return new Chart(ctx, {
+      type: "polarArea",
+      data: {
+        labels: goalLabels,
+        datasets: [
+          {
+            label: "Points",
+            backgroundColor: ["#F5CBA7", "#F0B27A", "#CA6F1E"],
+            data: goalProgress
+          }
+        ]
+      },
+      options: {
+        animation: {
+          animateScale: true
+        }
+      }
+>>>>>>> 8de17a0fcb4dbb61b6f041e5fcdea16a182de7e3
+    });
+  }
+});
+
+// PROJECT PROGRESS --------------------------------------------
+
+function makeGoalChart(ctx, labelNames, data) {
   return new Chart(ctx, {
-    type: "doughnut",
+    type: "polarArea",
     data: {
+<<<<<<< HEAD
       datasets: [{
         label: "Points",
         backgroundColor: ["#1d8348", "#28b463", "#58d68d00"],
@@ -160,6 +215,88 @@ function makeDonutChart(ctx, labelNames, data) {
         // progress calculation: completed tasks / total tasks = progress.
         //
       }]
+=======
+      labels: [],
+      datasets: [
+        {
+          label: "Points",
+          backgroundColor: ["#F5CBA7", "#F0B27A", "#CA6F1E"],
+          data: []
+        }
+      ]
+>>>>>>> 8de17a0fcb4dbb61b6f041e5fcdea16a182de7e3
+    },
+    options: {
+      animation: {
+        animateScale: true
+      }
+    }
+  });
+}
+
+// AJAX FOR PROJECT PROGRESS ---------------------------------------
+$.get("/api/projects", handleProjectData);
+
+function handleProjectData(data) {
+  console.log("Projects", data);
+  var projectName1 = data[0].project_name;
+  var projectName2 = data[1].project_name;
+  var projectName3 = data[2].project_name;
+
+  var projectProgress1 = data[0].completed_tasks / data[0].total_tasks;
+  var projectProgress2 = data[1].completed_tasks / data[1].total_tasks;
+  var projectProgress3 = data[2].completed_tasks / data[2].total_tasks;
+
+  var projectRemaining1 = 1 - projectProgress1;
+
+  // res.json(projectName1);
+  // res.json(projectName2);
+  // res.json(projectName3);
+
+  // res.json(projectProgress1);
+  // res.json(projectProgress2);
+  // res.json(projectProgress3);
+
+  var ctx1 = document.getElementById("testChart1").getContext("2d");
+  var ctx2 = document.getElementById("testChart2").getContext("2d");
+  var ctx3 = document.getElementById("testChart3").getContext("2d");
+
+  var testChart1 = makeDonutChart(
+    ctx1,
+    [projectName1],
+    [projectProgress1, projectRemaining1]
+  );
+  var testChart2 = makeProjectChart(ctx2, [projectName2], [projectProgress2]);
+  var testChart3 = makeProjectChart(ctx3, [projectName3], [projectProgress3]);
+
+  $("#chart-container1").append(testChart1);
+  $("#chart-container2").append(testChart2);
+  $("#chart-container3").append(testChart3);
+}
+
+function makeProjectChart(ctx, labelNames, data) {
+  return new Chart(ctx, {
+    type: "doughnut",
+    data: {
+<<<<<<< HEAD
+      labels: [Goal.goal_name],
+      datasets: [{
+        label: "Points",
+        backgroundColor: ["#ecf0f1", "#bdc3c7", "#909497", "#626567"],
+        data: [Goal.progress]
+      }]
+=======
+      datasets: [
+        {
+          label: "Points",
+          backgroundColor: ["#1d8348", "#58d68d00"],
+          data: [80, 20]
+          // data: [progress, remaining]
+          // progress calculation: completed tasks / total tasks = progress.
+          //
+        }
+      ]
+>>>>>>> 8de17a0fcb4dbb61b6f041e5fcdea16a182de7e3
     },
     options: {
       responsive: true,
@@ -172,30 +309,6 @@ function makeDonutChart(ctx, labelNames, data) {
     }
   });
 }
-
-function makeGoalChart(ctx, labelNames, data) {
-  return new Chart(ctx, {
-    type: "polarArea",
-    data: {
-      labels: [Goal.goal_name],
-      datasets: [{
-        label: "Points",
-        backgroundColor: ["#ecf0f1", "#bdc3c7", "#909497", "#626567"],
-        data: [Goal.progress]
-      }]
-    },
-    options: {
-      animation: {
-        animateScale: true
-      }
-    }
-  });
-}
-
-$("#chart-container1").append(testChart1);
-$("#chart-container2").append(testChart2);
-$("#chart-container3").append(testChart3);
-$("#goal-progress").append(goalTestChart);
 
 // options for Bulma Calendar Extension
 document.addEventListener("DOMContentLoaded", function () {

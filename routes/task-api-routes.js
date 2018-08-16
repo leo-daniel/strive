@@ -26,11 +26,10 @@ module.exports = function (app) {
             console.log('TESSSSSSSSSSSSSSSSSST', tasksTotal);
 
             var percentage = tasksComplete / tasksTotal;
-            dbTask.percentage = percentage;
             var obj = {
                 tasks: dbTask,
                 percentage: percentage
-            }
+            };
             console.log('percentage', dbTask);
             res.json(obj);
         });
