@@ -33,6 +33,8 @@ CREATE TABLE tasks(
    	hours_complete DECIMAL(5,2),
     project VARCHAR(50),
     complete BIT,
+    projectId INT,
+    -- FOREIGN KEY (projectId) REFERENCES projects(id),
     PRIMARY KEY (id)
 
 );
