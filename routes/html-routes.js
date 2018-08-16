@@ -10,45 +10,48 @@ var db = require('../models');
 // =============================================================
 module.exports = function (app) {
 
-    // Load all tables from the database, then render the home (index) page
+
     // app.get('/', function (req, res) {
-    //     db.Task.findAll({})
-    //         .then(db.Task.findAll({}))
-    //         .then(db.step.findAll({}))
-    //         .then(db.goal.findAll({}))
-    //         .then(function (dbProjects, dbTasks, dbSteps, dbGoals) {
-    //             res.render('index', {
-    //                 projects: dbProjects,
-    //                 tasks: dbTasks,
-    //                 steps: dbSteps,
-    //                 goals: dbGoals
+    //     db.project.findAll({
+    //         include: [db.task]
+    //     }).then(function (dbProjects) {
+    //         db.goal.findAll({}).then(
+    //             function (dbGoals) {
+    //                 res.render('index', {
+    //                     projects: dbProjects,
+    //                     tasks: dbTasks,
+    //                     goals: dbGoals
+    //                 });
     //             });
-    //         });
+    //     });
     // });
 
-    // temporary route that calls ONLY tasks
+    // Load all tables from the database, then render the home (index) page
     app.get('/', function (req, res) {
-        db.task.findAll({}).then(function (dbTasks) {
+        var req1 = db.project.findAll({});
+        var req2 = db.task.findAll({});
+        var req3 = db.goal.findAll({});
+        Promise.all([req1, req2, req3]).then(function (results) {
             res.render('index', {
-                tasks: dbTasks
+                projects: results[0],
+                tasks: results[1],
+                goals: results[2]
             });
         });
     });
 
     // load all tables from the database, then render the calendar page
     app.get('/calendar', function (req, res) {
-        db.project.findAll({})
-            .then(db.task.findAll({}))
-            .then(db.step.findAll({}))
-            .then(db.goal.findAll({}))
-            .then(function (dbProjects, dbTasks, dbSteps, dbGoals) {
-                res.render('calendar', {
-                    projects: dbProjects,
-                    tasks: dbTasks,
-                    steps: dbSteps,
-                    goals: dbGoals
-                });
+        var req1 = db.project.findAll({});
+        var req2 = db.task.findAll({});
+        var req3 = db.goal.findAll({});
+        Promise.all([req1, req2, req3]).then(function (results) {
+            res.render('calendar', {
+                projects: results[0],
+                tasks: results[1],
+                goals: results[2]
             });
+        });
     });
 
     // Load user input form page
