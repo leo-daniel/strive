@@ -8,6 +8,34 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/api/tasks/projectId/:projectId', function (req, res) {
+        // 
+        db.task.findAll({
+            where: {
+                projectId: req.params.projectId
+            }
+        }).then(function (dbTask) {
+            // dbTask[1].dataValues.id;
+            var tasksComplete = 0;
+            var tasksTotal = dbTask.length;
+            for (i = 0; i < dbTask.length; i++) {
+                if (dbTask[i].dataValues.is_complete) {
+                    tasksComplete++;
+                }
+            }
+            console.log('TESSSSSSSSSSSSSSSSSST', tasksTotal);
+
+            var percentage = tasksComplete / tasksTotal;
+            dbTask.percentage = percentage;
+            var obj = {
+                tasks: dbTask,
+                percentage: percentage
+            }
+            console.log('percentage', dbTask);
+            res.json(obj);
+        });
+    });
+
     app.get('/api/tasks/:id', function (req, res) {
         // Find one task with the id in req.params.id and return them to the user with res.json
         db.task.findOne({
@@ -34,8 +62,8 @@ module.exports = function (app) {
                     id: req.body.id
                 }
             }).then(function (dbTask) {
-                res.json(dbTask);
-            });
+            res.json(dbTask);
+        });
     });
 
     app.delete('/api/tasks/:id', function (req, res) {

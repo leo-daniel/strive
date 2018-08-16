@@ -4,21 +4,21 @@ module.exports = function (app) {
     // Find all projects and return them to the user with res.json
     app.get('/api/projects', function (req, res) {
         db.project.findAll({
-            // include: [
-            //     {
-            //         model: db.task
-            //     }
-            // ]
+            include: [
+                {
+                    model: db.task
+                }
+            ]
         }).then(function (dbProject) {
-            // var resObj = dbProject.map(dbProject => {
-            //     return Object.assign(
-            //         {},
-            //         {
-            //             task: dbProject.task
-            //         }
-            //     )
-            // })
-            res.json(dbProject);
+            var resObj = dbProject.map(dbProject => {
+                return Object.assign(
+                    {},
+                    {
+                        task: dbProject.task
+                    }
+                )
+            })
+            res.json(resObj);
         });
     });
 
@@ -56,7 +56,15 @@ module.exports = function (app) {
                     id: req.body.id
                 }
             }).then(function (dbProject) {
-                // console.log('HELLO', resObj)
+                var resObj = dbProject.map(dbProject => {
+                    return Object.assign(
+                        {},
+                        {
+                            task: dbProject.task
+                        }
+                    )
+                })
+                console.log('HELLO', resObj)
                 res.json(dbProject);
             });
     });

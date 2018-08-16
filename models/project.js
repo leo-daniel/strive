@@ -28,21 +28,13 @@ module.exports = function (sequelize, DataTypes) {
 				type: DataTypes.INTEGER
 			},
 			createdAt: {
-				type: DataTypes.DATE,
-				defaultValue: Date()
+				type: DataTypes.DATE
 			},
 			updatedAt: {
-				type: DataTypes.DATE,
-				defaultValue: Date()
+				type: DataTypes.DATE
 			}
 
-		}, {
-			timestamps: false
 		});
-	// project.associate = function (models) {
-	// 	models.project.hasMany(models.task, {
-	// 		onDelete: "CASCADE"
-	// 	});
-	// };
+
 	return project;
 };
