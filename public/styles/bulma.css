@@ -1,4 +1,4 @@
-/* @import "bulma/sass/utilities/_all.sass" */
+@import "bulma/sass/utilities/_all.sass"
 
 .calendar {
   border: 0.1rem solid #dbdbdb;
