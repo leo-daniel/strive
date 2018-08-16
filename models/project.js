@@ -28,12 +28,10 @@ module.exports = function (sequelize, DataTypes) {
 				type: DataTypes.INTEGER
 			},
 			createdAt: {
-				type: DataTypes.DATE,
-				defaultValue: false
+				type: DataTypes.DATE
 			},
 			updatedAt: {
-				type: DataTypes.DATE,
-				defaultValue: false
+				type: DataTypes.DATE
 			}
 
 		}, {

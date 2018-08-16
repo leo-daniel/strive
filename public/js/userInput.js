@@ -37,10 +37,7 @@ $("#newTask").on("click", function (event) {
       priority: (taskPriority = $("#inputPriority").val()),
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
-      project: (taskProject = $("#inputProjects")
-        .val()
-        .trim()),
-      project_id: $('#inputProjects option:selected').val()
+      projectId: (taskProjectID = $('#inputProjects option:selected').val())
     };
 
     // 2) display modal with information to confirm submission of task
@@ -52,7 +49,7 @@ $("#newTask").on("click", function (event) {
     $("#modalPriority").html("Priority: " + myNewTask.priority);
     $("#modalHours").html("Hours: " + myNewTask.hours_complete);
     $("#modalNotes").html("Notes: " + myNewTask.description);
-    $("#modalProject").html("Project: " + myNewTask.project);
+    $("#modalProject").html("Project: " + myNewTask.projectId);
 
     $("#confirm").on("click", function () {
       // 3) send data back to MySQL DB
@@ -177,6 +174,7 @@ function postAjax2(data, URL) {
           text: item.project_name
         })
       );
+      console.log(item)
     });
   });
 }
