@@ -46,7 +46,7 @@ module.exports = function (app) {
         var req2 = db.task.findAll({});
         var req3 = db.goal.findAll({});
         Promise.all([req1, req2, req3]).then(function (results) {
-            res.render('index', {
+            res.render('calendar', {
                 projects: results[0],
                 tasks: results[1],
                 goals: results[2]
