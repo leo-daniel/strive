@@ -29,11 +29,11 @@ module.exports = function (sequelize, DataTypes) {
 			},
 			createdAt: {
 				type: DataTypes.DATE,
-				defaultValue: Date()
+				defaultValue: false
 			},
 			updatedAt: {
 				type: DataTypes.DATE,
-				defaultValue: Date()
+				defaultValue: false
 			}
 
 		}, {
