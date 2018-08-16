@@ -32,7 +32,7 @@ require("./routes/goal-api-routes")(app);
 require("./routes/html-routes")(app);
 
 var syncOptions = {
-  force: true
+  force: false
 };
 
 // If running a test, set syncOptions.force to true
