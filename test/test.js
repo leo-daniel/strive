@@ -21,7 +21,7 @@ describe("GET /api/tasks", function() {
 
   it("should find all examples", function(done) {
 
-    
+    var d1 = "2018-08-14T04:00:00.000Z"
 
     // Add some examples to the db to test with
     db.task.create(
@@ -31,8 +31,8 @@ describe("GET /api/tasks", function() {
         address:"123 Main",
         description:"Task Description",
         priority:"High",
-        date_due: moment().toISOString(),
-        hours_complete: 1,
+        date_due: d1,
+        hours_complete: "1.0",
         complete:true
       }
     ).then(function() {
@@ -60,8 +60,8 @@ describe("GET /api/tasks", function() {
               address:"123 Main",
               description:"Task Description",
               priority:"High",
-              date_due: moment().format(),
-              hours_complete: 2,
+              date_due: d1,
+              hours_complete: "1.0",
               complete:true
             }
           );

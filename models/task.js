@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
                 primaryKey: true,
                 autoIncrement: true
             },
-            project_id: {
+            projectId: {
                 type: DataTypes.INTEGER
                 // allowNull: false
             },

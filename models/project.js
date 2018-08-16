@@ -26,6 +26,14 @@ module.exports = function (sequelize, DataTypes) {
 			},
 			complete_tasks: {
 				type: DataTypes.INTEGER
+			},
+			createdAt: {
+				type: DataTypes.DATE,
+				defaultValue: Date()
+			},
+			updatedAt: {
+				type: DataTypes.DATE,
+				defaultValue: Date()
 			}
 
 		}, {
