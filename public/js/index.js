@@ -1,4 +1,4 @@
-import bulmaCalendar from "/node_modules/bulma-extensions/bulma-calendar/dist/bulma-calendar.min.js";
+// import bulmaCalendar from "/node_modules/bulma-extensions/bulma-calendar/dist/bulma-calendar.min.js";
 
 // Get references to page elements
 var $exampleText = $("#example-text");
@@ -133,6 +133,7 @@ var API = {
 $.get("/api/projects", handleData);
 
 function handleData(data) {
+  console.log(data);
   var projectName1 = data[0].project_name;
   var projectName2 = data[1].project_name;
   var projectName3 = data[2].project_name;
@@ -168,7 +169,6 @@ function handleData(data) {
   $("#chart-container3").append(testChart3);
 }
 
-
 function makeProjectChart(ctx, labelNames, data) {
   return new Chart(ctx, {
     type: "doughnut",
@@ -176,8 +176,8 @@ function makeProjectChart(ctx, labelNames, data) {
       datasets: [
         {
           label: "Points",
-          backgroundColor: ["#1d8348", "#28b463", "#58d68d00"],
-          data: [20, 60, 20]
+          backgroundColor: ["#1d8348", "#58d68d00"],
+          data: [80, 20]
           // data: [progress, remaining]
           // progress calculation: completed tasks / total tasks = progress.
           //
@@ -229,33 +229,33 @@ document.addEventListener("DOMContentLoaded", function() {
   // datePickers now contains an Array of all datePicker instances
 });
 
-var defaultOptions = {
-  startDate: new Date(),
-  weekStart: null,
-  minDate: null,
-  maxDate: null,
-  disabledDates: null,
-  dateFormat: 'yyyy-mm-dd', // the default data format 'field' value
-  lang: 'en', // internationalization
-  overlay: false,
-  closeOnOverlayClick: true,
-  closeOnSelect: true,
-  toggleOnInputClick: true,
-  icons: {
-    month: {
-      previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
-      </svg>',
-      next: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
-      </svg>'
-    },
-    year: {
-      previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
-      </svg>',
-      next: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
-      </svg>'
-    }
-  };
+// var defaultOptions = {
+//   startDate: new Date(),
+//   weekStart: null,
+//   minDate: null,
+//   maxDate: null,
+//   disabledDates: null,
+//   dateFormat: 'yyyy-mm-dd', // the default data format 'field' value
+//   lang: 'en', // internationalization
+//   overlay: false,
+//   closeOnOverlayClick: true,
+//   closeOnSelect: true,
+//   toggleOnInputClick: true,
+//   icons: {
+//     month: {
+//       previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
+//       </svg>',
+//       next: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
+//       </svg>'
+//     },
+//     year: {
+//       previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
+//       </svg>',
+//       next: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
+//       </svg>'
+//     }
+//   };
