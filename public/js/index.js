@@ -114,38 +114,6 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 //   $("#quote").append(quote);
 // });
 
-<<<<<<< HEAD
-// Progress Chart
-var ctx1 = document.getElementById("testChart1").getContext("2d");
-var ctx2 = document.getElementById("testChart2").getContext("2d");
-var ctx3 = document.getElementById("testChart3").getContext("2d");
-var ctx4 = document.getElementById("goalTestChart").getContext("2d");
-
-getProjectsProgress();
-
-
-var testChart1 = makeDonutChart(ctx1, [], []);
-var testChart2 = makeDonutChart(ctx2, [], []);
-var testChart3 = makeDonutChart(ctx3, [], []);
-var goalTestChart = makeGoalChart(ctx4, [], []);
-
-function getGoalProgress() {
-  app.get("/", function (req, res) {
-    db.Goal.findAll({}).then(function (result) {
-      console.log(result);
-      res.json(result);
-    });
-  });
-}
-
-function getProjectProgress() {
-  app.get("/", function (req, res) {
-    db.Project.findAll({}).then(function (result) {
-      var progress = result.progress;
-      var remaining = 100 - result.progress;
-      console.log(result);
-      res.json(result);
-=======
 // var API = {
 //   updateProgress: function(data) {
 //     return $.ajax({
@@ -157,7 +125,7 @@ function getProjectProgress() {
 // };
 
 // GOAL PROGRESS --------------------------------------------------
-$.get("/api/goals", function(data) {
+$.get("/api/goals", function (data) {
   console.log("Goals", data);
   var goal1 = data[0].goal_name;
   var goalProgress1 = data[0].progress;
@@ -182,20 +150,17 @@ $.get("/api/goals", function(data) {
       type: "polarArea",
       data: {
         labels: goalLabels,
-        datasets: [
-          {
-            label: "Points",
-            backgroundColor: ["#F5CBA7", "#F0B27A", "#CA6F1E"],
-            data: goalProgress
-          }
-        ]
+        datasets: [{
+          label: "Points",
+          backgroundColor: ["#F5CBA7", "#F0B27A", "#CA6F1E"],
+          data: goalProgress
+        }]
       },
       options: {
         animation: {
           animateScale: true
         }
       }
->>>>>>> 8de17a0fcb4dbb61b6f041e5fcdea16a182de7e3
     });
   }
 });
@@ -206,25 +171,12 @@ function makeGoalChart(ctx, labelNames, data) {
   return new Chart(ctx, {
     type: "polarArea",
     data: {
-<<<<<<< HEAD
+      labels: [],
       datasets: [{
         label: "Points",
-        backgroundColor: ["#1d8348", "#28b463", "#58d68d00"],
-        data: [20, 60, 20]
-        // data: [progress, remaining]
-        // progress calculation: completed tasks / total tasks = progress.
-        //
+        backgroundColor: ["#F5CBA7", "#F0B27A", "#CA6F1E"],
+        data: []
       }]
-=======
-      labels: [],
-      datasets: [
-        {
-          label: "Points",
-          backgroundColor: ["#F5CBA7", "#F0B27A", "#CA6F1E"],
-          data: []
-        }
-      ]
->>>>>>> 8de17a0fcb4dbb61b6f041e5fcdea16a182de7e3
     },
     options: {
       animation: {
@@ -262,9 +214,7 @@ function handleProjectData(data) {
   var ctx3 = document.getElementById("testChart3").getContext("2d");
 
   var testChart1 = makeDonutChart(
-    ctx1,
-    [projectName1],
-    [projectProgress1, projectRemaining1]
+    ctx1, [projectName1], [projectProgress1, projectRemaining1]
   );
   var testChart2 = makeProjectChart(ctx2, [projectName2], [projectProgress2]);
   var testChart3 = makeProjectChart(ctx3, [projectName3], [projectProgress3]);
@@ -278,25 +228,14 @@ function makeProjectChart(ctx, labelNames, data) {
   return new Chart(ctx, {
     type: "doughnut",
     data: {
-<<<<<<< HEAD
-      labels: [Goal.goal_name],
       datasets: [{
         label: "Points",
-        backgroundColor: ["#ecf0f1", "#bdc3c7", "#909497", "#626567"],
-        data: [Goal.progress]
+        backgroundColor: ["#1d8348", "#58d68d00"],
+        data: [80, 20]
+        // data: [progress, remaining]
+        // progress calculation: completed tasks / total tasks = progress.
+        //
       }]
-=======
-      datasets: [
-        {
-          label: "Points",
-          backgroundColor: ["#1d8348", "#58d68d00"],
-          data: [80, 20]
-          // data: [progress, remaining]
-          // progress calculation: completed tasks / total tasks = progress.
-          //
-        }
-      ]
->>>>>>> 8de17a0fcb4dbb61b6f041e5fcdea16a182de7e3
     },
     options: {
       responsive: true,

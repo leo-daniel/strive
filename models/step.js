@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Step = sequelize.define('Step', {
+    var Step = sequelize.define('step', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
