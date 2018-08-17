@@ -52,9 +52,9 @@
               <!-- put the due today items here -->
               {{#each tasks}}
               <!-- TODO: add 'list-group-item-success' on checkbox select -->
-              <li class="list-group-item">
+              <li class="list-group-item" id="list-item-{{this.id}}">
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="{{this.id}}" data-id="{{this.id}}">
+                  <input type="checkbox" class="custom-control-input due-item" id={{this.id}} data-id={{this.id}}>
                   <label class="custom-control-label" for="{{this.id}}">{{this.task_name}}</label>
                 </div>
               </li>
