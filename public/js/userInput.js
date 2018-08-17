@@ -209,24 +209,24 @@ function getExistingProjects() {
 
 getExistingProjects();
 
-function getProjectsProgress(projectNumber) {
-  $.ajax({
-    method: "GET",
-    url: "/api/tasks/"
-  }).then(function (data) {
-    var taskComplete = 0;
-    var taskIncomplete = 0;
-    for (i = 0; i < data.length; i++) {
-      if (data[i].is_complete) {
-        taskComplete++;
-      } else if (data[i].is_complete === false) {
-        taskIncomplete++;
-      }
-    }
-    var percentage = taskComplete / taskIncomplete;
-    console.log(taskIncomplete, taskComplete);
-    console.log(percentage);
-  });
-}
+// function getProjectsProgress(projectNumber) {
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/tasks/"
+//   }).then(function (data) {
+//     var taskComplete = 0;
+//     var taskIncomplete = 0;
+//     for (i = 0; i < data.length; i++) {
+//       if (data[i].is_complete) {
+//         taskComplete++;
+//       } else if (data[i].is_complete === false) {
+//         taskIncomplete++;
+//       }
+//     }
+//     var percentage = taskComplete / taskIncomplete;
+//     console.log(taskIncomplete, taskComplete);
+//     console.log(percentage);
+//   });
+// }
 
-getProjectsProgress();
+// getProjectsProgress();
