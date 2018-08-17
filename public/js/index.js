@@ -168,15 +168,6 @@ $.get("/api/goals", function(data) {
 });
 
 // PROJECT PROGRESS --------------------------------------------
-
-// questions:
-// what route can I use?
-
-// need projects > "project_name"
-// need tasks > projectId > "progress"
-
-// self-invoking
-
 (function() {
   $.get("/chart-data", function(data) {
     console.log("Chart Data:", data);
@@ -185,9 +176,16 @@ $.get("/api/goals", function(data) {
     var projectName2 = data.projects[1].project_name;
     var projectName3 = data.projects[2].project_name;
 
-    var projectProgress1 = 100 * data.tasks[0].projectId[1].progress;
+    var projectProgress1 = 100 * data.tasks.progress;
+    // where projectId = 1
+    var projectProgress2 = 100 * data.tasks[1].progress;
+    // where projectId = 2
+    var projectProgress3 = 100 * data.tasks[2].progress;
+    // where projectId = 3
 
     var projectRemaining1 = 100 - projectProgress1;
+    var projectRemaining2 = 100 - projectProgress2;
+    var projectRemaining3 = 100 - projectProgress3;
 
     var ctx1 = document.getElementById("testChart1").getContext("2d");
     var ctx2 = document.getElementById("testChart2").getContext("2d");
@@ -219,9 +217,6 @@ $.get("/api/goals", function(data) {
               label: labelNames,
               backgroundColor: ["#1d8348", "#58d68d00"],
               data: data
-              // data: [progress, remaining]
-              // progress calculation: completed tasks / total tasks = progress.
-              //
             }
           ]
         },
@@ -238,73 +233,6 @@ $.get("/api/goals", function(data) {
     }
   });
 })();
-
-// function handleProjectData(data) {
-//   console.log("Projects", data);
-//   var projectName1 = data[0].project_name;
-//   var projectName2 = data[1].project_name;
-//   var projectName3 = data[2].project_name;
-
-//   console.log("Project name:", projectName1);
-//   console.log("Project progress:", projectProgress1);
-//   console.log("Project remaining:", projectRemaining1);
-
-//   var projectProgress1 = tasks.projectId[].progress;
-//   var projectProgress2 = ;
-//   var projectProgress3 = data[2].completed_tasks / data[2].total_tasks;
-
-//   var projectRemaining1 = 1 - projectProgress1;
-//   var projectRemaining2 = 1 - projectProgress2;
-//   var projectRemaining3 = 1 - projectProgress3;
-
-//   var ctx1 = document.getElementById("testChart1").getContext("2d");
-//   var ctx2 = document.getElementById("testChart2").getContext("2d");
-//   var ctx3 = document.getElementById("testChart3").getContext("2d");
-
-//   var testChart1 = makeProjectChart(ctx1, projectName1, [
-//     projectProgress1,
-//     projectRemaining1
-//   ]);
-//   var testChart2 = makeProjectChart(ctx2, projectName2, [
-//     projectProgress2,
-//     projectRemaining2
-//   ]);
-//   var testChart3 = makeProjectChart(ctx3, projectName3, [
-//     projectProgress3,
-//     projectRemaining3
-//   ]);
-
-//   $("#chart-container1").append(testChart1);
-//   $("#chart-container2").append(testChart2);
-//   $("#chart-container3").append(testChart3);
-
-//   function makeProjectChart(ctx, labelNames, data) {
-//     return new Chart(ctx, {
-//       type: "doughnut",
-//       data: {
-//         datasets: [
-//           {
-//             label: labelNames,
-//             backgroundColor: ["#1d8348", "#58d68d00"],
-//             data: data
-//             // data: [progress, remaining]
-//             // progress calculation: completed tasks / total tasks = progress.
-//             //
-//           }
-//         ]
-//       },
-//       options: {
-//         responsive: true,
-//         maintainAspectRatio: false,
-//         cutoutPercentage: 80,
-//         rotation: Math.PI * -0.5,
-//         animation: {
-//           animateScale: true
-//         }
-//       }
-//     });
-//   }
-// }
 
 // options for Bulma Calendar Extension
 document.addEventListener("DOMContentLoaded", function() {
