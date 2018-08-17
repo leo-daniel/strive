@@ -3,7 +3,6 @@ module.exports = function (sequelize, DataTypes) {
         'task', {
             id: {
                 type: DataTypes.INTEGER,
-                // allowNull: false,
                 primaryKey: true,
                 autoIncrement: true
             },
@@ -38,6 +37,9 @@ module.exports = function (sequelize, DataTypes) {
             is_complete: {
                 type: DataTypes.BOOLEAN,
                 defaultvalue: false
+            },
+            dateDay: {
+                type: DataTypes.INTEGER,
             }
         }, {
             timestamps: false

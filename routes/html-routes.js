@@ -4,13 +4,25 @@
 
 // Dependencies
 // =============================================================
-var db = require('../models');
+var db = require("../models");
 var moment = require('moment');
-moment()
-// console.log(moment().format("YYYY-MM-DDTHH:mm:SS"))
 // Routes
 // =============================================================
 module.exports = function (app) {
+    // app.get('/', function (req, res) {
+    //     db.project.findAll({
+    //         include: [db.task]
+    //     }).then(function (dbProjects) {
+    //         db.goal.findAll({}).then(
+    //             function (dbGoals) {
+    //                 res.render('index', {
+    //                     projects: dbProjects,
+    //                     tasks: dbTasks,
+    //                     goals: dbGoals
+    //                 });
+    //             });
+    //     });
+    // });
 
 
     // app.get('/', function (req, res) {
@@ -33,12 +45,11 @@ module.exports = function (app) {
         var req1 = db.project.findAll({});
         var req2 = db.task.findAll({
             where: {
-                date_due: '2018-08-16'
+                date_due: moment().format('YYYY-MM-DD')
             }
         });
         var req3 = db.goal.findAll({});
         Promise.all([req1, req2, req3]).then(function (results) {
-            console.log(moment().format("YYYY-MM-DDTHH:mm:SS"))
 
             res.render('index', {
                 projects: results[0],
@@ -48,13 +59,14 @@ module.exports = function (app) {
         });
     });
 
+
     // load all tables from the database, then render the calendar page
-    app.get('/calendar', function (req, res) {
+    app.get("/calendar", function (req, res) {
         var req1 = db.project.findAll({});
         var req2 = db.task.findAll({});
         var req3 = db.goal.findAll({});
         Promise.all([req1, req2, req3]).then(function (results) {
-            res.render('calendar', {
+            res.render("calendar", {
                 projects: results[0],
                 tasks: results[1],
                 goals: results[2]
@@ -63,8 +75,8 @@ module.exports = function (app) {
     });
 
     // Load user input form page
-    app.get('/form', function (req, res) {
-        res.render('userInput');
+    app.get("/form", function (req, res) {
+        res.render("userInput");
     });
 
     // Render 404 page for any unmatched routes

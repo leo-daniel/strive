@@ -1,3 +1,5 @@
+
+
 // hide forms until user clicks icon to select new task or goal
 var total = 0;
 $("#goalInputForm").hide();
@@ -16,8 +18,26 @@ $("#newTask").on("click", function (event) {
 
   myCheckBox();
 
+  //onchange and check if date is taken
+  $("#checkDate").on("click", function (event) {
+    event.preventDefault();
+    var myDate = new Date($("#inputTaskDate").val() + "EDT");
+    let dateFormatted = moment(myDate).format('YYYY-MM-DD');
+    console.log(dateFormatted)
+    // var n = moment(myDate).date();
+
+    // console.log(n);
+
+    dateChecker(dateFormatted).then(function (result) { console.log(result); });
+
+  })
+
   $("#submitMyTask").on("click", function (event) {
     event.preventDefault();
+
+    var myDate = $("#inputTaskDate").val();
+    var n = moment(myDate).date()
+
     // 1) Collect values from form input
     //JSON variables to store locally until submitted
     var myNewTask = {
@@ -41,7 +61,8 @@ $("#newTask").on("click", function (event) {
         .val()
         .trim()),
       projectId: $('#inputProjects option:selected').val(),
-      is_complete: false
+      is_complete: false,
+      dateDay: n,
     };
 
     // 2) display modal with information to confirm submission of task
@@ -155,7 +176,7 @@ function postAjax(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function (result) {});
+  }).then(function (result) { });
 }
 
 function putAjax(data, URL, id) {
@@ -188,6 +209,13 @@ function postAjax2(data, URL) {
   });
 }
 
+function dateChecker(n) {
+  return $.ajax({
+    method: "GET",
+    url: "/checkdate/" + n
+  });
+}
+
 function getExistingProjects() {
   $.ajax({
     method: "GET",
@@ -196,7 +224,6 @@ function getExistingProjects() {
     $("#inputProjects").empty();
 
     $.each(data, function (i, item) {
-      console.log(item);
       $("#inputProjects").append(
         $("<option>", {
           value: item.id,

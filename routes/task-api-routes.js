@@ -46,6 +46,51 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/checkdate/:date', function (req, res) {
+
+        const choice = req.params.date;
+
+        const checkMatch = (result) => {
+            const matches = result.filter((result) => {
+                return result.date_due === choice;
+            });
+
+            if (matches.length === 0) {
+                res.send("Yes");
+            } else {
+                res.send("No")
+            }
+        }
+
+        db.task.findAll({}).then(checkMatch);
+
+    });
+    // app.get('/checkdate/:date', function (req, res) {
+
+    //     // const choice = req.params.date;
+
+    //     // const checkMatch = (result) => {
+    //     //     const matches = result.filter((result) => {
+    //     //         return result.dateDay.toString() === choice
+    //     //     });
+
+    //     //     if (matches.length === 0) {
+    //     //         res.send("Yes");
+    //     //     } else {
+    //     //         res.send("No")
+    //     //     }
+    //     // }
+
+    //     db.task.findAll({
+    //         where: {
+    //             date_due: '2018-08-17'
+    //         }
+    //     }).then(function (dbResult) {
+    //         res.json(dbResult);
+    //     });
+
+    // });
+
     app.post('/api/tasks', function (req, res) {
         // Create a task with the data available to us in req.body
         db.task.create(req.body).then(function (dbTask) {
@@ -61,8 +106,8 @@ module.exports = function (app) {
                     id: req.body.id
                 }
             }).then(function (dbTask) {
-            res.json(dbTask);
-        });
+                res.json(dbTask);
+            });
     });
 
     app.delete('/api/tasks/:id', function (req, res) {
