@@ -24,17 +24,38 @@ module.exports = function(app) {
   //     });
   // });
 
-  // Load all tables from the database, then render the home (index) page
-  app.get("/", function(req, res) {
-    var req1 = db.project.findAll({});
-    var req2 = db.task.findAll({});
-    var req3 = db.goal.findAll({});
-    Promise.all([req1, req2, req3]).then(function(results) {
-      res.render("index", {
-        projects: results[0],
-        tasks: results[1],
-        goals: results[2]
-      });
+
+    // app.get('/', function (req, res) {
+    //     db.project.findAll({
+    //         include: [db.task]
+    //     }).then(function (dbProjects) {
+    //         db.goal.findAll({}).then(
+    //             function (dbGoals) {
+    //                 res.render('index', {
+    //                     projects: dbProjects,
+    //                     tasks: dbTasks,
+    //                     goals: dbGoals
+    //                 });
+    //             });
+    //     });
+    // });
+
+    // Load all tables from the database, then render the home (index) page
+    app.get('/', function (req, res) {
+        var req1 = db.project.findAll({});
+        var req2 = db.task.findAll({
+            where: {
+                date_due: '2018-08-16'
+            }
+        });
+        var req3 = db.goal.findAll({});
+        Promise.all([req1, req2, req3]).then(function (results) {
+            res.render('index', {
+                projects: results[0],
+                tasks: results[1],
+                goals: results[2]
+            });
+        });
     });
   });
 
@@ -57,8 +78,8 @@ module.exports = function(app) {
     res.render("userInput");
   });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
+    // Render 404 page for any unmatched routes
+    app.get('*', function (req, res) {
+        res.render('404');
+    });
 };
