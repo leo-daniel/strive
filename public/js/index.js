@@ -176,7 +176,7 @@ $.get("/api/goals", function(data) {
     var projectName2 = data.projects[1].project_name;
     var projectName3 = data.projects[2].project_name;
 
-    var projectProgress1 = 100 * data.tasks.progress;
+    var projectProgress1 = 100 * data.tasks[0].projectId[1].progress;
     // where projectId = 1
     var projectProgress2 = 100 * data.tasks[1].progress;
     // where projectId = 2

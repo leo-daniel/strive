@@ -1,3 +1,5 @@
+
+
 // hide forms until user clicks icon to select new task or goal
 var total = 0;
 $("#goalInputForm").hide();
@@ -16,8 +18,23 @@ $("#newTask").on("click", function (event) {
 
   myCheckBox();
 
+  //onchange and check if date is taken
+  $("#inputTaskDate").on("change",function(){
+    var myDate = $("#inputTaskDate").val();
+    var n = moment(myDate).date();
+
+    console.log(n);
+
+    dateChecker(n).then(function(result){ console.log(result);});
+
+  })
+
   $("#submitMyTask").on("click", function (event) {
     event.preventDefault();
+
+    var myDate = $("#inputTaskDate").val();
+    var n = moment(myDate).date()
+
     // 1) Collect values from form input
     //JSON variables to store locally until submitted
     var myNewTask = {
@@ -37,7 +54,12 @@ $("#newTask").on("click", function (event) {
       priority: (taskPriority = $("#inputPriority").val()),
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
-      projectId: (taskProjectID = $('#inputProjects option:selected').val())
+      project: (taskProject = $("#inputProjects")
+        .val()
+        .trim()),
+      projectId: $('#inputProjects option:selected').val(),
+      is_complete: false,
+      dateDay: n,
     };
 
     // 2) display modal with information to confirm submission of task
@@ -55,11 +77,14 @@ $("#newTask").on("click", function (event) {
       // 3) send data back to MySQL DB
       postAjax(myNewTask, "tasks");
 
-      // let projectUpdate = {
-      //   total_tasks: 1
-      // }
+      var projectUpdate = {
+        total_tasks: 1
+      }
 
-      // putAjax(projectUpdate, 'project', $('#inputProjects option:selected').val())
+      var projectId = $('#inputProjects option:selected').val()
+      console.log('This is the project id:', projectId);
+
+      putAjax(projectUpdate, 'projects', '1');
 
       // 4) reset form and hide
       $("#taskInputForm")[0].reset();
@@ -148,15 +173,17 @@ function postAjax(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function (result) { });
+  }).then(function (result) {});
 }
 
 function putAjax(data, URL, id) {
   $.ajax({
     method: "PUT",
-    url: "/api/" + URL + id,
+    url: "/api/" + URL,
     data: data
-  }).then(function (result) { });
+  }).then(function (result) {
+    console.log(result);
+  });
 }
 
 function postAjax2(data, URL) {
@@ -178,3 +205,53 @@ function postAjax2(data, URL) {
     });
   });
 }
+
+function dateChecker(n) {
+  return $.ajax({
+    method: "GET",
+    url: "/checkdate/" + n
+  });
+}
+
+function getExistingProjects() {
+  $.ajax({
+    method: "GET",
+    url: "/api/projects"
+  }).then(function (data) {
+    $("#inputProjects").empty();
+
+    $.each(data, function (i, item) {
+      console.log(item);
+      $("#inputProjects").append(
+        $("<option>", {
+          value: item.id,
+          text: item.project_name
+        })
+      );
+    });
+  });
+}
+
+getExistingProjects();
+
+// function getProjectsProgress(projectNumber) {
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/tasks/"
+//   }).then(function (data) {
+//     var taskComplete = 0;
+//     var taskIncomplete = 0;
+//     for (i = 0; i < data.length; i++) {
+//       if (data[i].is_complete) {
+//         taskComplete++;
+//       } else if (data[i].is_complete === false) {
+//         taskIncomplete++;
+//       }
+//     }
+//     var percentage = taskComplete / taskIncomplete;
+//     console.log(taskIncomplete, taskComplete);
+//     console.log(percentage);
+//   });
+// }
+
+// getProjectsProgress();

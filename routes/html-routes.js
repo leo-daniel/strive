@@ -40,11 +40,48 @@ module.exports = function(app) {
 
   // Load all tables from the database, then render the home (index) page
   app.get("/", function(req, res) {
+
+    // app.get('/', function (req, res) {
+    //     db.project.findAll({
+    //         include: [db.task]
+    //     }).then(function (dbProjects) {
+    //         db.goal.findAll({}).then(
+    //             function (dbGoals) {
+    //                 res.render('index', {
+    //                     projects: dbProjects,
+    //                     tasks: dbTasks,
+    //                     goals: dbGoals
+    //                 });
+    //             });
+    //     });
+    // });
+
+    // Load all tables from the database, then render the home (index) page
+    app.get('/', function (req, res) {
+        var req1 = db.project.findAll({});
+        var req2 = db.task.findAll({
+            where: {
+                date_due: '2018-08-16'
+            }
+        });
+        var req3 = db.goal.findAll({});
+        Promise.all([req1, req2, req3]).then(function (results) {
+            res.render('index', {
+                projects: results[0],
+                tasks: results[1],
+                goals: results[2]
+            });
+        });
+    });
+  });
+
+  // load all tables from the database, then render the calendar page
+  app.get("/calendar", function(req, res) {
     var req1 = db.project.findAll({});
     var req2 = db.task.findAll({});
     var req3 = db.goal.findAll({});
     Promise.all([req1, req2, req3]).then(function(results) {
-      res.render("index", {
+      res.render("calendar", {
         projects: results[0],
         tasks: results[1],
         goals: results[2]
@@ -64,6 +101,9 @@ module.exports = function(app) {
         goals: results[2]
       });
     });
+  // Load user input form page
+  app.get("/form", function(req, res) {
+    res.render("userInput");
   });
 
   // Load user input form page
