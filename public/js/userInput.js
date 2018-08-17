@@ -37,15 +37,11 @@ $("#newTask").on("click", function (event) {
       priority: (taskPriority = $("#inputPriority").val()),
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
-<<<<<<< HEAD
       project: (taskProject = $("#inputProjects")
         .val()
         .trim()),
       projectId: $('#inputProjects option:selected').val(),
       is_complete: false
-=======
-      projectId: (taskProjectID = $('#inputProjects option:selected').val())
->>>>>>> 8de17a0fcb4dbb61b6f041e5fcdea16a182de7e3
     };
 
     // 2) display modal with information to confirm submission of task
