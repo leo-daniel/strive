@@ -4,6 +4,7 @@
 var total = 0;
 $("#goalInputForm").hide();
 $("#taskInputForm").hide();
+$("#checkDateModal").hide();
 
 var myNewTask;
 var checkedProject;
@@ -19,18 +20,27 @@ $("#newTask").on("click", function (event) {
   myCheckBox();
 
   //onchange and check if date is taken
-  $("#checkDate").on("click", function (event) {
+  $("#checkDateButton").on("click", function (event) {
     event.preventDefault();
     var myDate = new Date($("#inputTaskDate").val() + "EDT");
     let dateFormatted = moment(myDate).format('YYYY-MM-DD');
     console.log(dateFormatted)
     // var n = moment(myDate).date();
 
-    // console.log(n);
+    console.log(dateFormatted);
 
-    dateChecker(dateFormatted).then(function (result) { console.log(result); });
+    dateChecker(dateFormatted).then(function (result) {
+      console.log(result)
+      // if (result === 'Yes') {
+      //   $("#dateChecked").text('No tasks are due on this date')
+      // } else if (result === 'No') {
+      //   $("#dateChecked").text('Please pick another date')
+      // }
+    });
+    // $("#checkDateModal").show()
 
   })
+
 
   $("#submitMyTask").on("click", function (event) {
     event.preventDefault();
@@ -87,7 +97,7 @@ $("#newTask").on("click", function (event) {
       var projectId = $('#inputProjects option:selected').val()
       console.log('This is the project id:', projectId);
 
-      putAjax(projectUpdate, 'projects', '1');
+      putAjax(projectUpdate, 'projects', projectId);
 
       // 4) reset form and hide
       $("#taskInputForm")[0].reset();
