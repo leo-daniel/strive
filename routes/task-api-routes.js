@@ -47,9 +47,7 @@ module.exports = function (app) {
     });
 
     app.get('/checkdate/:date', function (req, res) {
-
         const choice = req.params.date;
-
         const checkMatch = (result) => {
             const matches = result.filter((result) => {
                 return result.date_due === choice;
@@ -61,7 +59,6 @@ module.exports = function (app) {
                 res.send("No")
             }
         }
-
         db.task.findAll({}).then(checkMatch);
 
     });
