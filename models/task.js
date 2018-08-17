@@ -9,7 +9,6 @@ module.exports = function (sequelize, DataTypes) {
             },
             projectId: {
                 type: DataTypes.INTEGER
-                // allowNull: false
             },
             task_name: {
                 type: DataTypes.STRING,
@@ -27,20 +26,14 @@ module.exports = function (sequelize, DataTypes) {
             priority: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                // validate: {
-                //     contains: [['High', 'Medium', 'Low']]
-                // }
             },
             date_due: {
-                type: DataTypes.DATE,
+                type: DataTypes.DATEONLY,
                 allowNull: false,
             },
             hours_complete: {
                 type: DataTypes.DECIMAL(4, 1),
                 allowNull: false,
-                // validate = {
-                //     isFloat: true
-                // }
             },
             is_complete: {
                 type: DataTypes.BOOLEAN,
@@ -49,13 +42,6 @@ module.exports = function (sequelize, DataTypes) {
         }, {
             timestamps: false
         });
-    // task.associate = function (models) {
-    //     models.task.belongsTo(models.project, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
 
     return task;
 };
