@@ -49,13 +49,6 @@ module.exports = function (sequelize, DataTypes) {
         }, {
             timestamps: false
         });
-    // task.associate = function (models) {
-    //     models.task.belongsTo(models.project, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
 
     return task;
 };
