@@ -45,7 +45,7 @@ db.project = require('../models/project.js')(sequelize, Sequelize);
 db.task = require('../models/task.js')(sequelize, Sequelize);
 
 //Relations
-// db.task.belongsTo(db.project);
-// db.project.hasMany(db.task);
+db.task.belongsTo(db.project);
+db.project.hasMany(db.task);
 
 module.exports = db;

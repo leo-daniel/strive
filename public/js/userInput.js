@@ -19,13 +19,16 @@ $("#newTask").on("click", function (event) {
   myCheckBox();
 
   //onchange and check if date is taken
-  $("#inputTaskDate").on("change",function(){
-    var myDate = $("#inputTaskDate").val();
-    var n = moment(myDate).date();
+  $("#checkDate").on("click", function (event) {
+    event.preventDefault();
+    var myDate = new Date($("#inputTaskDate").val() + "EDT");
+    let dateFormatted = moment(myDate).format('YYYY-MM-DD');
+    console.log(dateFormatted)
+    // var n = moment(myDate).date();
 
-    console.log(n);
+    // console.log(n);
 
-    dateChecker(n).then(function(result){ console.log(result);});
+    dateChecker(dateFormatted).then(function (result) { console.log(result); });
 
   })
 
@@ -173,7 +176,7 @@ function postAjax(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function (result) {});
+  }).then(function (result) { });
 }
 
 function putAjax(data, URL, id) {
@@ -221,7 +224,6 @@ function getExistingProjects() {
     $("#inputProjects").empty();
 
     $.each(data, function (i, item) {
-      console.log(item);
       $("#inputProjects").append(
         $("<option>", {
           value: item.id,
@@ -231,6 +233,7 @@ function getExistingProjects() {
     });
   });
 }
+
 
 getExistingProjects();
 
