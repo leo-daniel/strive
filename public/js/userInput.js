@@ -90,15 +90,6 @@ $("#newTask").on("click", function (event) {
       // 3) send data back to MySQL DB
       postAjax(myNewTask, "tasks");
 
-      var projectUpdate = {
-        total_tasks: 1
-      }
-
-      var projectId = $('#inputProjects option:selected').val()
-      console.log('This is the project id:', projectId);
-
-      putAjax(projectUpdate, 'projects', projectId);
-
       // 4) reset form and hide
       $("#taskInputForm")[0].reset();
       $("#taskInputForm").hide();
