@@ -1,30 +1,25 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Find all projects and return them to the user with res.json
-  app.get("/api/projects", function(req, res) {
+  app.get("/api/projects", function (req, res) {
     db.project
       .findAll({
-        include: [
-          {
-            model: db.task
-          }
-        ]
+        include: [{
+          model: db.task
+        }]
       })
-      .then(function(dbProject) {
+      .then(function (dbProject) {
         var resObj = dbProject.map(dbProject => {
-          return Object.assign(
-            {},
-            {
-              task: dbProject.task
-            }
-          );
+          return Object.assign({}, {
+            task: dbProject.task
+          });
         });
         res.json(dbProject);
       });
   });
 
-  app.get("/api/projects/:id", function(req, res) {
+  app.get("/api/projects/:id", function (req, res) {
     // Find one project with the id in req.params.id and return them to the user with res.json
     db.project
       .findOne({
@@ -32,14 +27,14 @@ module.exports = function(app) {
           id: req.params.id
         }
       })
-      .then(function(dbProject) {
+      .then(function (dbProject) {
         res.json(dbProject);
       });
   });
 
-  app.post("/api/projects", function(req, res) {
+  app.post("/api/projects", function (req, res) {
     // Create a project with the data available to us in req.body
-    db.project.create(req.body).then(function() {
+    db.project.create(req.body).then(function () {
       db.project
         .findAll({
           // include: [
@@ -48,28 +43,25 @@ module.exports = function(app) {
           //     }
           // ]
         })
-        .then(function(dbProject) {
+        .then(function (dbProject) {
           res.json(dbProject);
         });
     });
   });
 
   // PUT route for updating projects
-  app.put("/api/projects", function(req, res) {
+  app.put("/api/projects", function (req, res) {
     db.project
       .update(req.body, {
         where: {
           id: req.body.id
         }
       })
-      .then(function(dbProject) {
+      .then(function (dbProject) {
         var resObj = dbProject.map(dbProject => {
-          return Object.assign(
-            {},
-            {
-              task: dbProject.task
-            }
-          );
+          return Object.assign({}, {
+            task: dbProject.task
+          });
         });
         console.log("HELLO", resObj);
         res.json(dbProject);
@@ -77,7 +69,7 @@ module.exports = function(app) {
   });
 
   // TODO: do we need to do a cascading delete here?
-  app.delete("/api/projects/:id", function(req, res) {
+  app.delete("/api/projects/:id", function (req, res) {
     // DELETE the project with the id available to us in req.params.id
     db.project
       .destroy({
@@ -85,7 +77,7 @@ module.exports = function(app) {
           id: req.params.id
         }
       })
-      .then(function(dbProject) {
+      .then(function (dbProject) {
         res.json(dbProject);
       });
   });
