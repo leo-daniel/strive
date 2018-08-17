@@ -1,3 +1,5 @@
+
+
 // hide forms until user clicks icon to select new task or goal
 var total = 0;
 $("#goalInputForm").hide();
@@ -16,8 +18,23 @@ $("#newTask").on("click", function (event) {
 
   myCheckBox();
 
+  //onchange and check if date is taken
+  $("#inputTaskDate").on("change",function(){
+    var myDate = $("#inputTaskDate").val();
+    var n = moment(myDate).date();
+
+    console.log(n);
+
+    dateChecker(n).then(function(result){ console.log(result);});
+    
+  })
+
   $("#submitMyTask").on("click", function (event) {
     event.preventDefault();
+
+    var myDate = $("#inputTaskDate").val();
+    var n = moment(myDate).date()
+
     // 1) Collect values from form input
     //JSON variables to store locally until submitted
     var myNewTask = {
@@ -37,7 +54,8 @@ $("#newTask").on("click", function (event) {
       priority: (taskPriority = $("#inputPriority").val()),
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
-      projectId: (taskProjectID = $('#inputProjects option:selected').val())
+      projectId: (taskProjectID = $('#inputProjects option:selected').val()),
+      dateDay: n,
     };
 
     // 2) display modal with information to confirm submission of task
@@ -178,3 +196,11 @@ function postAjax2(data, URL) {
     });
   });
 }
+
+function dateChecker(n) {
+  return $.ajax({
+    method: "GET",
+    url: "/checkdate/" + n
+  });
+}
+

@@ -34,6 +34,7 @@ CREATE TABLE tasks(
     project VARCHAR(50),
     complete BIT,
     projectId INT,
+    dateDay INT,
     -- FOREIGN KEY (projectId) REFERENCES projects(id),
     PRIMARY KEY (id)
 
