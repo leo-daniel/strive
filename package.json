@@ -37,7 +37,6 @@
     "prettier": "1.14.2"
   },
   "scripts": {
-    "start": "nodemon server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit",
