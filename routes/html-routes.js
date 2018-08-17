@@ -5,7 +5,9 @@
 // Dependencies
 // =============================================================
 var db = require('../models');
-
+var moment = require('moment');
+moment()
+// console.log(moment().format("YYYY-MM-DDTHH:mm:SS"))
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -36,6 +38,8 @@ module.exports = function (app) {
         });
         var req3 = db.goal.findAll({});
         Promise.all([req1, req2, req3]).then(function (results) {
+            console.log(moment().format("YYYY-MM-DDTHH:mm:SS"))
+
             res.render('index', {
                 projects: results[0],
                 tasks: results[1],

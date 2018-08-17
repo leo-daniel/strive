@@ -207,6 +207,7 @@ function getExistingProjects() {
   });
 }
 
+
 getExistingProjects();
 
 // function getProjectsProgress(projectNumber) {
