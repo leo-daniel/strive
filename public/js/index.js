@@ -1,4 +1,4 @@
-import bulmaCalendar from "/node_modules/bulma-extensions/bulma-calendar/dist/bulma-calendar.min.js";
+// import bulmaCalendar from "/node_modules/bulma-extensions/bulma-calendar/dist/bulma-calendar.min.js";
 
 // Get references to page elements
 var $exampleText = $("#example-text");
@@ -169,93 +169,142 @@ $.get("/api/goals", function(data) {
 
 // PROJECT PROGRESS --------------------------------------------
 
-function makeGoalChart(ctx, labelNames, data) {
-  return new Chart(ctx, {
-    type: "polarArea",
-    data: {
-      labels: [],
-      datasets: [
-        {
-          label: "Points",
-          backgroundColor: ["#F5CBA7", "#F0B27A", "#CA6F1E"],
-          data: []
+// questions:
+// what route can I use?
+
+// need projects > "project_name"
+// need tasks > projectId > "progress"
+
+// self-invoking
+
+(function() {
+  $.get("/chart-data", function(data) {
+    console.log("Chart Data:", data);
+
+    var projectName1 = data.projects[0].project_name;
+    var projectName2 = data.projects[1].project_name;
+    var projectName3 = data.projects[2].project_name;
+
+    var projectProgress1 = 100 * data.tasks[0].projectId[1].progress;
+
+    var projectRemaining1 = 100 - projectProgress1;
+
+    var ctx1 = document.getElementById("testChart1").getContext("2d");
+    var ctx2 = document.getElementById("testChart2").getContext("2d");
+    var ctx3 = document.getElementById("testChart3").getContext("2d");
+
+    var testChart1 = makeProjectChart(ctx1, projectName1, [
+      projectProgress1,
+      projectRemaining1
+    ]);
+    var testChart2 = makeProjectChart(ctx2, projectName2, [
+      projectProgress2,
+      projectRemaining2
+    ]);
+    var testChart3 = makeProjectChart(ctx3, projectName3, [
+      projectProgress3,
+      projectRemaining3
+    ]);
+
+    $("#chart-container1").append(testChart1);
+    $("#chart-container2").append(testChart2);
+    $("#chart-container3").append(testChart3);
+
+    function makeProjectChart(ctx, labelNames, data) {
+      return new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          datasets: [
+            {
+              label: labelNames,
+              backgroundColor: ["#1d8348", "#58d68d00"],
+              data: data
+              // data: [progress, remaining]
+              // progress calculation: completed tasks / total tasks = progress.
+              //
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutoutPercentage: 80,
+          rotation: Math.PI * -0.5,
+          animation: {
+            animateScale: true
+          }
         }
-      ]
-    },
-    options: {
-      animation: {
-        animateScale: true
-      }
+      });
     }
   });
-}
+})();
 
-// AJAX FOR PROJECT PROGRESS ---------------------------------------
-$.get("/api/projects", handleProjectData);
+// function handleProjectData(data) {
+//   console.log("Projects", data);
+//   var projectName1 = data[0].project_name;
+//   var projectName2 = data[1].project_name;
+//   var projectName3 = data[2].project_name;
 
-function handleProjectData(data) {
-  console.log("Projects", data);
-  var projectName1 = data[0].project_name;
-  var projectName2 = data[1].project_name;
-  var projectName3 = data[2].project_name;
+//   console.log("Project name:", projectName1);
+//   console.log("Project progress:", projectProgress1);
+//   console.log("Project remaining:", projectRemaining1);
 
-  var projectProgress1 = data[0].completed_tasks / data[0].total_tasks;
-  var projectProgress2 = data[1].completed_tasks / data[1].total_tasks;
-  var projectProgress3 = data[2].completed_tasks / data[2].total_tasks;
+//   var projectProgress1 = tasks.projectId[].progress;
+//   var projectProgress2 = ;
+//   var projectProgress3 = data[2].completed_tasks / data[2].total_tasks;
 
-  var projectRemaining1 = 1 - projectProgress1;
+//   var projectRemaining1 = 1 - projectProgress1;
+//   var projectRemaining2 = 1 - projectProgress2;
+//   var projectRemaining3 = 1 - projectProgress3;
 
-  // res.json(projectName1);
-  // res.json(projectName2);
-  // res.json(projectName3);
+//   var ctx1 = document.getElementById("testChart1").getContext("2d");
+//   var ctx2 = document.getElementById("testChart2").getContext("2d");
+//   var ctx3 = document.getElementById("testChart3").getContext("2d");
 
-  // res.json(projectProgress1);
-  // res.json(projectProgress2);
-  // res.json(projectProgress3);
+//   var testChart1 = makeProjectChart(ctx1, projectName1, [
+//     projectProgress1,
+//     projectRemaining1
+//   ]);
+//   var testChart2 = makeProjectChart(ctx2, projectName2, [
+//     projectProgress2,
+//     projectRemaining2
+//   ]);
+//   var testChart3 = makeProjectChart(ctx3, projectName3, [
+//     projectProgress3,
+//     projectRemaining3
+//   ]);
 
-  var ctx1 = document.getElementById("testChart1").getContext("2d");
-  var ctx2 = document.getElementById("testChart2").getContext("2d");
-  var ctx3 = document.getElementById("testChart3").getContext("2d");
+//   $("#chart-container1").append(testChart1);
+//   $("#chart-container2").append(testChart2);
+//   $("#chart-container3").append(testChart3);
 
-  var testChart1 = makeDonutChart(
-    ctx1,
-    [projectName1],
-    [projectProgress1, projectRemaining1]
-  );
-  var testChart2 = makeProjectChart(ctx2, [projectName2], [projectProgress2]);
-  var testChart3 = makeProjectChart(ctx3, [projectName3], [projectProgress3]);
-
-  $("#chart-container1").append(testChart1);
-  $("#chart-container2").append(testChart2);
-  $("#chart-container3").append(testChart3);
-}
-
-function makeProjectChart(ctx, labelNames, data) {
-  return new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      datasets: [
-        {
-          label: "Points",
-          backgroundColor: ["#1d8348", "#58d68d00"],
-          data: [80, 20]
-          // data: [progress, remaining]
-          // progress calculation: completed tasks / total tasks = progress.
-          //
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutoutPercentage: 80,
-      rotation: Math.PI * -0.5,
-      animation: {
-        animateScale: true
-      }
-    }
-  });
-}
+//   function makeProjectChart(ctx, labelNames, data) {
+//     return new Chart(ctx, {
+//       type: "doughnut",
+//       data: {
+//         datasets: [
+//           {
+//             label: labelNames,
+//             backgroundColor: ["#1d8348", "#58d68d00"],
+//             data: data
+//             // data: [progress, remaining]
+//             // progress calculation: completed tasks / total tasks = progress.
+//             //
+//           }
+//         ]
+//       },
+//       options: {
+//         responsive: true,
+//         maintainAspectRatio: false,
+//         cutoutPercentage: 80,
+//         rotation: Math.PI * -0.5,
+//         animation: {
+//           animateScale: true
+//         }
+//       }
+//     });
+//   }
+// }
 
 // options for Bulma Calendar Extension
 document.addEventListener("DOMContentLoaded", function() {
@@ -267,33 +316,33 @@ document.addEventListener("DOMContentLoaded", function() {
   // datePickers now contains an Array of all datePicker instances
 });
 
-var defaultOptions = {
-  startDate: new Date(),
-  weekStart: null,
-  minDate: null,
-  maxDate: null,
-  disabledDates: null,
-  dateFormat: 'yyyy-mm-dd', // the default data format 'field' value
-  lang: 'en', // internationalization
-  overlay: false,
-  closeOnOverlayClick: true,
-  closeOnSelect: true,
-  toggleOnInputClick: true,
-  icons: {
-    month: {
-      previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
-      </svg>',
-      next: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
-      </svg>'
-    },
-    year: {
-      previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
-      </svg>',
-      next: '<svg viewBox="0 0 50 80" xml:space="preserve">
-        <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
-      </svg>'
-    }
-  };
+// var defaultOptions = {
+//   startDate: new Date(),
+//   weekStart: null,
+//   minDate: null,
+//   maxDate: null,
+//   disabledDates: null,
+//   dateFormat: 'yyyy-mm-dd', // the default data format 'field' value
+//   lang: 'en', // internationalization
+//   overlay: false,
+//   closeOnOverlayClick: true,
+//   closeOnSelect: true,
+//   toggleOnInputClick: true,
+//   icons: {
+//     month: {
+//       previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
+//       </svg>',
+//       next: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
+//       </svg>'
+//     },
+//     year: {
+//       previous: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "/>
+//       </svg>',
+//       next: '<svg viewBox="0 0 50 80" xml:space="preserve">
+//         <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "/>
+//       </svg>'
+//     }
+//   };
