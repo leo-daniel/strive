@@ -3,13 +3,11 @@ module.exports = function (sequelize, DataTypes) {
         'task', {
             id: {
                 type: DataTypes.INTEGER,
-                // allowNull: false,
                 primaryKey: true,
                 autoIncrement: true
             },
             projectId: {
                 type: DataTypes.INTEGER
-                // allowNull: false
             },
             task_name: {
                 type: DataTypes.STRING,
@@ -27,35 +25,25 @@ module.exports = function (sequelize, DataTypes) {
             priority: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                // validate: {
-                //     contains: [['High', 'Medium', 'Low']]
-                // }
             },
             date_due: {
-                type: DataTypes.DATE,
+                type: DataTypes.DATEONLY,
                 allowNull: false,
             },
             hours_complete: {
                 type: DataTypes.DECIMAL(4, 1),
                 allowNull: false,
-                // validate = {
-                //     isFloat: true
-                // }
             },
             is_complete: {
                 type: DataTypes.BOOLEAN,
                 defaultvalue: false
+            },
+            dateDay: {
+                type: DataTypes.INTEGER,
             }
         }, {
             timestamps: false
         });
-    // task.associate = function (models) {
-    //     models.task.belongsTo(models.project, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
 
     return task;
 };

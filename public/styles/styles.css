@@ -43,10 +43,6 @@
   font-weight: 600;
 }
 
-/* ul {
-  list-style-type: none;
-} */
-
 #chart-container1,
 container2,
 container3,
@@ -59,3 +55,14 @@ goalTestChart {
 #goal-progress {
   margin: auto;
 }
+
+#loading{
+  width: 75px;
+  height: 120px;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#project-titles {
+  text-align: center;
