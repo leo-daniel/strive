@@ -139,11 +139,11 @@ $.get("/api/goals", function(data) {
   console.log("Goal Labels", goalLabels);
   console.log("Goal Data", goalProgress);
 
-  var ctx = document.getElementById("goalTestChart").getContext("2d");
+  var ctx = document.getElementById("goalChart").getContext("2d");
 
-  var goalTestChart = makeGoalChart(ctx, goalLabels, goalProgress);
+  var goalChart = makeGoalChart(ctx, goalLabels, goalProgress);
 
-  $("#goal-progress").append(goalTestChart);
+  $("#goal-progress").append(goalChart);
 
   function makeGoalChart(ctx, goalLabels, goalProgress) {
     return new Chart(ctx, {
@@ -168,71 +168,84 @@ $.get("/api/goals", function(data) {
 });
 
 // PROJECT PROGRESS --------------------------------------------
-(function() {
-  $.get("/chart-data", function(data) {
-    console.log("Chart Data:", data);
 
-    var projectName1 = data.projects[0].project_name;
-    var projectName2 = data.projects[1].project_name;
-    var projectName3 = data.projects[2].project_name;
+// Project 1
+$.ajax({
+  method: "GET",
+  url: "/api/tasks/projectId/1"
+}).then(function(data) {
+  var projectProgress1 = 100 * data.percentage;
+  var projectRemaining1 = 100 - projectProgress1;
+  var ctx1 = document.getElementById("project1").getContext("2d");
 
-    var projectProgress1 = 100 * data.tasks[0].projectId[1].progress;
-    // where projectId = 1
-    var projectProgress2 = 100 * data.tasks[1].progress;
-    // where projectId = 2
-    var projectProgress3 = 100 * data.tasks[2].progress;
-    // where projectId = 3
+  var project1 = makeProjectChart(
+    ctx1,
+    ["Science Project"],
+    [projectProgress1, projectRemaining1]
+  );
 
-    var projectRemaining1 = 100 - projectProgress1;
-    var projectRemaining2 = 100 - projectProgress2;
-    var projectRemaining3 = 100 - projectProgress3;
+  $("#chart-container1").append(project1);
+});
 
-    var ctx1 = document.getElementById("testChart1").getContext("2d");
-    var ctx2 = document.getElementById("testChart2").getContext("2d");
-    var ctx3 = document.getElementById("testChart3").getContext("2d");
+// Project 2
+$.ajax({
+  method: "GET",
+  url: "/api/tasks/projectId/2"
+}).then(function(data) {
+  var projectProgress2 = 100 * data.percentage;
+  var projectRemaining2 = 100 - projectProgress2;
+  var ctx2 = document.getElementById("project2").getContext("2d");
 
-    var testChart1 = makeProjectChart(ctx1, projectName1, [
-      projectProgress1,
-      projectRemaining1
-    ]);
-    var testChart2 = makeProjectChart(ctx2, projectName2, [
-      projectProgress2,
-      projectRemaining2
-    ]);
-    var testChart3 = makeProjectChart(ctx3, projectName3, [
-      projectProgress3,
-      projectRemaining3
-    ]);
+  var project2 = makeProjectChart(
+    ctx2,
+    ["Space Station Construction"],
+    [projectProgress2, projectRemaining2]
+  );
 
-    $("#chart-container1").append(testChart1);
-    $("#chart-container2").append(testChart2);
-    $("#chart-container3").append(testChart3);
+  $("#chart-container2").append(project2);
+});
 
-    function makeProjectChart(ctx, labelNames, data) {
-      return new Chart(ctx, {
-        type: "doughnut",
-        data: {
-          datasets: [
-            {
-              label: labelNames,
-              backgroundColor: ["#1d8348", "#58d68d00"],
-              data: data
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          cutoutPercentage: 80,
-          rotation: Math.PI * -0.5,
-          animation: {
-            animateScale: true
-          }
+// Project 3
+$.ajax({
+  method: "GET",
+  url: "/api/tasks/projectId/1"
+}).then(function(data) {
+  var projectProgress3 = 100 * data.percentage;
+  var projectRemaining3 = 100 - projectProgress3;
+  var ctx3 = document.getElementById("project3").getContext("2d");
+
+  var project3 = makeProjectChart(
+    ctx3,
+    ["DIY Nuclear Reactor"],
+    [projectProgress3, projectRemaining3]
+  );
+
+  $("#chart-container1").append(project3);
+});
+
+function makeProjectChart(ctx, [], data) {
+  return new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      datasets: [
+        {
+          label: [],
+          backgroundColor: ["#1d8348", "#58d68d00"],
+          data: data
         }
-      });
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutoutPercentage: 80,
+      rotation: Math.PI * -0.5,
+      animation: {
+        animateScale: true
+      }
     }
   });
-})();
+}
 
 // options for Bulma Calendar Extension
 document.addEventListener("DOMContentLoaded", function() {

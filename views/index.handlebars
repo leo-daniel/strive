@@ -14,25 +14,36 @@
   <div class="container">
     <!-- begin goals and progress section -->
     <div class="row">
-      <div class="col-12 mb-3">
+      <div class="col-12 mb-3" id="projects">
         <!-- Progress chart here -->
         <h3>Your Projects</h3>
         <div id="progress-report" class="row text-center">
           <div class="col-md-4 col-sm-12" id="chart-container1">
-            <canvas id="testChart1"></canvas>
+            <canvas id="project1"></canvas>
           </div>
           <div class="col-md-4 col-sm-12" id="chart-container2">
-            <canvas id="testChart2"></canvas>
+            <canvas id="project2"></canvas>
           </div>
           <div class="col-md-4 col-sm-12" id="chart-container3">
-            <canvas id="testChart3"></canvas>
+            <canvas id="project3"></canvas>
           </div>
         </div>
-        <div class="row">
+        <div class="row" id="project-titles">
+          <div class="col-4">
+            <p>Science Project</p>
+          </div>
+          <div class="col-4">
+            <p>Space Station Construction</p>
+          </div>
+          <div class="col-4">
+            <p>DIY Nuclear Reactor</p>
+          </div>
+        </div>
+        <div class="row" id="goals">
           <div class="col-12 mt-4">
             <h3>Goals Tracker</h3>
             <div id="goal-progress" class="col-md-4 col-sm-12 text-center">
-              <canvas id="goalTestChart"></canvas>
+              <canvas id="goalChart"></canvas>
             </div>
           </div>
         </div>
