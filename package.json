@@ -24,7 +24,8 @@
   },
   "devDependencies": {
     "bulma": "^0.7.1",
-    "eslint": "5.4.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "3.0.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
@@ -44,12 +45,6 @@
     "css-watch": "npm run css-build -- --watch",
     "css-start": "npm run css-watch",
     "start-dev": "concurrently \"npm start\" \"npm run css-start\""
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "node": true
-    }
   },
   "repository": {
     "type": "git",
