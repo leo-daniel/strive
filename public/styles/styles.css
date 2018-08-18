@@ -65,3 +65,7 @@ goalTestChart {
 #goal-progress {
   margin: auto;
 }
+
+#project-titles {
+  text-align: center;
+}
