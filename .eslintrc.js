@@ -1,8 +1,3 @@
-
-{
-  plugins: [prettier],
-  rules: {
-    prettier/prettier: error
-  },
-  "extends": ["plugin:prettier/recommended"]
-}
+module.exports = {
+    "extends": "airbnb"
+};

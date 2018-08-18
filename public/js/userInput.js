@@ -1,39 +1,62 @@
-
-
 // hide forms until user clicks icon to select new task or goal
 var total = 0;
 $("#goalInputForm").hide();
 $("#taskInputForm").hide();
+$("#checkDateModal").hide();
 
 var myNewTask;
 var checkedProject;
 var myNewProject;
 
 //Create a New Task
-$("#newTask").on("click", function (event) {
+$("#newTask").on("click", function(event) {
   event.preventDefault();
-  $("#taskInputForm").show();
+  $("#taskInputForm").fadeIn(400);
   $("#showProjects").hide();
   $("#goalInputForm").hide();
 
   myCheckBox();
 
   //onchange and check if date is taken
-  $("#inputTaskDate").on("change",function(){
-    var myDate = $("#inputTaskDate").val();
-    var n = moment(myDate).date();
+  $("#checkDateButton").on("click", function(event) {
+    event.preventDefault();
 
-    console.log(n);
+    $("#loading").show();
 
-    dateChecker(n).then(function(result){ console.log(result);});
+    $(".modal-body").hide();
+    $("#checkDateHeader").html("Superman is off...");
 
-  })
+    setTimeout(function() {
+      $("#loading").hide();
 
-  $("#submitMyTask").on("click", function (event) {
+      $(".modal-body").show();
+      $("#checkDateHeader").html("We've checked your date...");
+
+      var myDate = $("#inputTaskDate").val();
+      var n = moment(myDate).date();
+
+      console.log(n);
+
+      dateChecker(n).then(function(result) {
+        console.log(result);
+        if (result === "Yes") {
+          $("#checkingDate").html("Date Verified: " + myDate);
+          $("#dateChecked").html("Your all good!");
+        } else if (result === "No") {
+          $("#checkingDate").html("Date Verified: " + myDate);
+          $("#dateChecked").html("Sorry looks like your busy :(");
+        }
+      });
+    }, 2000);
+
+    // $("#checkDateModal").show()
+  });
+
+  $("#submitMyTask").on("click", function(event) {
     event.preventDefault();
 
     var myDate = $("#inputTaskDate").val();
-    var n = moment(myDate).date()
+    var n = moment(myDate).date();
 
     // 1) Collect values from form input
     //JSON variables to store locally until submitted
@@ -57,9 +80,9 @@ $("#newTask").on("click", function (event) {
       project: (taskProject = $("#inputProjects")
         .val()
         .trim()),
-      projectId: $('#inputProjects option:selected').val(),
+      projectId: $("#inputProjects option:selected").val(),
       is_complete: false,
-      dateDay: n,
+      dateDay: n
     };
 
     // 2) display modal with information to confirm submission of task
@@ -73,19 +96,9 @@ $("#newTask").on("click", function (event) {
     $("#modalNotes").html("Notes: " + myNewTask.description);
     $("#modalProject").html("Project: " + myNewTask.projectId);
 
-    $("#confirm").on("click", function () {
+    $("#confirm").on("click", function() {
       // 3) send data back to MySQL DB
       postAjax(myNewTask, "tasks");
-
-      var projectUpdate = {
-        total_tasks: 1
-      }
-
-      var projectId = $('#inputProjects option:selected').val()
-      console.log('This is the project id:', projectId);
-
-      putAjax(projectUpdate, 'projects', '1');
-
       // 4) reset form and hide
       $("#taskInputForm")[0].reset();
       $("#taskInputForm").hide();
@@ -94,7 +107,7 @@ $("#newTask").on("click", function (event) {
 });
 
 function myCheckBox() {
-  $("#inputProject").on("click", function () {
+  $("#inputProject").on("click", function() {
     if ($(this).is(":checked")) {
       checkedProject = $("#inputProject[type=checkbox]").prop("checked");
       $("#showProjects").show();
@@ -103,12 +116,12 @@ function myCheckBox() {
 }
 
 //Create a New Goal
-$("#newGoal").on("click", function () {
+$("#newGoal").on("click", function() {
   // if the task form is visible, close it and show the goal form.
   $("#taskInputForm").hide();
-  $("#goalInputForm").show();
+  $("#goalInputForm").fadeIn(400);
 
-  $("#submitGoal").on("click", function () {
+  $("#submitGoal").on("click", function() {
     // 1) hide/clear goal input form.
     $("#goalInputForm").hide();
 
@@ -123,31 +136,29 @@ $("#newGoal").on("click", function () {
       complete: "false"
     };
 
-
     // 3) send goals to DB
     postAjax(goalData, "goals");
 
     // 4) reset the goal form
     $("#goalInputForm")[0].reset();
     $("#goalInputForm").hide();
-
   });
 });
 
 //this function clears the input form and then hides the form
-$("#cancelTask").on("click", function () {
+$("#cancelTask").on("click", function() {
   //resets the form
   $("#taskInputForm")[0].reset();
   $("#taskInputForm").hide();
 });
 
 //clears the goal form and then hides the form
-$("#cancelGoal").on("click", function () {
+$("#cancelGoal").on("click", function() {
   $("#goalInputForm").hide();
 });
 
 //add a new project to the projects table
-$("#addProject").on("click", function () {
+$("#addProject").on("click", function() {
   // 1) collect project information
   myNewProject = {
     project_name: $("#inputProjectName")
@@ -164,7 +175,6 @@ $("#addProject").on("click", function () {
 
   // 3) reset form
   $("#projectForm")[0].reset();
-
 });
 
 // postAJAX function to put data in calendar_db
@@ -173,7 +183,7 @@ function postAjax(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function (result) {});
+  }).then(function(result) {});
 }
 
 function putAjax(data, URL, id) {
@@ -181,7 +191,7 @@ function putAjax(data, URL, id) {
     method: "PUT",
     url: "/api/" + URL,
     data: data
-  }).then(function (result) {
+  }).then(function(result) {
     console.log(result);
   });
 }
@@ -191,17 +201,16 @@ function postAjax2(data, URL) {
     method: "POST",
     url: "/api/" + URL,
     data: data
-  }).then(function (data) {
-
+  }).then(function(data) {
     $("#inputProjects").empty();
-    $.each(data, function (i, item) {
+    $.each(data, function(i, item) {
       $("#inputProjects").append(
         $("<option>", {
           value: item.id,
           text: item.project_name
         })
       );
-      console.log(item)
+      console.log(item);
     });
   });
 }
@@ -217,11 +226,10 @@ function getExistingProjects() {
   $.ajax({
     method: "GET",
     url: "/api/projects"
-  }).then(function (data) {
+  }).then(function(data) {
     $("#inputProjects").empty();
 
-    $.each(data, function (i, item) {
-      console.log(item);
+    $.each(data, function(i, item) {
       $("#inputProjects").append(
         $("<option>", {
           value: item.id,
@@ -231,7 +239,6 @@ function getExistingProjects() {
     });
   });
 }
-
 
 getExistingProjects();
 

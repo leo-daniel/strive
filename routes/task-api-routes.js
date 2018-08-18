@@ -46,7 +46,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/checkdate/:date', function(req, res) {
+    app.get('/checkdate/:date', function (req, res) {
 
         const choice = req.params.date;
 
@@ -54,17 +54,18 @@ module.exports = function (app) {
             const matches = result.filter((result) => {
                 return result.dateDay.toString() === choice
             });
-    
+
             if (matches.length === 0) {
                 res.send("Yes");
             } else {
                 res.send("No")
             }
         }
-    
+
         db.task.findAll({}).then(checkMatch);
-    
+
     });
+
 
     app.post('/api/tasks', function (req, res) {
         // Create a task with the data available to us in req.body

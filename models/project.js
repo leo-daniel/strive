@@ -20,15 +20,18 @@ module.exports = function (sequelize, DataTypes) {
 			},
 			date_due: {
 				type: DataTypes.DATEONLY
-			},
-			createdAt: {
-				type: DataTypes.DATE
-			},
-			updatedAt: {
-				type: DataTypes.DATE
+			// },
+			// createdAt: {
+			// 	type: DataTypes.DATE
+			// },
+			// updatedAt: {
+			// 	type: DataTypes.DATE
 			}
 
+		}, {
+			timestamps: false
 		});
 
 	return project;
 };
+

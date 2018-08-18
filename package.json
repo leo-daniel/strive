@@ -8,7 +8,6 @@
     "test": "test"
   },
   "dependencies": {
-    "ajv-keywords": "^3.2.0",
     "body-parser": "^1.18.3",
     "bulma-calendar": "^4.0.1",
     "chai": "^4.1.2",
@@ -26,19 +25,21 @@
   "devDependencies": {
     "bulma": "^0.7.1",
     "eslint": "^5.3.0",
-    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "3.0.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-prettier": "2.6.2",
     "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react": "^7.11.0",
     "eslint-plugin-standard": "^3.1.0",
     "node-sass": "^4.9.3",
     "prettier": "1.14.2"
   },
   "scripts": {
-    "start": "nodemon server.js",
     "lint": "eslint **/*.js --quiet",
     "fix": "eslint --fix .",
     "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit",
@@ -49,12 +50,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leo-daniel/project-two.git"
+    "url": "git+https://github.com/leo-daniel/strive.git"
   },
   "author": "Greg Bremble, Leo Daniel, Jordan Miller, Chris Mueller, Karishma Patel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/leo-daniel/project-two/issues"
+    "url": "https://github.com/leo-daniel/strive/issues"
   },
-  "homepage": "https://github.com/leo-daniel/project-two#readme"
+  "homepage": "https://github.com/leo-daniel/strive#readme"
 }
