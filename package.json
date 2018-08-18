@@ -47,12 +47,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leo-daniel/project-two.git"
+    "url": "git+https://github.com/leo-daniel/strive.git"
   },
   "author": "Greg Bremble, Leo Daniel, Jordan Miller, Chris Mueller, Karishma Patel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/leo-daniel/project-two/issues"
+    "url": "https://github.com/leo-daniel/strive/issues"
   },
-  "homepage": "https://github.com/leo-daniel/project-two#readme"
+  "homepage": "https://github.com/leo-daniel/strive#readme"
 }
