@@ -1,8 +1,15 @@
-
-{
-  plugins: [prettier],
+module.exports = {
+  // config source: https://github.com/neciu/eslint-config-last
+  extends: ['eslint:recommended', 'prettier'], // extending recommended config and config derived from eslint-config-prettier
+  plugins: ['prettier'], // activating esling-plugin-prettier (--fix stuff)
   rules: {
-    prettier/prettier: error
+    'prettier/prettier': [ // customizing prettier rules (unfortunately not many of them are customizable)
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+      },
+    ],
+    eqeqeq: ['error', 'always'], // adding some custom ESLint rules
   },
-  "extends": ["plugin:prettier/recommended"]
-}
+};
