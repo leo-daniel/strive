@@ -260,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 var defaultOptions = {
+
     startDate: new Date(),
     weekStart: null,
     minDate: null,

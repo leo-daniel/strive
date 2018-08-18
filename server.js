@@ -3,6 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 
+
 var db = require("./models");
 
 var app = express();
@@ -32,7 +33,7 @@ require("./routes/goal-api-routes")(app);
 require("./routes/html-routes")(app);
 
 var syncOptions = {
-  force: true
+  force: false
 }
 
 // If running a test, set syncOptions.force to true

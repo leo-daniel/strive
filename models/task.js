@@ -38,6 +38,9 @@ module.exports = function (sequelize, DataTypes) {
             is_complete: {
                 type: DataTypes.BOOLEAN,
                 defaultvalue: false
+            },
+            dateDay:{
+                type: DataTypes.INTEGER,
             }
         }, {
             timestamps: false
