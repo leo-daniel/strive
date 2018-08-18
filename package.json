@@ -45,6 +45,12 @@
     "css-start": "npm run css-watch",
     "start-dev": "concurrently \"npm start\" \"npm run css-start\""
   },
+  "eslintConfig": {
+    "env": {
+        "browser": true,
+        "node": true
+    }
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leo-daniel/strive.git"
