@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Step = sequelize.define(
+  var step = sequelize.define(
     'step',
     {
       id: {
@@ -32,5 +32,5 @@ module.exports = function(sequelize, DataTypes) {
     },
   );
 
-  return Step;
+  return step;
 };

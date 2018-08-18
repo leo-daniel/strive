@@ -63,7 +63,7 @@ describe('GET /api/tasks', function() {
               complete: true,
             });
 
-          // The `done` function is used to end any asynchronous tests
+          // The 'done' function is used to end any asynchronous tests
           done();
         });
       });
