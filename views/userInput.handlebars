@@ -1,147 +1,164 @@
+<div id="add-new">
+</div>
+<!-- begin jumbotron -->
+<div class="jumbotron jumbotron-custom" id="jumbotron">
+    <div class="container">
+        <!-- header: ADD NEW -->
+        <h1 class="display-4" id="page-heading">Add New</h1>
+        <hr class="my-4">
+        <!-- daily quote -->
+        <p class="lead" id="quote">&ldquo;It is not the mountain we conquer, but ourselves.&rdquo;</p>
+    </div>
+</div>
+<!-- end jumbotron -->
+
 <div class="container">
-    <div class="row">
-        <!--Header Title-->
-        <div id="inputHeader" class="col-md-12">
-            <h1>Plan Out Your Journey To Success!</h1>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row mb-3">
         <!--Buttons for either adding a new task or a new goal-->
-        <div id="buttonNewTask" class="col-md-6">
-            <button id="newTask" type="button" class="btn btn-info">New Task</button>
+        <div id="buttonNewTask" class="col-md-6 mb-3">
+            <button id="newTask" type="button" class="btn btn-secondary btn-block">New
+                Task
+            </button>
         </div>
-        <div id="buttonNewGoal" class="col-md-6">
-            <button id="newGoal" type="button" class="btn btn-info">New Goal</button>
+        <div id="buttonNewGoal" class="col-md-6 mb-3">
+            <button id="newGoal" type="button" class="btn btn-secondary btn-block">New
+                Goal
+            </button>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12">
-
-            <!--Form input for Tasks-->
-            <form id="taskInputForm">
-                <div class="form-row">
-                    <!--title of task-->
-                    <div class="form-group col-md-12">
-                        <label for="inputTitle">Task Title</label>
-                        <input type="text" class="form-control" id="inputTitle" placeholder="Name of your task">
-                    </div>
-                </div>
-                <!--Address-->
-                <div class="form-group">
-                    <label for="inputAddress">Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                </div>
-                <!--Category and Date-->
-                <div class="form-row">
-                    <!--Category-->
-                    <div class="form-group col-md-5">
-                        <label for="inputCategory">Category</label>
-                        <select id="inputCategory" class="form-control">
-                            <option selected>Choose...</option>
-                            <option value="work">Work</option>
-                            <option value="personal">Personal</option>
-                            <option value="school">School</option>
-                        </select>
-                    </div>
-                    <!--Date Selection-->
-                    <div class="form-group col-md-5">
+            <div class="card w-75" id="taskInputForm">
+                <div class="card-body">
+                    <h3 class="card-title">New Task</h3>
+                    <!--Form input for Tasks-->
+                    <form>
+                        <div class="form-row">
+                            <!--title of task-->
+                            <div class="form-group col-md-12">
+                                <label for="inputTitle">Task Title</label>
+                                <input type="text" class="form-control" id="inputTitle" placeholder="Name of your task">
+                            </div>
+                        </div>
+                        <!--Address-->
                         <div class="form-group">
-                            <label for="inputTaskDate">Select Task Date</label>
-                            <input type="date" id="inputTaskDate" max="3000-12-31" min="1000-01-01" class="form-control">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                         </div>
-
-                    </div>
-                    <div class='form-group col-md-2'>
-                        <label for="inputTaskDate">
-                            Check the date
-                        </label>
-                        <button id="checkDateButton" type="checkDate" class="btn btn-primary" data-toggle="modal" data-target="#checkDateModal">Check
-                            Date</button>
-
-                    </div>
-                    <div class="form-group col-md-2"></div>
-                </div>
-                <!--Piority Level-->
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="inputPriority">Priority</label>
-                        <select id="inputPriority" class="form-control">
-                            <option selected>Choose...</option>
-                            <option value="1">High</option>
-                            <option value="2">Medium</option>
-                            <option value="3">Low</option>
-                        </select>
-                    </div>
-                    <!--Set Hours to Complete Task-->
-                    <div class="form-group col-md-3">
-                        <label for="inputTaskLength">Hours to Complete</label>
-                        <input type="number" id="inputTaskLength" class="form-control" placeholder=".5 Hours" step="0.1">
-                    </div>
-                    <div class="form-group col-md-5"></div>
-                </div>
-                <!--Task Notes-->
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="inputNotes">Notes</label>
-                        <textarea class="form-control" id="inputNotes" rows="3"></textarea>
-                    </div>
-                </div>
-                <!--add to project-->
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="inputProject">
-                            <label class="form-check-label" for="inputProject">Add to Project</label>
+                        <!--Category and Date-->
+                        <div class="form-row">
+                            <!--Category-->
+                            <div class="form-group col-md-5">
+                                <label for="inputCategory">Category</label>
+                                <select id="inputCategory" class="custom-select">
+                                    <option value="" selected>Choose...</option>
+                                    <option value="work">Work</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="school">School</option>
+                                </select>
+                            </div>
+                            <!--Date Selection-->
+                            <div class="form-group col-md-5">
+                                <div class="form-group">
+                                    <label for="inputTaskDate">Date Due</label>
+                                    <input type="date" id="inputTaskDate" max="3000-12-31" min="1000-01-01" class="form-control"
+                                        placeholder="YYYY-MM-DD">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2"></div>
                         </div>
-                    </div>
-                </div>
-                <!--show the list of projects-->
-                <div id="showProjects" class="form-row">
-                    <div class="form-group col-md-9">
-                        <label for="inputProjects">Project</label>
-                        <select id="inputProjects" class="form-control">
-                            <option selected>Choose...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3" style="margin-top:auto">
-                        <button id="newProject" type="button" class="btn btn-info" data-toggle="modal" data-target="#projectModal">New
-                            Project</button>
-                    </div>
-                </div>
-                <!--submit task button-->
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <button id="submitMyTask" type="submitTask" class="btn btn-primary" data-toggle="modal" data-target="#successModal">Add
-                            Task</button>
-                        <a class="float-right" id="cancelTask" href="#">Cancel</a>
-                    </div>
-                </div>
-
-
-
-            </form>
-
-            <!--Goal Input Form-->
-            <div class="row">
-                <div class="col-md-12">
-                    <form id="goalInputForm">
-                        <div class="form-group">
-                            <label for="goalName">Name</label>
-                            <textarea class="form-control" id="goalName" rows="1"></textarea>
+                        <!--Piority Level-->
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputPriority">Priority</label>
+                                <select id="inputPriority" class="custom-select">
+                                    <option value="0" selected>Choose...</option>
+                                    <option value="3">High</option>
+                                    <option value="2">Medium</option>
+                                    <option value="1">Low</option>
+                                </select>
+                            </div>
+                            <!--Set Hours to Complete Task-->
+                            <div class="form-group col-md-3">
+                                <label for="inputTaskLength">Hours to Complete</label>
+                                <input type="number" id="inputTaskLength" class="form-control" placeholder=".5 Hours" step="0.1">
+                            </div>
+                            <div class="form-group col-md-5"></div>
                         </div>
-                        <div class="form-group">
-                            <label for="goalDescription">Description</label>
-                            <textarea class="form-control" id="goalDescription" rows="3"></textarea>
+                        <!--Task Notes-->
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputNotes">Notes</label>
+                                <textarea class="form-control" id="inputNotes" rows="3"></textarea>
+                            </div>
                         </div>
-
-                        <button type="button" class="btn btn-primary" id="submitGoal">Add Goal</button>
-                        <a id="cancelGoal" class="float-right" href="#">Cancel</a>
+                        <!--add to project-->
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="inputProject">
+                                    <label class="custom-control-label" for="inputProject">Add
+                                        to Project</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--show the list of projects-->
+                        <div id="showProjects" class="form-row">
+                            <div class="form-group col-md-9">
+                                <label for="inputProjects">Project</label>
+                                <select id="inputProjects" class="custom-select">
+                                    <option value="" selected>Choose...</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3" style="margin-top:auto">
+                                <button id="newProject" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#projectModal">New
+                                    Project
+                                </button>
+                            </div>
+                        </div>
+                        <!--submit task button-->
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <button class="btn btn-outline-danger" id="cancelTask" href="#">Cancel</button>
+                                <button id="submitMyTask" type="submitTask" class="btn btn-success" data-toggle="modal" data-target="#successModal">Add
+                                    Task
+                                </button>
+                            </div>
+                        </div>
                     </form>
+                    <!-- end task input form -->
                 </div>
             </div>
 
+            <!--Goal Input Form-->
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="card w-75" id="goalInputForm">
+                        <div class="card-body">
+                            <h3 class="card-title">New Goal</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="goalName">Name</label>
+                                    <input class="form-control" id="goalName" rows="1"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label for="goalDescription">Description</label>
+                                    <textarea class="form-control" id="goalDescription" rows="3"></textarea>
+                                </div>
+                                <button id="cancelGoal" class="btn btn-outline-danger" href="#">Cancel</button>
+                                <button type="button" class="btn btn-success" id="submitGoal">Add
+                                    Goal
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end goal input form -->
+
             <!-- "Add Success" Modal -->
-            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
+            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -161,8 +178,10 @@
                             <div id="modalProject"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="confirm" type="button" data-dismiss="modal" class="btn btn-primary">I Confirm</button>
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                            <button id="confirm" type="button" data-dismiss="modal" class="btn btn-success">
+                                Add Task
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -191,7 +210,8 @@
             </div>
 
             <!--Add Project Modal-->
-            <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModal" aria-hidden="true">
+            <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModal"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -204,7 +224,8 @@
                             <form id="projectForm">
                                 <div class="form-group">
                                     <label for="inputProjectName">Project Name</label>
-                                    <input type="text" class="form-control" id="inputProjectName" aria-describedby="projectName" placeholder="Enter Project Name">
+                                    <input type="text" class="form-control" id="inputProjectName" aria-describedby="projectName"
+                                        placeholder="Enter Project Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputProjectDescription">Description</label>
@@ -213,14 +234,14 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="addProject" type="button" data-dismiss="modal" class="btn btn-primary">Add Project</button>
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                            <button id="addProject" type="button" data-dismiss="modal" class="btn btn-success">Add
+                                Project</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
+            <!-- end add project modal -->
         </div>
     </div>
 </div>

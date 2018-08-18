@@ -1,62 +1,56 @@
-$(document).ready(function () {
-    // declare variables
-    var todayContainer = $('.today-container');
+// when the page loads, set checkboxes to checked if the item is complete
+$(document).ready(
+    highlightCompletions()
+);
 
-    // on-click event handlers
-    // TODO: add on click handlers here
+// when a checkbox is toggled, add/remove styling as necessary; tell database item completion state
+$('.due-item').click(function () {
+    var thisID = $(this).attr('data-id');
 
-    // function declarations
-    function getToday() {
-        var today = Date.now();
+    // determine whether this checkbox has been checked
+    if ($(this).prop('checked')) {
+        // add green backround styling
+        $('#list-item-' + thisID).addClass('list-group-item-success');
+
+        // tell the dataabse this item is done
+        var completionState = {
+            id: thisID,
+            is_complete: true
+        };
+        putAjax(completionState, 'tasks', thisID);
+    } else {
+        // remove green background styling
+        $('#list-item-' + thisID).removeClass('list-group-item-success');
+
+        // tell the dataabse this item is NOT done
+        var completionState = {
+            id: thisID,
+            is_complete: false
+        };
+        putAjax(completionState, 'tasks', thisID);
     }
 });
 
-// Getting the initial list of posts
-getPosts();
-// InitializeRows handles appending all of our constructed post HTML inside
-// blogContainer
-function initializeRows() {
-    blogContainer.empty();
-    var postsToAdd = [];
-    for (var i = 0; i < posts.length; i++) {
-        postsToAdd.push(createNewRow(posts[i]));
-    }
-    blogContainer.append(postsToAdd);
+function highlightCompletions() {
+    $('.list-group-item').each(function() {
+        var num = $(this).attr('data-id');
+        var complete = $(this).attr('data-complete');
+        console.log(num + ", " + complete);
+
+        if (complete === 'true') {
+            $('#list-item-' + num).addClass('list-group-item-success');
+            $('#checkbox-' + num).prop('checked', true);
+            console.log('parsing for completion');
+        }
+    });
 }
 
-// build out a due today item
-function createNewRow(post) {
-    var newPostCard = $("<div>");
-    newPostCard.addClass("card");
-    var newPostCardHeading = $("<div>");
-    newPostCardHeading.addClass("card-header");
-    var deleteBtn = $("<button>");
-    deleteBtn.text("x");
-    deleteBtn.addClass("delete btn btn-danger");
-    var editBtn = $("<button>");
-    editBtn.text("EDIT");
-    editBtn.addClass("edit btn btn-default");
-    var newPostTitle = $("<h2>");
-    var newPostDate = $("<small>");
-    var newPostCategory = $("<h5>");
-    newPostCategory.text(post.category);
-
-    var newPostCardBody = $("<div>");
-    newPostCardBody.addClass("card-body");
-    var newPostBody = $("<p>");
-    newPostTitle.text(post.title + " ");
-    newPostBody.text(post.body);
-    var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    newPostDate.text(formattedDate);
-    newPostTitle.append(newPostDate);
-    newPostCardHeading.append(deleteBtn);
-    newPostCardHeading.append(editBtn);
-    newPostCardHeading.append(newPostTitle);
-    newPostCardHeading.append(newPostCategory);
-    newPostCardBody.append(newPostBody);
-    newPostCard.append(newPostCardHeading);
-    newPostCard.append(newPostCardBody);
-    newPostCard.data("post", post);
-    return newPostCard;
+function putAjax(data, URL) {
+    $.ajax({
+        url: "api/" + URL,
+        method: "PUT",
+        data: data
+    }).then(function () {
+        console.log('talked to the db');
+    });
 }

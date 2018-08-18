@@ -3,7 +3,7 @@
   color: #000;
 }
 
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   background-color: #28a745;
 }
 
@@ -18,6 +18,22 @@
   margin-bottom: 0%;
 }
 
+#add-new {
+  background-image: url("../images/michael-benz-258430-unsplash.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  margin-bottom: 0%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  /* background-color: #c3e6cb; */
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
 #jumbotron {
   background-color: transparent;
 }
@@ -27,26 +43,6 @@
   font-weight: 600;
 }
 
-/* .list-group-item {
-  line-height: 2.5rem;
-} */
-
-ul {
-  list-style-type: none;
-}
-
-#inputHeader {
-  text-align: center;
-}
-
-#buttonNewTask {
-  text-align: center;
-}
-
-#buttonNewGoal {
-  text-align: center;
-}
-
 #chart-container1,
 container2,
 container3,
@@ -54,12 +50,6 @@ goalTestChart {
   position: relative;
   height: 300;
   width: 300;
-}
-
-#cancelTask {
-  right: 0px;
-  position: absolute;
-  margin-left: auto;
 }
 
 #goal-progress {
