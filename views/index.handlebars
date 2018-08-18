@@ -13,26 +13,48 @@
 
   <div class="container">
     <!-- begin goals and progress section -->
+
+    <!-- Projects Progress section -->
     <div class="row">
-      <div class="col-12 mb-3">
-        <!-- Progress chart here -->
-        <h3>Your Projects</h3>
-        <div id="progress-report" class="row text-center">
-          <div class="col-md-4 col-sm-12" id="chart-container1">
-            <canvas id="testChart1"></canvas>
-          </div>
-          <div class="col-md-4 col-sm-12" id="chart-container2">
-            <canvas id="testChart2"></canvas>
-          </div>
-          <div class="col-md-4 col-sm-12" id="chart-container3">
-            <canvas id="testChart3"></canvas>
+      <div class="col-12 mb-3" id="projects">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Your Projects</h3>
+            <div id="progress-report" class="row text-center">
+              <div class="col-md-4 col-sm-12" id="chart-container1">
+                <canvas id="project1"></canvas>
+              </div>
+              <div class="col-md-4 col-sm-12" id="chart-container2">
+                <canvas id="project2"></canvas>
+              </div>
+              <div class="col-md-4 col-sm-12" id="chart-container3">
+                <canvas id="project3"></canvas>
+              </div>
+            </div>
+            <div class="row" id="project-titles">
+              <div class="col-4">
+                <p>Science Project</p>
+              </div>
+              <div class="col-4">
+                <p>Space Station Construction</p>
+              </div>
+              <div class="col-4">
+                <p>DIY Nuclear Reactor</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row">
+
+        <!-- Goals section -->
+        <div class="row" id="goals">
           <div class="col-12 mt-4">
-            <h3>Goals Tracker</h3>
-            <div id="goal-progress" class="col-md-4 col-sm-12 text-center">
-              <canvas id="goalTestChart"></canvas>
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">Goals</h3>
+                <div id="goal-progress" class="col-md-4 col-sm-12 text-center">
+                  <canvas id="goalChart"></canvas>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -51,11 +73,10 @@
             <ul class="list-group list-group-flush today-container" id="today-list">
               <!-- put the due today items here -->
               {{#each tasks}}
-              <!-- TODO: add 'list-group-item-success' on checkbox select -->
-              <li class="list-group-item">
+              <li class="list-group-item" data-complete="{{this.is_complete}}" data-id={{this.id}} id="list-item-{{this.id}}">
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="{{this.id}}" data-id="{{this.id}}">
-                  <label class="custom-control-label" for="{{this.id}}">{{this.task_name}}</label>
+                  <input type="checkbox" class="custom-control-input due-item" id="checkbox-{{this.id}}" data-id={{this.id}}>
+                  <label class="custom-control-label" for="checkbox-{{this.id}}">{{this.task_name}}</label>
                 </div>
               </li>
               {{/each}}
@@ -67,13 +88,9 @@
 
       <!-- begin message center -->
       {{!--
-      <div class="col-md-6">
+      <div class="col-md-6 d-none">
         <ul class="list-group mb-3">
           <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
         </ul>
         <a href="form" class="btn btn-primary button float-left mb-3">Form</a>
       </div> --}}
