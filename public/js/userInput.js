@@ -12,8 +12,9 @@ var myNewProject;
 
 //Create a New Task
 $("#newTask").on("click", function (event) {
+
   event.preventDefault();
-  $("#taskInputForm").show();
+  $("#taskInputForm").fadeIn(400);
   $("#showProjects").hide();
   $("#goalInputForm").hide();
 
@@ -110,7 +111,7 @@ function myCheckBox() {
 $("#newGoal").on("click", function () {
   // if the task form is visible, close it and show the goal form.
   $("#taskInputForm").hide();
-  $("#goalInputForm").show();
+  $("#goalInputForm").fadeIn(400);
 
   $("#submitGoal").on("click", function () {
     // 1) hide/clear goal input form.

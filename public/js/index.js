@@ -8,7 +8,7 @@ var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveExample: function (example) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -18,13 +18,13 @@ var API = {
       data: JSON.stringify(example)
     });
   },
-  getExamples: function() {
+  getExamples: function () {
     return $.ajax({
       url: "api/examples",
       type: "GET"
     });
   },
-  deleteExample: function(id) {
+  deleteExample: function (id) {
     return $.ajax({
       url: "api/examples/" + id,
       type: "DELETE"
@@ -33,9 +33,9 @@ var API = {
 };
 
 // refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
+var refreshExamples = function () {
+  API.getExamples().then(function (data) {
+    var $examples = data.map(function (example) {
       var $a = $("<a>")
         .text(example.text)
         .attr("href", "/example/" + example.id);
@@ -63,7 +63,7 @@ var refreshExamples = function() {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+var handleFormSubmit = function (event) {
   event.preventDefault();
 
   var example = {
@@ -76,7 +76,7 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.saveExample(example).then(function() {
+  API.saveExample(example).then(function () {
     refreshExamples();
   });
 
@@ -86,12 +86,12 @@ var handleFormSubmit = function(event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
+var handleDeleteBtnClick = function () {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteExample(idToDelete).then(function() {
+  API.deleteExample(idToDelete).then(function () {
     refreshExamples();
   });
 };
@@ -125,7 +125,7 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 // };
 
 // GOAL PROGRESS --------------------------------------------------
-$.get("/api/goals", function(data) {
+$.get("/api/goals", function (data) {
   console.log("Goals", data);
   var goal1 = data[0].goal_name;
   var goalProgress1 = data[0].progress;
@@ -144,6 +144,7 @@ $.get("/api/goals", function(data) {
   var goalTestChart = makeGoalChart(ctx, goalLabels, goalProgress);
 
   $("#goal-progress").append(goalTestChart);
+
 
   function makeGoalChart(ctx, goalLabels, goalProgress) {
     return new Chart(ctx, {
@@ -168,8 +169,8 @@ $.get("/api/goals", function(data) {
 });
 
 // PROJECT PROGRESS --------------------------------------------
-(function() {
-  $.get("/chart-data", function(data) {
+(function () {
+  $.get("/chart-data", function (data) {
     console.log("Chart Data:", data);
 
     var projectName1 = data.projects[0].project_name;
@@ -235,7 +236,7 @@ $.get("/api/goals", function(data) {
 })();
 
 // options for Bulma Calendar Extension
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   var datePickers = bulmaCalendar.attach('[type="date"]', {
     overlay: true,
     minDate: "2018-01-01",

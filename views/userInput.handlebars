@@ -14,10 +14,10 @@
             <button id="newGoal" type="button" class="btn btn-info">New Goal</button>
         </div>
     </div>
+    <!--Form input for Tasks-->
+
     <div class="row">
         <div class="col-md-12">
-
-            <!--Form input for Tasks-->
             <form id="taskInputForm">
                 <div class="form-row">
                     <!--title of task-->
@@ -113,108 +113,105 @@
                         <a class="float-right" id="cancelTask" href="#">Cancel</a>
                     </div>
                 </div>
-
-
-
             </form>
-
-            <!--Goal Input Form-->
-            <div class="row">
-                <div class="col-md-12">
-                    <form id="goalInputForm">
-                        <div class="form-group">
-                            <label for="goalName">Name</label>
-                            <textarea class="form-control" id="goalName" rows="1"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="goalDescription">Description</label>
-                            <textarea class="form-control" id="goalDescription" rows="3"></textarea>
-                        </div>
-
-                        <button type="button" class="btn btn-primary" id="submitGoal">Add Goal</button>
-                        <a id="cancelGoal" class="float-right" href="#">Cancel</a>
-                    </form>
-                </div>
-            </div>
-
-            <!-- "Add Success" Modal -->
-            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="successModal"></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="modalTitle"></div>
-                            <div id="modalAddress"></div>
-                            <div id="modalCategory"></div>
-                            <div id="modalDate"></div>
-                            <div id="modalPriority"></div>
-                            <div id="modalHours"></div>
-                            <div id="modalNotes"></div>
-                            <div id="modalProject"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="confirm" type="button" data-dismiss="modal" class="btn btn-primary">I Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{!-- If someone wants to help with this modal, I'd be grateful. --}} {{!--
-            <div class="modal fade" id="checkDateModal" tabindex="-1" role="dialog" aria-labelledby="checkDateModel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5>Date Checker</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="dateChecked"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
-            <!--Add Project Modal-->
-            <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModal" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">New Project</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="projectForm">
-                                <div class="form-group">
-                                    <label for="inputProjectName">Project Name</label>
-                                    <input type="text" class="form-control" id="inputProjectName" aria-describedby="projectName" placeholder="Enter Project Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputProjectDescription">Description</label>
-                                    <textarea class="form-control" id="inputProjectDescription" rows="3"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="addProject" type="button" data-dismiss="modal" class="btn btn-primary">Add Project</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
     </div>
+    <!--Goal Input Form-->
+    <div class="row">
+        <div class="col-md-12">
+            <form id="goalInputForm">
+                <div class="form-group">
+                    <label for="goalName">Name</label>
+                    <textarea class="form-control" id="goalName" rows="1"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="goalDescription">Description</label>
+                    <textarea class="form-control" id="goalDescription" rows="3"></textarea>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="submitGoal">Add Goal</button>
+                <a id="cancelGoal" class="float-right" href="#">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- "Add Success" Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModal"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="modalTitle"></div>
+                    <div id="modalAddress"></div>
+                    <div id="modalCategory"></div>
+                    <div id="modalDate"></div>
+                    <div id="modalPriority"></div>
+                    <div id="modalHours"></div>
+                    <div id="modalNotes"></div>
+                    <div id="modalProject"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="confirm" type="button" data-dismiss="modal" class="btn btn-primary">I Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- --}} {{!--
+    <div class="modal fade" id="checkDateModal" tabindex="-1" role="dialog" aria-labelledby="checkDateModel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Date Checker</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="dateChecked"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+    <!--Add Project Modal-->
+    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Project</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="projectForm">
+                        <div class="form-group">
+                            <label for="inputProjectName">Project Name</label>
+                            <input type="text" class="form-control" id="inputProjectName" aria-describedby="projectName" placeholder="Enter Project Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputProjectDescription">Description</label>
+                            <textarea class="form-control" id="inputProjectDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="addProject" type="button" data-dismiss="modal" class="btn btn-primary">Add Project</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
