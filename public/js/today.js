@@ -1,24 +1,56 @@
-$('.due-item').click(function() {
+// when the page loads, set checkboxes to checked if the item is complete
+$(document).ready(
+    highlightCompletions()
+);
+
+// when a checkbox is toggled, add/remove styling as necessary; tell database item completion state
+$('.due-item').click(function () {
     var thisID = $(this).attr('data-id');
 
     // determine whether this checkbox has been checked
     if ($(this).prop('checked')) {
-        // TODO: tell database this is complete
+        // add green backround styling
         $('#list-item-' + thisID).addClass('list-group-item-success');
+
+        // tell the dataabse this item is done
+        var completionState = {
+            id: thisID,
+            is_complete: true
+        };
+        putAjax(completionState, 'tasks', thisID);
     } else {
-        // TODO: tell database this is not complete
+        // remove green background styling
         $('#list-item-' + thisID).removeClass('list-group-item-success');
+
+        // tell the dataabse this item is NOT done
+        var completionState = {
+            id: thisID,
+            is_complete: false
+        };
+        putAjax(completionState, 'tasks', thisID);
     }
 });
 
-function putAjax(data, id) {
+function highlightCompletions() {
+    $('.list-group-item').each(function() {
+        var num = $(this).attr('data-id');
+        var complete = $(this).attr('data-complete');
+        console.log(num + ", " + complete);
+
+        if (complete === 'true') {
+            $('#list-item-' + num).addClass('list-group-item-success');
+            $('#checkbox-' + num).prop('checked', true);
+            console.log('parsing for completion');
+        }
+    });
+}
+
+function putAjax(data, URL) {
     $.ajax({
-      method: 'PUT',
-      url: '/api/tasks/' + id,
-      data: data
-    }).then(function(result) {});
-  }
-
-  var queryString = 'UPDATE tasks WHERE id = ? SET is_complete = ?'
-
-  // TODO: when the page loads, set checkboxes to checked if the item is complete
+        url: "api/" + URL,
+        method: "PUT",
+        data: data
+    }).then(function () {
+        console.log('talked to the db');
+    });
+}
