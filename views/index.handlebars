@@ -51,11 +51,10 @@
             <ul class="list-group list-group-flush today-container" id="today-list">
               <!-- put the due today items here -->
               {{#each tasks}}
-              <!-- TODO: add 'list-group-item-success' on checkbox select -->
-              <li class="list-group-item" id="list-item-{{this.id}}">
+              <li class="list-group-item" data-complete="{{this.is_complete}}" data-id={{this.id}} id="list-item-{{this.id}}">
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input due-item" id={{this.id}} data-id={{this.id}}>
-                  <label class="custom-control-label" for="{{this.id}}">{{this.task_name}}</label>
+                  <input type="checkbox" class="custom-control-input due-item" id="checkbox-{{this.id}}" data-id={{this.id}}>
+                  <label class="custom-control-label" for="checkbox-{{this.id}}">{{this.task_name}}</label>
                 </div>
               </li>
               {{/each}}
