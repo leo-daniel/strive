@@ -1,6 +1,7 @@
 .DS_Store
 package-lock.json
 .vscode
+yarn.lock
 
 # Logs
 logs
