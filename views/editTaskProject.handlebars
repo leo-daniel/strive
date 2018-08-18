@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="row">
+        <!--Header Title-->
+        <div id="inputHeader" class="col-md-12">
+            <h1>Update your Journey to Success!</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-center">Current Goals</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Goal Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Progress</th>
+                        <th scope="col">Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each goals}} {{#unless complete}}
+                    <tr>
+                        <td contenteditable='true' id='goalName-{{this.id}}'>{{this.goal_name}}</td>
+                        <td contenteditable='true' id='goalDescription-{{this.id}}'>{{this.description}}</td>
+                        <td contenteditable='true' id='goalProgress-{{this.id}}'>{{this.progress}}</td>
+                        <td>
+                            <button id='goalButton-{{this.id}}' type="button" class="btn btn-primary">Update</button>
+                        </td>
+                    </tr>
+                    {{/unless}} {{/each}}
+                </tbody>
+            </table>
+
+
+            <h3 class="text-center">Current Projects</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Progress</th>
+                        <th scope="col">Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each projects}} {{#unless complete}}
+                    <tr>
+                        <td contenteditable='true'>{{this.project_name}}</td>
+                        <td contenteditable='true'>{{this.description}}</td>
+                        <td contenteditable='true'>{{this.date_due}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary tryme">Update</button>
+                        </td>
+                    </tr>
+                    {{/unless}} {{/each}}
+                </tbody>
+            </table>
+
+            <h3 class="text-center">Current Tasks</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Date Due</th>
+                        <th scope="col">Update</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each tasks}} {{#unless is_complete}}
+                    <tr>
+                        <td contenteditable='true'>{{this.task_name}}</td>
+                        <td contenteditable='true'>{{this.category}}</td>
+                        <td contenteditable='true'>{{this.address}}</td>
+                        <td contenteditable='true'>{{this.description}}</td>
+                        <td contenteditable='true'>{{this.priority}}</td>
+                        <td contenteditable='true'>{{this.date_due}}</td>
+                        <td contenteditable='true'>{{this.is_complete}}</td>
+                        <td>
+                            <button id='task-{{this.id}}' type="button" class="btn btn-primary tryme">Update</button>
+                        </td>
+                    </tr>
+                    {{/unless}} {{/each}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="/js/edit.js"></script>

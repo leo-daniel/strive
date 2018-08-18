@@ -1,6 +1,7 @@
 USE calendar_db;
 
 -- ### SAMPLE PROJECT DATA ###
+=======
 INSERT INTO projects ('project_name', 'description', 'date_due', 'createdAt', 'updatedAt')
 VALUES ('Science Project', NULL, NULL, NULL, NULL);
 
@@ -44,11 +45,14 @@ VALUES (1, 'Uncategorized task', NULL, NULL, NULL, 1, '2018-09-11', 0, 1);
 -- VALUES ();
 
 -- ### SAMPLE GOALS DATA ###
-INSERT INTO goals ('goal_name', 'description', 'progress', 'complete')
-VALUES ('Become a Millionare', 'Plus I would get to meet Regis Philbin in the process', 0, 0);
+INSERT INTO goals (`goal_name`, `description`, `progress`, `complete`)
+VALUES ('Become a Millionare', 'Plus I would get to meet Regis Philbin in the process', .02, 0);
 
-INSERT INTO goals ('goal_name', 'description', 'progress', 'complete')
-VALUES ('Achieve world domination', 'How much does it cost to become a member of S.P.E.C.T.R.E.?', 0, 0);
+INSERT INTO goals (`goal_name`, `description`, `progress`, `complete`)
+VALUES ('Read War and Peace', 'Self-explanatory', .3, 0);
 
-INSERT INTO goals ('goal_name', 'description', 'progress', 'complete')
-VALUES ('Write some goals', 'I want to feel accomplished, so I should make an easy goal', 50, 1)
+INSERT INTO goals (`goal_name`, `description`, `progress`, `complete`)
+VALUES ('Get a job as a developer', 'I want to feel accomplished, so I should make an easy goal', .7, 0);
+
+INSERT INTO goals (`goal_name`, `description`, `progress`, `complete`)
+VALUES ('Get halfway through bootcamp', 'Milestone for me', 1, 1);

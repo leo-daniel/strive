@@ -38,9 +38,9 @@ var syncOptions = {
 };
 
 // If running a test, set syncOptions.force to true
-// clearing the 'testdb'
-if (process.env.NODE_ENV === 'test') {
-  syncOptions.force = true;
+// clearing the `testdb`
+if (process.env.NODE_ENV === "test") {
+  syncOptions.force = false
 }
 
 // Starting the server, syncing our models ------------------------------------/

@@ -28,29 +28,51 @@ module.exports = function(app) {
     });
   });
 
-  // PUT route for updating goals
-  app.put('/api/goals', function(req, res) {
-    db.goal
-      .update(req.body, {
-        where: {
-          id: req.body.id,
-        },
-      })
-      .then(function(dbGoal) {
-        res.json(dbGoal);
-      });
-  });
+	// PUT route for updating goals
+	app.put('/api/goals', function (req, res) {
+		db.goal.update(
+			req.body, {
+				where: {
+					id: req.body.id
+				}
+			}).then(function (dbGoal) {
+				res.json(dbGoal);
+			});
+	});
 
-  app.delete('/api/goals/:id', function(req, res) {
-    // DELETE the goal with the id available to us in req.params.id
-    db.goal
-      .destroy({
-        where: {
-          id: req.params.id,
-        },
-      })
-      .then(function(dbGoal) {
-        res.json(dbGoal);
-      });
-  });
+	// app.put('/api/goals/:id', function (req, res) {
+	// 	db.goal.update(
+	// 		req.body, {
+	// 			where: {
+	// 				id: req.body.id
+	// 			}
+	// 		}).then(function (dbGoal) {
+	// 			console.log('CONTEXT', dbGoal)
+	// 			res.json(dbGoal);
+	// 		});
+	// });
+
+	// app.put('/api/goals/:id', function (req, res) {
+	// 	db.goal.update(
+	// 		{ goal_name: 'anything' },
+	// 		{ where: req.params.id }
+	// 	).then(function (dbGoal) {
+	// 		console.log('CONTEXT', dbGoal)
+	// 		res.json(dbGoal);
+	// 	});
+	// });
+
+
+
+	app.delete('/api/goals/:id', function (req, res) {
+		// DELETE the goal with the id available to us in req.params.id
+		db.goal.destroy({
+			where: {
+				id: req.params.id
+			}
+		}).then(function (dbGoal) {
+			res.json(dbGoal);
+		});
+	});
+
 };

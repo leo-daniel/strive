@@ -11,7 +11,7 @@ var myNewProject;
 //Create a New Task
 $("#newTask").on("click", function(event) {
   event.preventDefault();
-  $("#taskInputForm").show();
+  $("#taskInputForm").fadeIn(400);
   $("#showProjects").hide();
   $("#goalInputForm").hide();
 
@@ -99,16 +99,6 @@ $("#newTask").on("click", function(event) {
     $("#confirm").on("click", function() {
       // 3) send data back to MySQL DB
       postAjax(myNewTask, "tasks");
-
-      var projectUpdate = {
-        total_tasks: 1
-      };
-
-      var projectId = $("#inputProjects option:selected").val();
-      console.log("This is the project id:", projectId);
-
-      putAjax(projectUpdate, "projects", projectId);
-
       // 4) reset form and hide
       $("#taskInputForm")[0].reset();
       $("#taskInputForm").hide();
@@ -129,7 +119,7 @@ function myCheckBox() {
 $("#newGoal").on("click", function() {
   // if the task form is visible, close it and show the goal form.
   $("#taskInputForm").hide();
-  $("#goalInputForm").show();
+  $("#goalInputForm").fadeIn(400);
 
   $("#submitGoal").on("click", function() {
     // 1) hide/clear goal input form.
