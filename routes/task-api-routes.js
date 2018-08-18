@@ -46,24 +46,26 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/checkdate/:date', function (req, res) {
+    app.get('/checkdate/:date', function(req, res) {
 
         const choice = req.params.date;
 
         const checkMatch = (result) => {
             const matches = result.filter((result) => {
-                return result.dateDay.toString() === choice
-            });
 
+                dayResult = result.dateDay.toString();
+                return dayResult === choice
+            });
+    
             if (matches.length === 0) {
                 res.send("Yes");
             } else {
                 res.send("No")
             }
         }
-
+    
         db.task.findAll({}).then(checkMatch);
-
+    
     });
 
 

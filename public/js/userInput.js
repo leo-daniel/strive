@@ -78,8 +78,7 @@ $("#newTask").on("click", function(event) {
       hours_complete: (taskHours = $("#inputTaskLength").val()),
       description: (taskNotes = $("#inputNotes").val()),
       project: (taskProject = $("#inputProjects")
-        .val()
-        .trim()),
+        .val()),
       projectId: $("#inputProjects option:selected").val(),
       is_complete: false,
       dateDay: n
@@ -100,7 +99,7 @@ $("#newTask").on("click", function(event) {
       // 3) send data back to MySQL DB
       postAjax(myNewTask, "tasks");
       // 4) reset form and hide
-      $("#taskInputForm")[0].reset();
+      // $("#taskInputForm")[0].reset();
       $("#taskInputForm").hide();
     });
   });
