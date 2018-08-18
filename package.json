@@ -24,12 +24,12 @@
   },
   "devDependencies": {
     "bulma": "^0.7.1",
-    "eslint": "^5.3.0",
-    "eslint-config-prettier": "^2.9.0",
+    "eslint": "5.4.0",
+    "eslint-config-prettier": "3.0.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-prettier": "2.6.2",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^3.1.0",
@@ -47,10 +47,10 @@
   },
   "eslintConfig": {
     "env": {
-        "browser": true,
-        "node": true
+      "browser": true,
+      "node": true
     }
-},
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leo-daniel/strive.git"
