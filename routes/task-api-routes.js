@@ -52,7 +52,7 @@ module.exports = function (app) {
 
         const checkMatch = (result) => {
             const matches = result.filter((result) => {
-                return result.dateDay.toString() === choice
+                return result.dateDay.toString() === choice;
             });
 
             if (matches.length === 0) {
@@ -75,6 +75,18 @@ module.exports = function (app) {
     });
 
     // PUT route for updating tasks
+    app.put('/api/tasks/:id', function (req, res) {
+        db.task.update(
+            req.body, {
+                where: {
+                    id: req.params.id
+                }
+            }).then(function (dbTask) {
+                res.json(dbTask);
+            });
+    });
+
+    // PUT route for updating tasks
     app.put('/api/tasks', function (req, res) {
         db.task.update(
             req.body, {
@@ -82,8 +94,8 @@ module.exports = function (app) {
                     id: req.body.id
                 }
             }).then(function (dbTask) {
-            res.json(dbTask);
-        });
+                res.json(dbTask);
+            });
     });
 
     app.delete('/api/tasks/:id', function (req, res) {

@@ -74,6 +74,11 @@ module.exports = function (app) {
         });
     });
 
+    // Load user input form page
+    app.get('/form', function (req, res) {
+        res.render('userInput');
+    });
+
     app.get("/edit", function (req, res) {
         var req1 = db.project.findAll({});
         var req2 = db.task.findAll({});
@@ -105,13 +110,4 @@ module.exports = function (app) {
         });
     });
 
-    // Load user input form page
-    app.get('/form', function (req, res) {
-        res.render('userInput');
-    });
-
-    // Render 404 page for any unmatched routes
-    app.get('*', function (req, res) {
-        res.render('404');
-    });
 };

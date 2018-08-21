@@ -25,7 +25,7 @@
                         <td contenteditable='true' id='goalDescription-{{this.id}}'>{{this.description}}</td>
                         <td contenteditable='true' id='goalProgress-{{this.id}}'>{{this.progress}}</td>
                         <td>
-                            <button id='goalButton-{{this.id}}' type="button" class="btn btn-primary">Update</button>
+                            <button data-id='{{this.id}}' id='goalButton-{{this.id}}' type="button" class="btn btn-primary updateGoal">Update</button>
                         </td>
                     </tr>
                     {{/unless}} {{/each}}
@@ -39,18 +39,18 @@
                     <tr>
                         <th scope="col">Project Name</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Progress</th>
+                        <th scope="col">Date Due</th>
                         <th scope="col">Update</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each projects}} {{#unless complete}}
                     <tr>
-                        <td contenteditable='true'>{{this.project_name}}</td>
-                        <td contenteditable='true'>{{this.description}}</td>
-                        <td contenteditable='true'>{{this.date_due}}</td>
+                        <td contenteditable='true' id='projectName-{{this.id}}'>{{this.project_name}}</td>
+                        <td contenteditable='true' id='projectDescription-{{this.id}}'>{{this.description}}</td>
+                        <td contenteditable='true' id='projectDatedue-{{this.id}}'>{{this.date_due}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary tryme">Update</button>
+                            <button data-id='{{this.id}}' id='projectButton-{{this.id}}' type="button" class="btn btn-primary updateProject">Update</button>
                         </td>
                     </tr>
                     {{/unless}} {{/each}}
@@ -74,15 +74,14 @@
                 <tbody>
                     {{#each tasks}} {{#unless is_complete}}
                     <tr>
-                        <td contenteditable='true'>{{this.task_name}}</td>
-                        <td contenteditable='true'>{{this.category}}</td>
-                        <td contenteditable='true'>{{this.address}}</td>
-                        <td contenteditable='true'>{{this.description}}</td>
-                        <td contenteditable='true'>{{this.priority}}</td>
-                        <td contenteditable='true'>{{this.date_due}}</td>
-                        <td contenteditable='true'>{{this.is_complete}}</td>
+                        <td contenteditable='true' id='taskName-{{this.id}}'>{{this.task_name}}</td>
+                        <td contenteditable='true' id='taskCategory-{{this.id}}'>{{this.description}}</td>
+                        <td contenteditable='true' id='taskAddress-{{this.id}}'>{{this.date_due}}</td>
+                        <td contenteditable='true' id='taskDescription-{{this.id}}'>{{this.description}}</td>
+                        <td contenteditable='true' id='taskPriority-{{this.id}}'>{{this.priority}}</td>
+                        <td contenteditable='true' id='taskDatedue-{{this.id}}'>{{this.date_due}}</td>
                         <td>
-                            <button id='task-{{this.id}}' type="button" class="btn btn-primary tryme">Update</button>
+                            <button data-id='{{this.id}}' id='task-{{this.id}}' type="button" class="btn btn-primary updateTask">Update</button>
                         </td>
                     </tr>
                     {{/unless}} {{/each}}
