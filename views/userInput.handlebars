@@ -16,13 +16,11 @@
     <div class="row mb-3">
         <!--Buttons for either adding a new task or a new goal-->
         <div id="buttonNewTask" class="col-md-6 mb-3">
-            <button id="newTask" type="button" class="btn btn-secondary btn-block">New
-                Task
+            <button id="newTask" type="button" class="btn btn-secondary btn-block">New Task
             </button>
         </div>
         <div id="buttonNewGoal" class="col-md-6 mb-3">
-            <button id="newGoal" type="button" class="btn btn-secondary btn-block">New
-                Goal
+            <button id="newGoal" type="button" class="btn btn-secondary btn-block">New Goal
             </button>
         </div>
     </div>
@@ -62,8 +60,7 @@
                             <div class="form-group col-md-5">
                                 <div class="form-group">
                                     <label for="inputTaskDate">Date Due</label>
-                                    <input type="date" id="inputTaskDate" max="3000-12-31" min="1000-01-01" class="form-control"
-                                        placeholder="YYYY-MM-DD">
+                                    <input type="date" id="inputTaskDate" max="3000-12-31" min="1000-01-01" class="form-control" placeholder="YYYY-MM-DD">
                                 </div>
                             </div>
                             <div class="form-group col-md-2"></div>
@@ -98,8 +95,7 @@
                             <div class="form-group col-md-12">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="inputProject">
-                                    <label class="custom-control-label" for="inputProject">Add
-                                        to Project</label>
+                                    <label class="custom-control-label" for="inputProject">Add to Project</label>
                                 </div>
                             </div>
                         </div>
@@ -112,8 +108,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3" style="margin-top:auto">
-                                <button id="newProject" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#projectModal">New
-                                    Project
+                                <button id="newProject" type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#projectModal">New Project
                                 </button>
                             </div>
                         </div>
@@ -121,8 +116,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <button class="btn btn-outline-danger" id="cancelTask" href="#">Cancel</button>
-                                <button id="submitMyTask" type="submitTask" class="btn btn-success" data-toggle="modal" data-target="#successModal">Add
-                                    Task
+                                <button id="submitMyTask" type="submitTask" class="btn btn-success" data-toggle="modal" data-target="#successModal">Add Task
                                 </button>
                             </div>
                         </div>
@@ -146,8 +140,7 @@
                                     <textarea class="form-control" id="goalDescription" rows="3"></textarea>
                                 </div>
                                 <button id="cancelGoal" class="btn btn-outline-danger" href="#">Cancel</button>
-                                <button type="button" class="btn btn-success" id="submitGoal">Add
-                                    Goal
+                                <button type="button" class="btn btn-success" id="submitGoal">Add Goal
                                 </button>
                             </form>
                         </div>
@@ -157,8 +150,7 @@
             <!-- end goal input form -->
 
             <!-- "Add Success" Modal -->
-            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal"
-                aria-hidden="true">
+            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -196,7 +188,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                         <img id="loading" src="../images/loading_gif.gif">
+                        <img id="loading" src="../images/loading_gif.gif">
                         <div class="modal-body">
                             <div id="checkingDate"></div>
                             <br>
@@ -210,8 +202,7 @@
             </div>
 
             <!--Add Project Modal-->
-            <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModal"
-                aria-hidden="true">
+            <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -224,8 +215,7 @@
                             <form id="projectForm">
                                 <div class="form-group">
                                     <label for="inputProjectName">Project Name</label>
-                                    <input type="text" class="form-control" id="inputProjectName" aria-describedby="projectName"
-                                        placeholder="Enter Project Name">
+                                    <input type="text" class="form-control" id="inputProjectName" aria-describedby="projectName" placeholder="Enter Project Name">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputProjectDescription">Description</label>
@@ -235,20 +225,13 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                            <button id="addProject" type="button" data-dismiss="modal" class="btn btn-success">Add
-                                Project</button>
+                            <button id="addProject" type="button" data-dismiss="modal" class="btn btn-success">Add Project
+                            </button>
                         </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="addProject" type="button" data-dismiss="modal" class="btn btn-primary">Add Project</button>
-                </div>
+                <!-- end add project modal -->
             </div>
-            <!-- end add project modal -->
         </div>
     </div>
-
-
-
-</div>
