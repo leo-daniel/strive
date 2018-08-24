@@ -1,15 +1,140 @@
+<div id="add-new">
+</div>
+<div class="jumbotron jumbotron-custom" id="jumbotron">
+    <div class="container">
+        <!-- header: ADD NEW -->
+        <h1 class="display-4" id="page-heading">Update</h1>
+        <hr class="my-4">
+        <!-- daily quote -->
+        <p class="lead" id="quote">&ldquo;It is not the mountain we conquer, but ourselves.&rdquo;</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-3">
+        <!--Buttons for either adding a new task or a new goal-->
+        <div id="update-task" class="col-md-4 mb-3">
+            <button id="edit-task" type="button" class="btn btn-secondary btn-block">Update Task
+            </button>
+        </div>
+        <div id="update-project" class="col-md-4 mb-3">
+            <button id="edit-project" type="button" class="btn btn-secondary btn-block">Update Project
+            </button>
+        </div>
+        <div id="update-goal" class="col-md-4 mb-3">
+            <button id="edit-goal" type="button" class="btn btn-secondary btn-block">Update Goal
+            </button>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <!--Header Title-->
-        <div id="inputHeader" class="col-md-12">
-            <h1>Update your Journey to Success!</h1>
-        </div>
     </div>
     <br>
     <div class="row">
         <div class="col-md-12">
+            {{!-- Tasks Table --}}
+            <div class="card" id="update-task-show">
+                <div class="card-body">
+                    <h3 class="card-title">Update Tasks</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Task Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Priority</th>
+                                <th scope="col">Date Due</th>
+                                <th scope="col">Update</th>
+                                <th scope="col">Delete</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each tasks}} {{#unless is_complete}}
+                            <tr>
+                                <td contenteditable='true' id='taskName-{{this.id}}'>{{this.task_name}}</td>
+                                <td contenteditable='true' id='taskCategory-{{this.id}}'>{{this.description}}</td>
+                                <td contenteditable='true' id='taskAddress-{{this.id}}'>{{this.address}}</td>
+                                <td contenteditable='true' id='taskDescription-{{this.id}}'>{{this.description}}</td>
+                                <td contenteditable='true' id='taskPriority-{{this.id}}'>{{this.priority}}</td>
+                                <td contenteditable='true' id='taskDatedue-{{this.id}}'>{{this.date_due}}</td>
+                                <td>
+                                    <button data-id='{{this.id}}' type="button" class="btn btn-success updateTask">Update</button>
+                                </td>
+                                <td>
+                                    <button data-id='{{this.id}}' type="button" class="btn btn-danger deleteTask">Delete</button>
+                                </td>
+                            </tr>
+                            {{/unless}} {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{!-- Projects Table --}}
+            <div class="card" id="update-project-show">
+                <div class="card-body">
+                    <h3 class="card-title">Update Projects</h3>
+                    <table class="table" id="project-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Project Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Date Due</th>
+                                <th scope="col">Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each projects}} {{#unless complete}}
+                            <tr>
+                                <td contenteditable='true' id='projectName-{{this.id}}'>{{this.project_name}}</td>
+                                <td contenteditable='true' id='projectDescription-{{this.id}}'>{{this.description}}</td>
+                                <td contenteditable='true' id='projectDatedue-{{this.id}}'>{{this.date_due}}</td>
+                                <td>
+                                    <button data-id='{{this.id}}' id='projectButton-{{this.id}}' type="button" class="btn btn-success updateProject">Update</button>
+                                </td>
+                            </tr>
+                            {{/unless}} {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{!-- Goals Table --}}
+            <div class="card" id="update-goal-show">
+                <div class="card-body">
+                    <h3 class="card-title">Update Goals</h3>
+                    <table class="table" id="goal-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Goal Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Progress</th>
+                                <th scope="col">Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each goals}} {{#unless complete}}
+                            <tr>
+                                <td contenteditable='true' id='goalName-{{this.id}}'>{{this.goal_name}}</td>
+                                <td contenteditable='true' id='goalDescription-{{this.id}}'>{{this.description}}</td>
+                                <td contenteditable='true' id='goalProgress-{{this.id}}'>{{this.progress}}</td>
+                                <td>
+                                    <button data-id='{{this.id}}' id='goalButton-{{this.id}}' type="button" class="btn btn-success updateGoal">Update</button>
+                                </td>
+                            </tr>
+                            {{/unless}} {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            {{!-- OLD HTML
             <h3 class="text-center">Current Goals</h3>
-            <table class="table">
+            <table class="table" id="goal-table">
                 <thead>
                     <tr>
                         <th scope="col">Goal Name</th>
@@ -30,11 +155,9 @@
                     </tr>
                     {{/unless}} {{/each}}
                 </tbody>
-            </table>
-
-
+            </table> --}} {{!--
             <h3 class="text-center">Current Projects</h3>
-            <table class="table">
+            <table class="table" id="project-table">
                 <thead>
                     <tr>
                         <th scope="col">Project Name</th>
@@ -55,38 +178,7 @@
                     </tr>
                     {{/unless}} {{/each}}
                 </tbody>
-            </table>
-
-            <h3 class="text-center">Current Tasks</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Task Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Priority</th>
-                        <th scope="col">Date Due</th>
-                        <th scope="col">Update</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each tasks}} {{#unless is_complete}}
-                    <tr>
-                        <td contenteditable='true' id='taskName-{{this.id}}'>{{this.task_name}}</td>
-                        <td contenteditable='true' id='taskCategory-{{this.id}}'>{{this.description}}</td>
-                        <td contenteditable='true' id='taskAddress-{{this.id}}'>{{this.date_due}}</td>
-                        <td contenteditable='true' id='taskDescription-{{this.id}}'>{{this.description}}</td>
-                        <td contenteditable='true' id='taskPriority-{{this.id}}'>{{this.priority}}</td>
-                        <td contenteditable='true' id='taskDatedue-{{this.id}}'>{{this.date_due}}</td>
-                        <td>
-                            <button data-id='{{this.id}}' id='task-{{this.id}}' type="button" class="btn btn-primary updateTask">Update</button>
-                        </td>
-                    </tr>
-                    {{/unless}} {{/each}}
-                </tbody>
-            </table>
+            </table> --}}
 
         </div>
     </div>
