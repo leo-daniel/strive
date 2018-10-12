@@ -24,7 +24,7 @@ Open the deployed version here https://strive-goals-app.herokuapp.com/
 
 ## Authors
 * Greg Bremble
+* Chris Mueller
 * Leo Daniel
-* Richard Merino
 * Jordan Miller
 * Karishma Patel
